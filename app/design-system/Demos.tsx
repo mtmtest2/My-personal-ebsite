@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, ClipboardList, Eye, EyeOff, Save } from 'lucide-react';
+import { Check, ClipboardList, Save } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Field from '@/components/ui/Field';
 import Tabs from '@/components/ui/Tabs';
 import { Alert, EmptyState } from '@/components/ui/States';
+import PasswordInput from '@/components/auth/PasswordInput';
 import RolePicker, { type Role } from '@/components/auth/RolePicker';
 
 /** Save button walking through idle → loading → success, as a real form would. */
@@ -29,22 +30,10 @@ export function SaveDemo() {
 }
 
 export function PasswordDemo() {
-  const [show, setShow] = useState(false);
   return (
     <Field id="ds-password" label="رمز عبور" hint="دست‌کم ۸ نویسه، با یک عدد." aside={<a href="#" className="link text-xs">فراموشی رمز</a>}>
-      <PasswordInput show={show} onToggle={() => setShow((v) => !v)} />
+      <PasswordInput defaultValue="fartash2025" />
     </Field>
-  );
-}
-
-function PasswordInput({ show, onToggle, ...aria }: { show: boolean; onToggle: () => void; id?: string; 'aria-invalid'?: boolean; 'aria-describedby'?: string }) {
-  return (
-    <div className="relative">
-      <input {...aria} type={show ? 'text' : 'password'} className="input pl-11" dir="ltr" autoComplete="current-password" defaultValue="fartash2025" />
-      <button type="button" onClick={onToggle} className="btn-quiet btn-sm btn-icon absolute left-1.5 top-1/2 -translate-y-1/2" aria-label={show ? 'پنهان کردن رمز' : 'نمایش رمز'}>
-        {show ? <EyeOff size={16} /> : <Eye size={16} />}
-      </button>
-    </div>
   );
 }
 

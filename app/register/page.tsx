@@ -6,7 +6,7 @@ export const metadata = { title: 'ثبت‌نام' };
 
 export default function RegisterPage() {
   return (
-    <AuthShell title="ثبت‌نام در فرتاش" subtitle="تعیین سطح و جلسه‌ی مشاوره‌ی اول رایگان است.">
+    <AuthShell title="ثبت‌نام در فرتاش" subtitle="تعیین سطح و جلسه‌ی مشاوره‌ی اول رایگان است." aside="register">
       <Suspense>
         <RegisterForm />
       </Suspense>

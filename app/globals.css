@@ -240,6 +240,9 @@
     .btn-icon:not(.btn-sm) {
       @apply h-11 w-11;
     }
+    .segmented.segmented > button {
+      @apply h-11;
+    }
   }
   .link {
     @apply font-medium text-brand-600 underline decoration-brand-600/30 decoration-1 underline-offset-[6px] transition-colors hover:decoration-brand-600;
