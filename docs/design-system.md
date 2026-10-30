@@ -148,6 +148,29 @@ Rules:
 | **Avatar** | Circle, with a 2px paper ring when grouped. |
 | **Progress** | 6px track; turquoise for learning progress, lapis for system progress (uploads etc.). |
 
+### Touch
+
+On touch screens (`pointer: coarse`), every regular button, icon button,
+segmented option, tab, nav link and sidebar item has a 44px target; links that
+stand alone (not inside a sentence) get `min-h-11`. Small buttons (`btn-sm`)
+are for dense desktop toolbars only. Checkboxes are 18px but always sit inside
+a label that is the 44px target.
+
+### Tables
+
+`.table` is `position: relative`. Without it, a visually hidden (`sr-only`,
+absolutely positioned) header label escapes the table's scroll container, and
+in RTL mobile Chrome widens the whole page to include it. On phones, lists
+people check on the go (assignments, students, users) stack into rows; admin
+catalogues keep a table that scrolls inside its card.
+
+### Panels
+
+A dashboard opens with what happens next: one ink `NextClass` panel per page
+(turquoise marks the time), then a ruled row of stats, then panels of ruled
+lists. No coloured icon tiles, no cards inside cards, one primary action per
+row.
+
 ## 8. States
 
 | State | Pattern |

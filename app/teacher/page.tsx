@@ -1,65 +1,86 @@
-import Link from 'next/link';
-import { ArrowLeft, CalendarDays, ClipboardCheck, Star, Users, Video } from 'lucide-react';
-import { Avatar, Panel, Progress, StatCard, StatusBadge } from '@/components/panel/ui';
+import { CalendarDays, ClipboardCheck, Clock, Star, Users, Video } from 'lucide-react';
+import NextClass, { onInk } from '@/components/panel/NextClass';
+import { Avatar, PageHeader, Panel, Progress, SeeAll, StatCard, StatusBadge } from '@/components/panel/ui';
+import Badge from '@/components/ui/Badge';
 import { submissions, teacher, teacherClasses, teacherStudents } from '@/lib/data';
 import { fa } from '@/lib/utils';
 
 export default function TeacherDashboard() {
   const today = teacherClasses[0];
   return (
-    <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white sm:p-8">
-        <div className="relative flex flex-col justify-between gap-6 md:flex-row md:items-center">
-          <div>
-            <p className="text-sm text-white/70">روز بخیر، {teacher.name}</p>
-            <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری</h1>
-          </div>
-          <div className="rounded-2xl bg-white/10 p-4 backdrop-blur md:min-w-72">
-            <p className="text-xs text-white/70">کلاس بعدی، {today.next}</p>
-            <p className="mt-1 font-bold">{today.title}</p>
-            <button className="btn mt-3 w-full bg-paper text-brand-700 hover:bg-brand-50"><Video size={16} /> شروع کلاس</button>
-          </div>
-        </div>
-      </div>
+    <div className="space-y-10">
+      <PageHeader title={`روز بخیر، ${teacher.name}`} desc="امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری." />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard icon={Users} label="زبان‌آموزان فعال" value={fa(33)} tone="brand" />
-        <StatCard icon={CalendarDays} label="کلاس‌های این هفته" value={fa(7)} tone="sky" />
-        <StatCard icon={ClipboardCheck} label="تکالیف در انتظار" value={fa(submissions.length)} tone="amber" />
-        <StatCard icon={Star} label="امتیاز رضایت" value="۴٫۹" tone="emerald" trend="+۰٫۱" />
+      <NextClass
+        when={today.next}
+        title={today.title}
+        meta={
+          <>
+            <span className="flex items-center gap-2">
+              <Users size={16} aria-hidden /> {fa(today.students)} زبان‌آموز
+            </span>
+            <span className="flex items-center gap-2">
+              <Clock size={16} aria-hidden /> {today.time}
+            </span>
+          </>
+        }
+        actions={
+          <button type="button" className={onInk.primary}>
+            <Video size={18} aria-hidden /> شروع کلاس
+          </button>
+        }
+      />
+
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+        <StatCard icon={Users} label="زبان‌آموزان فعال" value={fa(33)} />
+        <StatCard icon={CalendarDays} label="کلاس‌های این هفته" value={fa(7)} />
+        <StatCard icon={ClipboardCheck} label="تکالیف در انتظار" value={fa(submissions.length)} />
+        <StatCard icon={Star} label="امتیاز رضایت" value="۴٫۹" trend="+۰٫۱" />
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
-        <Panel title="کلاس‌های من" className="xl:col-span-2" action={<Link href="/teacher/classes" className="flex items-center gap-1 text-sm font-semibold text-brand-600">همه <ArrowLeft size={16} /></Link>}>
-          <div className="grid gap-4 sm:grid-cols-2">
+        <Panel title="کلاس‌های من" className="xl:col-span-2" action={<SeeAll href="/teacher/classes">همه‌ی کلاس‌ها</SeeAll>}>
+          <ul className="divide-y divide-rule">
             {teacherClasses.map((c) => (
-              <div key={c.id} className="rounded-2xl border border-slate-100 p-4 transition hover:border-brand-200">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="font-bold text-slate-900">{c.title}</p>
-                  <span className="badge bg-brand-50 text-brand-700">{c.level}</span>
+              <li key={c.id} className="grid gap-3 py-5 first:pt-0 last:pb-0 sm:grid-cols-[1fr_12rem] sm:items-center sm:gap-8">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <p className="font-bold text-ink">{c.title}</p>
+                    <Badge tone="brand">{c.level}</Badge>
+                  </div>
+                  <p className="mt-1 text-sm text-muted">
+                    {c.time}، {fa(c.students)} نفر
+                  </p>
                 </div>
-                <p className="mt-1 text-xs text-slate-500">{c.time}</p>
-                <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
-                  <span className="flex items-center gap-1"><Users size={14} /> {fa(c.students)} نفر</span>
-                  <span>پیشرفت {fa(c.progress)}٪</span>
+                <div>
+                  <div className="mb-1.5 flex justify-between text-sm">
+                    <span className="text-muted">پیشرفت</span>
+                    <span className="num font-semibold text-accent-700">{fa(c.progress)}٪</span>
+                  </div>
+                  <Progress value={c.progress} label={`پیشرفت ${c.title}`} />
                 </div>
-                <Progress value={c.progress} className="mt-2" />
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </Panel>
+
         <Panel title="تکالیف جدید برای تصحیح">
-          <ul className="space-y-3">
+          <ul className="divide-y divide-rule">
             {submissions.map((s) => {
               const st = teacherStudents.find((t) => t.name === s.student)!;
               return (
-                <li key={s.title} className="flex items-center gap-3 rounded-xl bg-slate-50 p-3">
-                  <Avatar src={st.photo} name={st.name} size={40} />
+                <li key={s.title} className="flex items-center gap-3 py-4 first:pt-0 last:pb-0">
+                  <Avatar src={st.photo} name="" size={40} />
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-bold text-slate-800">{s.student}</p>
-                    <p className="truncate text-xs text-slate-500" dir="ltr">{s.title}</p>
+                    <p className="font-semibold text-ink">{s.student}</p>
+                    <p className="truncate text-sm text-body">
+                      <bdi>{s.title}</bdi>
+                    </p>
+                    <p className="text-sm text-muted">{s.time}</p>
                   </div>
-                  <button className="btn-primary px-3 py-1.5 text-xs">تصحیح</button>
+                  <button type="button" className="btn-secondary">
+                    تصحیح
+                  </button>
                 </li>
               );
             })}
@@ -67,19 +88,21 @@ export default function TeacherDashboard() {
         </Panel>
       </div>
 
-      <Panel title="زبان‌آموزانی که نیاز به توجه دارند" action={<Link href="/teacher/students" className="flex items-center gap-1 text-sm font-semibold text-brand-600">همه <ArrowLeft size={16} /></Link>}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Panel title="زبان‌آموزانی که نیاز به توجه دارند" action={<SeeAll href="/teacher/students">همه‌ی زبان‌آموزان</SeeAll>}>
+        <ul className="divide-y divide-rule">
           {teacherStudents.slice(2, 5).map((s) => (
-            <div key={s.name} className="flex items-center gap-3 rounded-2xl border border-slate-100 p-4">
-              <Avatar src={s.photo} name={s.name} size={48} />
-              <div className="flex-1">
-                <p className="font-bold text-slate-900">{s.name}</p>
-                <p className="text-xs text-slate-500">حضور {fa(s.attendance)}٪، میانگین {fa(s.avg)}</p>
+            <li key={s.name} className="flex flex-wrap items-center gap-x-4 gap-y-2 py-4 first:pt-0 last:pb-0">
+              <Avatar src={s.photo} name="" size={44} />
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-ink">{s.name}</p>
+                <p className="text-sm text-muted">
+                  {s.className}، حضور {fa(s.attendance)}٪، میانگین {fa(s.avg)}
+                </p>
               </div>
               <StatusBadge status={s.status} />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </Panel>
     </div>
   );

@@ -197,7 +197,7 @@ export default function DesignSystemPage() {
                   <div key={s} className="h-14" style={{ background: `rgb(var(--brand-${s}))` }} title={`brand-${s} #${lapisHex[i]}`} />
                 ))}
               </div>
-              <div className="mt-2 grid grid-cols-11 text-center text-[11px] text-muted" dir="ltr">
+              <div className="mt-2 grid grid-cols-11 text-center text-xs text-muted" dir="ltr">
                 {lapis.map((s) => (
                   <span key={s} className="num">
                     {s}

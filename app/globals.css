@@ -244,6 +244,15 @@
       @apply h-11;
     }
   }
+  @media (pointer: coarse) {
+    .side-link.side-link {
+      @apply h-11;
+    }
+    .tab.tab,
+    .nav-link.nav-link {
+      @apply inline-flex min-h-11 items-center;
+    }
+  }
   .link {
     @apply font-medium text-brand-600 underline decoration-brand-600/30 decoration-1 underline-offset-[6px] transition-colors hover:decoration-brand-600;
   }
@@ -301,8 +310,10 @@
   }
 
   /* ---------- Tables ---------- */
+  /* Positioned so visually hidden labels (sr-only, absolute) stay inside the
+     table's scroll container instead of widening the page on mobile. */
   .table {
-    @apply w-full border-collapse text-sm;
+    @apply relative w-full border-collapse text-sm;
   }
   .table thead th {
     @apply whitespace-nowrap border-b border-rule bg-tint px-4 py-2.5 text-start text-xs font-medium text-muted;
@@ -312,6 +323,13 @@
   }
   .table tbody tr:last-child td {
     @apply border-b-0;
+  }
+  /* Edge cells line up with a card's 24px inset. */
+  .table :is(th, td):first-child {
+    @apply ps-6;
+  }
+  .table :is(th, td):last-child {
+    @apply pe-6;
   }
   .table .num {
     @apply text-end;

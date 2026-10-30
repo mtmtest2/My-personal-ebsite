@@ -8,29 +8,80 @@ export default function TeacherStudents() {
     <>
       <PageHeader title="زبان‌آموزان" desc="عملکرد، حضور و وضعیت هر زبان‌آموز" />
       <Panel title={`${fa(teacherStudents.length)} زبان‌آموز`}>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[680px] text-sm">
+        {/* Stacked rows on phones, a table from md. */}
+        <ul className="divide-y divide-rule md:hidden">
+          {teacherStudents.map((s) => (
+            <li key={s.name} className="py-4 first:pt-0 last:pb-0">
+              <div className="flex items-center gap-3">
+                <Avatar src={s.photo} name="" size={44} />
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-ink">{s.name}</p>
+                  <p className="text-sm text-muted">{s.className}</p>
+                </div>
+                <button type="button" className="btn-quiet btn-icon" aria-label={`پیام به ${s.name}`}>
+                  <MessageSquare size={18} />
+                </button>
+              </div>
+              <dl className="mt-3 grid grid-cols-[1fr_auto_auto] items-center gap-x-5 text-sm">
+                <div className="flex items-center gap-3">
+                  <dt className="sr-only">حضور</dt>
+                  <Progress value={s.attendance} className="flex-1" label={`حضور ${s.name}`} />
+                  <dd className="num">حضور {fa(s.attendance)}٪</dd>
+                </div>
+                <div className="flex gap-1">
+                  <dt className="text-muted">میانگین</dt>
+                  <dd className="font-semibold text-ink">{fa(s.avg)}</dd>
+                </div>
+                <div>
+                  <dt className="sr-only">وضعیت</dt>
+                  <dd>
+                    <StatusBadge status={s.status} />
+                  </dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ul>
+        <div className="-mx-5 hidden overflow-x-auto sm:-mx-6 md:block">
+          <table className="table table-hover min-w-[720px]">
             <thead>
-              <tr className="border-b border-slate-100 text-right text-xs text-slate-500">
-                <th className="pb-3 font-medium">زبان‌آموز</th>
-                <th className="pb-3 font-medium">کلاس</th>
-                <th className="pb-3 font-medium">حضور</th>
-                <th className="pb-3 font-medium">میانگین نمرات</th>
-                <th className="pb-3 font-medium">وضعیت</th>
-                <th className="pb-3" />
+              <tr>
+                <th scope="col">زبان‌آموز</th>
+                <th scope="col">کلاس</th>
+                <th scope="col">حضور</th>
+                <th scope="col" className="num">
+                  میانگین نمرات
+                </th>
+                <th scope="col">وضعیت</th>
+                <th scope="col">
+                  <span className="sr-only">پیام</span>
+                </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody>
               {teacherStudents.map((s) => (
                 <tr key={s.name}>
-                  <td className="py-3.5"><span className="flex items-center gap-3 font-semibold text-slate-800"><Avatar src={s.photo} name={s.name} size={36} /> {s.name}</span></td>
-                  <td className="py-3.5 text-slate-600">{s.className}</td>
-                  <td className="w-40 py-3.5">
-                    <div className="flex items-center gap-2"><Progress value={s.attendance} className="w-20" /> <span className="text-xs text-slate-600">{fa(s.attendance)}٪</span></div>
+                  <td>
+                    <span className="flex items-center gap-3 font-semibold text-ink">
+                      <Avatar src={s.photo} name="" size={36} /> {s.name}
+                    </span>
                   </td>
-                  <td className="py-3.5 font-bold text-slate-900">{fa(s.avg)}</td>
-                  <td className="py-3.5"><StatusBadge status={s.status} /></td>
-                  <td className="py-3.5 text-left"><button className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 hover:bg-brand-50 hover:text-brand-600" aria-label="پیام"><MessageSquare size={16} /></button></td>
+                  <td className="whitespace-nowrap">{s.className}</td>
+                  <td>
+                    <span className="flex items-center gap-3">
+                      <Progress value={s.attendance} className="w-24" label={`حضور ${s.name}`} />
+                      <span className="num w-10 text-sm">{fa(s.attendance)}٪</span>
+                    </span>
+                  </td>
+                  <td className="num font-semibold text-ink">{fa(s.avg)}</td>
+                  <td>
+                    <StatusBadge status={s.status} />
+                  </td>
+                  <td className="text-end">
+                    <button type="button" className="btn-quiet btn-icon" aria-label={`پیام به ${s.name}`}>
+                      <MessageSquare size={18} />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

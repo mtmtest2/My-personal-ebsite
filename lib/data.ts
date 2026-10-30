@@ -1,12 +1,12 @@
 // Mock data used across the public site and the panels until a backend is connected.
 
 export const languages = [
-  { code: 'en', tracks: 'عمومی، مکالمه، IELTS، TOEFL، تجاری', name: 'انگلیسی', native: 'English', flag: '🇬🇧', students: 4820, teachers: 38, color: 'from-blue-500 to-indigo-600' },
-  { code: 'de', tracks: 'عمومی از صفر، آمادگی Goethe و ÖSD', name: 'آلمانی', native: 'Deutsch', flag: '🇩🇪', students: 1940, teachers: 16, color: 'from-amber-400 to-orange-500' },
-  { code: 'fr', tracks: 'عمومی، آمادگی DELF و TCF کانادا', name: 'فرانسوی', native: 'Français', flag: '🇫🇷', students: 1210, teachers: 11, color: 'from-sky-400 to-blue-600' },
-  { code: 'tr', tracks: 'مکالمه‌محور، آمادگی TÖMER', name: 'ترکی استانبولی', native: 'Türkçe', flag: '🇹🇷', students: 980, teachers: 9, color: 'from-rose-400 to-red-600' },
-  { code: 'es', tracks: 'عمومی و مکالمه تا سطح B2', name: 'اسپانیایی', native: 'Español', flag: '🇪🇸', students: 640, teachers: 7, color: 'from-yellow-400 to-red-500' },
-  { code: 'ar', tracks: 'فصیح و محاوره‌ی خلیجی', name: 'عربی', native: 'العربية', flag: '🇸🇦', students: 520, teachers: 6, color: 'from-emerald-400 to-teal-600' },
+  { code: 'en', tracks: 'عمومی، مکالمه، IELTS، TOEFL، تجاری', name: 'انگلیسی', native: 'English', students: 4820, teachers: 38 },
+  { code: 'de', tracks: 'عمومی از صفر، آمادگی Goethe و ÖSD', name: 'آلمانی', native: 'Deutsch', students: 1940, teachers: 16 },
+  { code: 'fr', tracks: 'عمومی، آمادگی DELF و TCF کانادا', name: 'فرانسوی', native: 'Français', students: 1210, teachers: 11 },
+  { code: 'tr', tracks: 'مکالمه‌محور، آمادگی TÖMER', name: 'ترکی استانبولی', native: 'Türkçe', students: 980, teachers: 9 },
+  { code: 'es', tracks: 'عمومی و مکالمه تا سطح B2', name: 'اسپانیایی', native: 'Español', students: 640, teachers: 7 },
+  { code: 'ar', tracks: 'فصیح و محاوره‌ی خلیجی', name: 'عربی', native: 'العربية', students: 520, teachers: 6 },
 ];
 
 // `photo` is the small avatar used across the panels. `portrait` is an optional
@@ -66,9 +66,9 @@ export const faqs = [
 export const student = { name: 'نگار طاهری', level: 'B2', photo: '/images/people/9.jpg', streak: 18, xp: 2340 };
 
 export const studentCourses = [
-  { id: 'c1', title: 'انگلیسی عمومی B2', teacher: 'سارا محمدی', progress: 68, lessons: 36, done: 24, next: 'شنبه ۱۸:۰۰', color: 'bg-brand-600' },
-  { id: 'c2', title: 'آمادگی IELTS Academic', teacher: 'رضا احمدی', progress: 42, lessons: 30, done: 13, next: 'دوشنبه ۲۰:۰۰', color: 'bg-sky2-500' },
-  { id: 'c3', title: 'کلاب مکالمه هفتگی', teacher: 'سارا محمدی', progress: 80, lessons: 10, done: 8, next: 'چهارشنبه ۱۹:۳۰', color: 'bg-violet-500' },
+  { id: 'c1', title: 'انگلیسی عمومی B2', teacher: 'سارا محمدی', progress: 68, lessons: 36, done: 24, next: 'شنبه ۱۸:۰۰' },
+  { id: 'c2', title: 'آمادگی IELTS Academic', teacher: 'رضا احمدی', progress: 42, lessons: 30, done: 13, next: 'دوشنبه ۲۰:۰۰' },
+  { id: 'c3', title: 'کلاب مکالمه هفتگی', teacher: 'سارا محمدی', progress: 80, lessons: 10, done: 8, next: 'چهارشنبه ۱۹:۳۰' },
 ];
 
 export const studentSchedule = [

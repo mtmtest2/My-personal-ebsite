@@ -1,40 +1,48 @@
-import { BookOpen, CalendarClock, PlayCircle, User } from 'lucide-react';
-import { PageHeader, Progress } from '@/components/panel/ui';
+import { CalendarClock, PlayCircle, User } from 'lucide-react';
+import { PageHeader, Panel, Progress } from '@/components/panel/ui';
 import { studentCourses } from '@/lib/data';
-import { cn, fa } from '@/lib/utils';
+import { fa } from '@/lib/utils';
 
 export default function StudentCourses() {
   return (
     <>
-      <PageHeader title="دوره‌های من" desc="پیشرفت هر دوره و دسترسی به ویدیوی جلسات" action={<button className="btn-primary">ثبت‌نام در دوره‌ی جدید</button>} />
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {studentCourses.map((c) => (
-          <div key={c.id} className="card overflow-hidden">
-            <div className={cn('relative h-32 p-5 text-white', c.color)}>
-              <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-white/10" />
-              <BookOpen size={28} />
-              <p className="mt-3 text-lg font-bold">{c.title}</p>
-            </div>
-            <div className="space-y-4 p-5">
-              <div className="space-y-2 text-sm text-slate-600">
-                <p className="flex items-center gap-2"><User size={16} className="text-slate-400" /> {c.teacher}</p>
-                <p className="flex items-center gap-2"><CalendarClock size={16} className="text-slate-400" /> جلسه‌ی بعد: {c.next}</p>
+      <PageHeader title="دوره‌های من" desc="پیشرفت هر دوره و دسترسی به ویدیوی جلسات" action={<button type="button" className="btn-primary">ثبت‌نام در دوره‌ی جدید</button>} />
+      <Panel title={`${fa(studentCourses.length)} دوره‌ی فعال`}>
+        <ul className="divide-y divide-rule">
+          {studentCourses.map((c) => (
+            <li key={c.id} className="grid gap-5 py-6 first:pt-0 last:pb-0 lg:grid-cols-[1fr_16rem_auto] lg:items-center lg:gap-10">
+              <div className="min-w-0">
+                <h3 className="text-lg font-bold text-ink">{c.title}</h3>
+                <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1.5 text-sm text-body">
+                  <span className="flex items-center gap-2">
+                    <User size={16} className="text-muted" aria-hidden /> {c.teacher}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <CalendarClock size={16} className="text-muted" aria-hidden /> جلسه‌ی بعد: {c.next}
+                  </span>
+                </div>
               </div>
               <div>
-                <div className="mb-2 flex justify-between text-xs text-slate-500">
-                  <span>{fa(c.done)} از {fa(c.lessons)} جلسه</span>
-                  <span className="font-bold text-brand-700">{fa(c.progress)}٪</span>
+                <div className="mb-2 flex justify-between text-sm">
+                  <span className="text-muted">
+                    {fa(c.done)} از {fa(c.lessons)} جلسه
+                  </span>
+                  <span className="num font-semibold text-accent-700">{fa(c.progress)}٪</span>
                 </div>
-                <Progress value={c.progress} />
+                <Progress value={c.progress} label={`پیشرفت ${c.title}`} />
               </div>
               <div className="flex gap-2">
-                <button className="btn-primary flex-1"><PlayCircle size={16} /> ادامه</button>
-                <button className="btn-ghost flex-1">ویدیوی جلسات</button>
+                <button type="button" className="btn-primary flex-1 lg:flex-none">
+                  <PlayCircle size={18} aria-hidden /> ادامه
+                </button>
+                <button type="button" className="btn-secondary flex-1 lg:flex-none">
+                  ویدیوی جلسات
+                </button>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+            </li>
+          ))}
+        </ul>
+      </Panel>
     </>
   );
 }

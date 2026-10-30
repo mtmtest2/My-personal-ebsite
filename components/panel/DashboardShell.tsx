@@ -99,7 +99,7 @@ export default function DashboardShell({
       <div className="mx-5 border-t border-rule py-5">
         <p className="text-sm font-semibold text-ink">به کمک نیاز داری؟</p>
         <p className="mt-1 text-xs text-muted">پشتیبانی هر روز از ۸ تا ۲۲ پاسخ می‌دهد.</p>
-        <a href="tel:+982191000000" className="link mt-2 inline-block text-sm">تماس با پشتیبانی</a>
+        <a href="tel:+982191000000" className="link mt-1 inline-flex min-h-11 items-center text-sm">تماس با پشتیبانی</a>
       </div>
       <div className="border-t border-rule px-3 py-3">
         <Link href="/" className="side-link text-muted hover:bg-danger-soft hover:text-danger">

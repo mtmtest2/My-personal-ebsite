@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import Badge, { type BadgeTone } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
@@ -15,14 +16,11 @@ export function PageHeader({ title, desc, action }: { title: string; desc?: stri
   );
 }
 
-/** @deprecated Stats no longer use colour tiles; kept so existing call sites compile. */
-export type Tone = 'brand' | 'sky' | 'violet' | 'amber' | 'emerald' | 'rose';
-
 /**
  * A figure with its label, set off by a rule rather than boxed in a card, so a
  * row of stats reads like a report. The icon is a small muted cue, not a tile.
  */
-export function StatCard({ icon: Icon, label, value, hint, trend }: { icon?: LucideIcon; label: string; value: string; hint?: string; tone?: Tone; trend?: string }) {
+export function StatCard({ icon: Icon, label, value, hint, trend }: { icon?: LucideIcon; label: string; value: string; hint?: string; trend?: string }) {
   return (
     <div className="border-t border-rule pt-4">
       <p className="flex items-center gap-2 text-sm text-muted">
@@ -39,6 +37,15 @@ export function StatCard({ icon: Icon, label, value, hint, trend }: { icon?: Luc
       </p>
       {hint && <p className="mt-1.5 text-xs text-muted">{hint}</p>}
     </div>
+  );
+}
+
+/** "See all" link for a panel's title row. */
+export function SeeAll({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="link -my-3 inline-flex min-h-11 items-center text-sm">
+      {children}
+    </Link>
   );
 }
 
@@ -74,13 +81,13 @@ export function Avatar({ src, name, size = 40 }: { src: string; name: string; si
   return <Image src={src} alt={name} width={size} height={size} className="shrink-0 rounded-full object-cover" style={{ width: size, height: size }} />;
 }
 
-/** Vertical bars relative to the max; the latest period is emphasised, values are always visible. */
-export function BarChart({ data, unit = '' }: { data: { label: string; value: number; display?: string }[]; unit?: string }) {
+/** Vertical bars relative to the max; one bar (the latest, unless `highlight` says otherwise) is emphasised; values are always visible. */
+export function BarChart({ data, unit = '', highlight }: { data: { label: string; value: number; display?: string }[]; unit?: string; highlight?: number }) {
   const max = Math.max(...data.map((d) => d.value));
   return (
     <div className="flex h-56 items-end gap-3 sm:gap-5">
       {data.map((d, i) => {
-        const last = i === data.length - 1;
+        const last = i === (highlight ?? data.length - 1);
         return (
           <div key={d.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
             <span className={cn('num text-xs', last ? 'font-bold text-ink' : 'text-muted')}>
