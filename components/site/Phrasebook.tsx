@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Volume2 } from 'lucide-react';
+import Highlighter from '@/components/ui/Highlighter';
 import { cn } from '@/lib/utils';
 
 type Phrase = {
@@ -67,16 +68,16 @@ export default function Phrasebook() {
         <div className="p-6 sm:p-8">
           <p className="text-sm text-slate-500">{source}</p>
 
-          <p lang={p.code} dir={p.dir} className={cn('mt-5 font-display text-[2.1rem] font-semibold leading-[1.35] text-ink sm:text-[2.5rem]', p.dir === 'ltr' && 'text-left')}>
+          <p key={p.code} lang={p.code} dir={p.dir} className={cn('phrase-in mt-5 font-display text-[2.1rem] font-semibold leading-[1.35] text-ink sm:text-[2.5rem]', p.dir === 'ltr' && 'text-left')}>
             {p.before}
-            <span className="mark">{p.marked}</span>
+            <Highlighter rtl={p.dir === 'rtl'} padding={3}>{p.marked}</Highlighter>
             {p.after}
           </p>
 
-          <p className="mt-3 text-[15px] leading-7 text-brand-700">{p.pron}</p>
+          <p key={`${p.code}-pron`} className="phrase-in mt-3 text-[15px] leading-7 text-brand-700">{p.pron}</p>
 
           <div className="mt-6 flex items-start gap-3 border-t border-dashed border-rule pt-5">
-            <span className="mt-1.5 h-3 w-3 shrink-0 rounded-sm bg-marker" aria-hidden />
+            <span className="mt-1.5 h-3 w-3 shrink-0 rounded-sm bg-[rgb(var(--mark)/0.8)]" aria-hidden />
             <p className="text-sm leading-7 text-slate-600">{p.note}</p>
           </div>
 

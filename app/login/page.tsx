@@ -21,7 +21,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthShell title="خوش برگشتی 👋" subtitle="برای ورود به پنل، نقش خود را انتخاب و اطلاعات حساب را وارد کن.">
+    <AuthShell title="خوش برگشتی" subtitle="برای ورود به پنل، نقش خود را انتخاب و اطلاعات حساب را وارد کن.">
       <form onSubmit={onSubmit} className="space-y-5">
         <RolePicker value={role} onChange={setRole} />
         <div>

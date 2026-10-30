@@ -15,7 +15,7 @@ export default function StudentDashboard() {
       <div className="grid gap-6 xl:grid-cols-3">
         <div className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white sm:p-8 xl:col-span-2">
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-white/10" />
-          <p className="text-sm text-white/80">سلام {student.name.split(' ')[0]} عزیز 👋</p>
+          <p className="text-sm text-white/80">سلام {student.name.split(' ')[0]} عزیز</p>
           <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">آماده‌ی کلاس امروز هستی؟</h1>
           <p className="mt-3 max-w-lg text-sm leading-7 text-white/90">
             این هفته ۸۰٪ برنامه‌ی مطالعه‌ات را انجام دادی. فقط ۲ تمرین دیگر تا رسیدن به هدف هفتگی مانده!
@@ -78,7 +78,7 @@ export default function StudentDashboard() {
               </div>
             ))}
           </div>
-          <p className="mt-6 rounded-xl bg-amber-50 p-3 text-xs leading-6 text-amber-800">💡 پیشنهاد: مهارت Writing ضعیف‌تر است. شرکت در ورکشاپ رایتینگ این هفته را از دست نده.</p>
+          <p className="mt-6 rounded-xl bg-amber-50 p-3 text-xs leading-6 text-amber-800">پیشنهاد: مهارت Writing ضعیف‌تر است. شرکت در ورکشاپ رایتینگ این هفته را از دست نده.</p>
         </Panel>
       </div>
 

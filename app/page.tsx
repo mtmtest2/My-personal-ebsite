@@ -60,8 +60,8 @@ function Hero() {
             ))}
           </div>
           <p className="text-sm leading-6 text-slate-600">
-            <span className="font-bold text-ink">{fa(10000)} زبان‌آموز</span> در یک سال گذشته با فرتاش کلاس رفتند،
-            <br className="hidden sm:block" /> با میانگین امتیاز <span className="font-bold text-ink">۴٫۹ از ۵</span> به کلاس‌ها.
+            همین هفته <span className="font-bold text-ink">۳۴۲ کلاس زنده</span> داریم،
+            <br className="hidden sm:block" /> از ۸ صبح تا ۱۰ شب، با ۸۷ استاد.
           </p>
         </div>
       </div>

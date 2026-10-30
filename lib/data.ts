@@ -44,9 +44,9 @@ export const plans = [
 ];
 
 export const testimonials = [
-  { name: 'نگار طاهری', role: 'IELTS 7.5، مهاجرت تحصیلی', text: 'در ۵ ماه از نمره ۵.۵ به ۷.۵ رسیدم. برنامه‌ی هفتگی و فیدبک دقیق استاد روی رایتینگ واقعاً همه چیز را تغییر داد.', photo: '/images/people/9.jpg' },
-  { name: 'امیر حسینی', role: 'برنامه‌نویس، آلمانی B1', text: 'کنار کار تمام‌وقت، با کلاس‌های عصرگاهی فرتاش آلمانی را از صفر تا B1 خواندم. پنل دانشجو خیلی مرتب و کاربردی است.', photo: '/images/people/6.jpg' },
-  { name: 'هانیه موسوی', role: 'دانشجوی پزشکی، فرانسه', text: 'کلاب‌های مکالمه بهترین بخش بود. ترسم از صحبت کردن ریخت و الان راحت با هم‌کلاسی‌های فرانسوی‌ام حرف می‌زنم.', photo: '/images/people/7.jpg' },
+  { name: 'نگار طاهری', role: 'IELTS آکادمیک، رایتینگ ۷', text: 'رایتینگم همیشه ۵.۵ می‌شد. آقای احمدی هر هفته دو تا essay ازم می‌گرفت و کنار هر پاراگراف می‌نوشت کجا ایده‌ام گم شده. آزمون بعدی ۷ گرفتم.', photo: '/images/people/9.jpg' },
+  { name: 'امیر حسینی', role: 'برنامه‌نویس، آلمانی B1', text: 'کلاس‌هایم ساعت ۸ شب بود، بعد از کار. هر جلسه‌ای که جا می‌ماندم، ویدیویش را توی مترو می‌دیدم. یک سال طول کشید تا B1.', photo: '/images/people/6.jpg' },
+  { name: 'هانیه موسوی', role: 'دانشجوی پزشکی، فرانسه', text: 'سه ماه اول در کلاب مکالمه فقط گوش می‌دادم. خانم کریمی یک روز من را مسئول توضیح موضوع جلسه کرد و از آن به بعد ساکت نماندم.', photo: '/images/people/7.jpg' },
 ];
 
 export const faqs = [
@@ -62,7 +62,7 @@ export const faqs = [
 export const student = { name: 'نگار طاهری', level: 'B2', photo: '/images/people/9.jpg', streak: 18, xp: 2340 };
 
 export const studentCourses = [
-  { id: 'c1', title: 'انگلیسی عمومی — سطح B2', teacher: 'سارا محمدی', progress: 68, lessons: 36, done: 24, next: 'شنبه ۱۸:۰۰', color: 'bg-brand-600' },
+  { id: 'c1', title: 'انگلیسی عمومی B2', teacher: 'سارا محمدی', progress: 68, lessons: 36, done: 24, next: 'شنبه ۱۸:۰۰', color: 'bg-brand-600' },
   { id: 'c2', title: 'آمادگی IELTS Academic', teacher: 'رضا احمدی', progress: 42, lessons: 30, done: 13, next: 'دوشنبه ۲۰:۰۰', color: 'bg-sky2-500' },
   { id: 'c3', title: 'کلاب مکالمه هفتگی', teacher: 'سارا محمدی', progress: 80, lessons: 10, done: 8, next: 'چهارشنبه ۱۹:۳۰', color: 'bg-violet-500' },
 ];
@@ -76,7 +76,7 @@ export const studentSchedule = [
 
 export const assignments = [
   { title: 'Essay: Technology & Education', course: 'IELTS', due: 'فردا', status: 'pending' },
-  { title: 'Unit 7 — Vocabulary Quiz', course: 'انگلیسی B2', due: '۳ روز دیگر', status: 'pending' },
+  { title: 'Unit 7: Vocabulary Quiz', course: 'انگلیسی B2', due: '۳ روز دیگر', status: 'pending' },
   { title: 'Listening Practice Set 4', course: 'IELTS', due: 'تحویل شد', status: 'done' },
   { title: 'Grammar: Conditionals', course: 'انگلیسی B2', due: 'تحویل شد', status: 'graded', score: 92 },
 ];
@@ -95,24 +95,24 @@ export const weeklyStudy = [35, 50, 20, 65, 45, 80, 55]; // minutes per day, Sat
 export const teacher = { name: 'سارا محمدی', title: 'مدرس ارشد انگلیسی', photo: '/images/people/4.jpg' };
 
 export const teacherClasses = [
-  { id: 'k1', title: 'انگلیسی عمومی B2 — گروه ۳', students: 8, time: 'شنبه و سه‌شنبه ۱۸:۰۰', next: 'امروز ۱۸:۰۰', level: 'B2', progress: 68 },
-  { id: 'k2', title: 'انگلیسی عمومی A2 — گروه ۱', students: 10, time: 'یکشنبه و چهارشنبه ۱۶:۰۰', next: 'فردا ۱۶:۰۰', level: 'A2', progress: 35 },
+  { id: 'k1', title: 'انگلیسی عمومی B2، گروه ۳', students: 8, time: 'شنبه و سه‌شنبه ۱۸:۰۰', next: 'امروز ۱۸:۰۰', level: 'B2', progress: 68 },
+  { id: 'k2', title: 'انگلیسی عمومی A2، گروه ۱', students: 10, time: 'یکشنبه و چهارشنبه ۱۶:۰۰', next: 'فردا ۱۶:۰۰', level: 'A2', progress: 35 },
   { id: 'k3', title: 'کلاب مکالمه هفتگی', students: 14, time: 'چهارشنبه ۱۹:۳۰', next: 'چهارشنبه ۱۹:۳۰', level: 'B1+', progress: 80 },
-  { id: 'k4', title: 'خصوصی — امیر حسینی', students: 1, time: 'دوشنبه ۱۷:۰۰', next: 'دوشنبه ۱۷:۰۰', level: 'B1', progress: 52 },
+  { id: 'k4', title: 'خصوصی با امیر حسینی', students: 1, time: 'دوشنبه ۱۷:۰۰', next: 'دوشنبه ۱۷:۰۰', level: 'B1', progress: 52 },
 ];
 
 export const teacherStudents = [
-  { name: 'نگار طاهری', className: 'B2 — گروه ۳', attendance: 96, avg: 91, status: 'عالی', photo: '/images/people/9.jpg' },
+  { name: 'نگار طاهری', className: 'B2، گروه ۳', attendance: 96, avg: 91, status: 'عالی', photo: '/images/people/9.jpg' },
   { name: 'امیر حسینی', className: 'خصوصی', attendance: 100, avg: 84, status: 'خوب', photo: '/images/people/6.jpg' },
   { name: 'هانیه موسوی', className: 'کلاب مکالمه', attendance: 88, avg: 87, status: 'خوب', photo: '/images/people/7.jpg' },
-  { name: 'پویا جعفری', className: 'A2 — گروه ۱', attendance: 71, avg: 64, status: 'نیاز به توجه', photo: '/images/people/8.jpg' },
-  { name: 'الهام نوری', className: 'B2 — گروه ۳', attendance: 92, avg: 78, status: 'خوب', photo: '/images/people/10.jpg' },
-  { name: 'کیان صادقی', className: 'A2 — گروه ۱', attendance: 84, avg: 73, status: 'خوب', photo: '/images/people/2.jpeg' },
+  { name: 'پویا جعفری', className: 'A2، گروه ۱', attendance: 71, avg: 64, status: 'نیاز به توجه', photo: '/images/people/8.jpg' },
+  { name: 'الهام نوری', className: 'B2، گروه ۳', attendance: 92, avg: 78, status: 'خوب', photo: '/images/people/10.jpg' },
+  { name: 'کیان صادقی', className: 'A2، گروه ۱', attendance: 84, avg: 73, status: 'خوب', photo: '/images/people/2.jpeg' },
 ];
 
 export const submissions = [
   { student: 'نگار طاهری', title: 'Essay: Technology & Education', time: '۲ ساعت پیش' },
-  { student: 'الهام نوری', title: 'Unit 7 — Writing', time: '۵ ساعت پیش' },
+  { student: 'الهام نوری', title: 'Unit 7: Writing', time: '۵ ساعت پیش' },
   { student: 'کیان صادقی', title: 'Past Simple Worksheet', time: 'دیروز' },
 ];
 

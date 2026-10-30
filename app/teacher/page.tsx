@@ -11,7 +11,7 @@ export default function TeacherDashboard() {
       <div className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white sm:p-8">
         <div className="relative flex flex-col justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="text-sm text-white/70">روز بخیر، {teacher.name} 🌤️</p>
+            <p className="text-sm text-white/70">روز بخیر، {teacher.name}</p>
             <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری</h1>
           </div>
           <div className="rounded-2xl bg-white/10 p-4 backdrop-blur md:min-w-72">

@@ -145,3 +145,24 @@
 .dark .text-violet-600, .dark .text-violet-700 { color: rgb(196 181 253); }
 .dark .text-cyan-600, .dark .text-cyan-700 { color: rgb(103 232 249); }
 .dark .hover\:bg-rose-50:hover { background-color: rgb(244 63 94 / 0.14); }
+
+/* Hand-drawn marks (components/ui/Highlighter) take their color from the theme. */
+.hand-mark .rough-annotation path {
+  stroke: rgb(var(--mark) / 0.8);
+}
+
+/* Theme switch: circular reveal from the toggle (adapted from Magic UI's AnimatedThemeToggler). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* New phrase settles in when a language tab is chosen. */
+@keyframes phrase-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.phrase-in {
+  animation: phrase-in 0.35s ease-out both;
+}

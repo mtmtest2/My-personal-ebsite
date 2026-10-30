@@ -25,3 +25,4 @@ npm run build && npm start
 - داده‌ها فعلاً نمونه هستند (`lib/data.ts`) و ورود/ثبت‌نام فقط کاربر را به پنل نقش انتخاب‌شده می‌برد؛ برای استفاده‌ی واقعی باید بک‌اند و احراز هویت متصل شود.
 - رنگ‌های برند در `tailwind.config.ts` (پالت `brand`) و کلاس‌های مشترک در `app/globals.css` تعریف شده‌اند.
 - تصاویر افراد از پروژه‌ی [Tail-Kit](https://github.com/Charlie85270/tail-kit) (MIT) گرفته شده‌اند.
+- علامت‌گذاری دست‌کشیده (`components/ui/Highlighter.tsx`) و انیمیشن تغییر تم از [Magic UI](https://magicui.design) (MIT) اقتباس شده‌اند.
