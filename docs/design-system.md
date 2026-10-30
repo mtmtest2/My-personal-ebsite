@@ -42,7 +42,7 @@ and never as gradients or tile patterns, which would read as kitsch.
 | `paper` | `#FFFFFF` | `#0A1029` | Page background |
 | `tint` | `#F5F7FB` | `#10183A` | Alternate sections, inset areas, panel background |
 | `rule` | `#E3E7EF` | `#243056` | Dividers and card borders |
-| `line` | `#8A91A6` | `#56628C` | Form control borders (≥3:1, WCAG 1.4.11) |
+| `line` | `#8A91A6` | `#64709C` | Form control borders (≥3:1, WCAG 1.4.11) |
 | `success` | `#147447` | `#4ADE9B` | Paid, active, completed |
 | `warning` | `#A85A00` | `#F5B54A` | Needs attention, pending |
 | `danger` | `#C0352B` | `#FF8A80` | Errors, destructive actions, failed |

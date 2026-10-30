@@ -57,7 +57,26 @@ export default function AdminDashboard() {
 
       <div className="grid gap-6 xl:grid-cols-3">
         <Panel title="آخرین پرداخت‌ها" className="xl:col-span-2">
-          <div className="-mx-5 overflow-x-auto sm:-mx-6">
+          {/* Rows on phones and small tablets; the full table from md. */}
+          <ul className="divide-y divide-rule md:hidden">
+            {recentPayments.map((p) => (
+              <li key={p.user + p.date} className="py-4 first:pt-0 last:pb-0">
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="font-semibold text-ink">{p.user}</p>
+                  <p className="num font-semibold text-ink">
+                    {fa(p.amount)} <span className="text-sm font-normal text-muted">تومان</span>
+                  </p>
+                </div>
+                <div className="mt-2 flex items-center justify-between gap-4">
+                  <p className="text-sm text-muted">
+                    پلن {p.plan}، {p.date}
+                  </p>
+                  <StatusBadge status={p.status} />
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="-mx-5 hidden overflow-x-auto sm:-mx-6 md:block">
             <table className="table min-w-[560px]">
               <thead>
                 <tr>

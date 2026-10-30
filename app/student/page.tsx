@@ -2,14 +2,15 @@ import Link from 'next/link';
 import { BookOpen, CalendarClock, Clock, Flame, Trophy, User, Video } from 'lucide-react';
 import NextClass, { onInk } from '@/components/panel/NextClass';
 import { BarChart, PageHeader, Panel, Progress, SeeAll, StatCard } from '@/components/panel/ui';
-import Badge from '@/components/ui/Badge';
+import Badge, { type BadgeTone } from '@/components/ui/Badge';
 import { assignments, skills, student, studentCourses, studentSchedule, weeklyStudy } from '@/lib/data';
 import { fa } from '@/lib/utils';
 
 const days = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
+const typeTone: Record<string, BadgeTone> = { 'گروهی': 'brand', 'خصوصی': 'outline', 'کلاب': 'accent' };
 
 export default function StudentDashboard() {
-  const next = studentSchedule[0];
+  const [next, ...later] = studentSchedule;
   const upcoming = assignments.filter((a) => a.status === 'pending').concat(assignments.slice(2, 3));
 
   return (
@@ -47,6 +48,33 @@ export default function StudentDashboard() {
         }
       />
 
+      <section aria-labelledby="week-h">
+        <div className="mb-3 flex items-center justify-between gap-4">
+          <h2 id="week-h" className="text-base font-bold text-ink">
+            بعد از آن، این هفته
+          </h2>
+          <SeeAll href="/student/schedule">برنامه‌ی کامل</SeeAll>
+        </div>
+        <ol className="grid gap-3 sm:grid-cols-3">
+          {later.map((s) => (
+            <li key={s.title} className="card p-4">
+              <p className="text-sm text-muted">
+                {s.day}، {s.date}
+              </p>
+              <p className="mt-1 font-semibold text-ink">
+                <bdi>{s.title}</bdi>
+              </p>
+              <p className="mt-2 flex items-center justify-between gap-3 text-sm text-body">
+                <span className="flex items-center gap-1.5">
+                  <Clock size={15} className="text-muted" aria-hidden /> {s.time}
+                </span>
+                <Badge tone={typeTone[s.type] ?? 'neutral'}>{s.type}</Badge>
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
         <StatCard icon={Flame} label="روزهای پیاپی مطالعه" value={`${fa(student.streak)} روز`} />
         <StatCard icon={Trophy} label="امتیاز کسب‌شده" value={fa(student.xp)} trend="+۱۲۰" />
@@ -63,10 +91,14 @@ export default function StudentDashboard() {
                   <p className="font-bold text-ink">{c.title}</p>
                   <span className="num text-sm font-semibold text-accent-700">{fa(c.progress)}٪</span>
                 </div>
-                <p className="mt-0.5 text-sm text-muted">
-                  {c.teacher}، {fa(c.done)} از {fa(c.lessons)} جلسه
-                </p>
+                <p className="mt-0.5 text-sm text-muted">با {c.teacher}</p>
                 <Progress value={c.progress} className="mt-3" label={`پیشرفت ${c.title}`} />
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+                  <p className="text-sm text-body">
+                    {fa(c.done)} از {fa(c.lessons)} جلسه، <span className="font-semibold text-ink">{fa(c.lessons - c.done)} جلسه مانده</span>
+                  </p>
+                  <p className="text-sm text-muted">جلسه‌ی بعد: {c.next}</p>
+                </div>
               </li>
             ))}
           </ul>

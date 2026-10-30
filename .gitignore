@@ -8,4 +8,4 @@ next-env.d.ts
 __pycache__/
 
 # Screenshot exports (shared separately, not versioned)
-fartash-screenshots.zip
+fartash-screenshots*.zip

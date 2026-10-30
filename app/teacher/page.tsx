@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import { CalendarDays, ClipboardCheck, Clock, Star, Users, Video } from 'lucide-react';
 import NextClass, { onInk } from '@/components/panel/NextClass';
-import { Avatar, PageHeader, Panel, Progress, SeeAll, StatCard, StatusBadge } from '@/components/panel/ui';
+import { Avatar, PageHeader, Panel, SeeAll, StatCard, StatusBadge } from '@/components/panel/ui';
 import Badge from '@/components/ui/Badge';
 import { submissions, teacher, teacherClasses, teacherStudents } from '@/lib/data';
-import { fa } from '@/lib/utils';
+import { cn, fa } from '@/lib/utils';
 
 export default function TeacherDashboard() {
-  const today = teacherClasses[0];
+  const [today, ...later] = teacherClasses;
   return (
     <div className="space-y-10">
       <PageHeader title={`روز بخیر، ${teacher.name}`} desc="امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری." />
@@ -39,29 +40,27 @@ export default function TeacherDashboard() {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
-        <Panel title="کلاس‌های من" className="xl:col-span-2" action={<SeeAll href="/teacher/classes">همه‌ی کلاس‌ها</SeeAll>}>
-          <ul className="divide-y divide-rule">
-            {teacherClasses.map((c) => (
-              <li key={c.id} className="grid gap-3 py-5 first:pt-0 last:pb-0 sm:grid-cols-[1fr_12rem] sm:items-center sm:gap-8">
+        <Panel title="جلسه‌های بعدی" className="xl:col-span-2" action={<SeeAll href="/teacher/classes">همه‌ی کلاس‌ها</SeeAll>}>
+          {/* Every class after the one in the ink panel, in the order of their next session. */}
+          <ol className="divide-y divide-rule">
+            {later.map((c) => (
+              <li key={c.id} className="grid grid-cols-[6.5rem_1fr] items-start gap-x-4 gap-y-3 py-4 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr_auto] sm:items-center sm:gap-x-6">
+                <p className={cn('font-bold', c.next.startsWith('امروز') ? 'text-accent-700' : 'text-ink')}>{c.next}</p>
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <p className="font-bold text-ink">{c.title}</p>
+                    <p className="font-semibold text-ink">{c.title}</p>
                     <Badge tone="brand">{c.level}</Badge>
                   </div>
-                  <p className="mt-1 text-sm text-muted">
+                  <p className="mt-0.5 text-sm text-muted">
                     {c.time}، {fa(c.students)} نفر
                   </p>
                 </div>
-                <div>
-                  <div className="mb-1.5 flex justify-between text-sm">
-                    <span className="text-muted">پیشرفت</span>
-                    <span className="num font-semibold text-accent-700">{fa(c.progress)}٪</span>
-                  </div>
-                  <Progress value={c.progress} label={`پیشرفت ${c.title}`} />
-                </div>
+                <Link href="/teacher/classes" className="btn-secondary col-span-2 sm:col-span-1">
+                  جزئیات کلاس
+                </Link>
               </li>
             ))}
-          </ul>
+          </ol>
         </Panel>
 
         <Panel title="تکالیف جدید برای تصحیح">
