@@ -57,6 +57,8 @@ const config: Config = {
         marker: v('mark'),
         // Solid ink blocks (footer, CTA) stay deep lapis in both themes.
         navy: '#121B45',
+        // Turquoise for fixed ink surfaces (hero stage, footer), same in both themes.
+        turq: { DEFAULT: '#22C6DC', soft: '#5CDAE9' },
         sky2: { 300: v('accent-300'), 400: v('accent-400'), 500: v('accent-500') },
       },
       // Radius follows role; capped so containers never get bubbly.

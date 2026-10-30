@@ -147,9 +147,10 @@
   [lang]:not([lang|='fa']):not([lang|='ar']) {
     font-family: theme('fontFamily.latin');
   }
+  /* Markazi's Arabic runs small; scale it up relative to whatever size it's given. */
   [lang|='ar']:not(html) {
     font-family: theme('fontFamily.naskh');
-    font-size: 1.15em;
+    font-size-adjust: 0.62;
   }
   /* One stroke weight for every Lucide icon. */
   svg.lucide {
@@ -410,6 +411,10 @@
 /* Hand-drawn marks (components/ui/Highlighter) take their color from the theme. */
 .hand-mark .rough-annotation path {
   stroke: rgb(var(--mark) / 0.8);
+}
+/* On the ink stage the mark is full-strength turquoise in both themes. */
+.stage .hand-mark .rough-annotation path {
+  stroke: #22c6dc;
 }
 
 /* Theme switch: circular reveal from the toggle (adapted from Magic UI's AnimatedThemeToggler). */

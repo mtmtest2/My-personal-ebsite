@@ -1,51 +1,78 @@
 import Link from 'next/link';
-import { Instagram, Mail, MapPin, Phone, Send, Youtube } from 'lucide-react';
+import { Instagram, Send, Youtube } from 'lucide-react';
 import Logo from '@/components/Logo';
 
 const cols = [
-  { title: 'فرتاش', links: [['درباره ما', '/#how'], ['اساتید', '/#teachers'], ['همکاری با ما', '/register?role=teacher'], ['تماس با ما', '/#contact']] },
-  { title: 'دوره‌ها', links: [['انگلیسی', '/#languages'], ['آلمانی', '/#languages'], ['فرانسوی', '/#languages'], ['آمادگی آزمون', '/#languages']] },
-  { title: 'پشتیبانی', links: [['سوالات متداول', '/#faq'], ['تعرفه‌ها', '/#pricing'], ['ورود به پنل', '/login'], ['ثبت‌نام', '/register']] },
+  { title: 'فرتاش', links: [['روش کار', '/#how'], ['اساتید', '/#teachers'], ['همکاری با ما', '/register?role=teacher'], ['سوالات متداول', '/#faq']] },
+  { title: 'دوره‌ها', links: [['انگلیسی', '/#languages'], ['آلمانی', '/#languages'], ['فرانسوی', '/#languages'], ['آمادگی آزمون', '/#languages'], ['تعرفه‌ها', '/#pricing']] },
+  { title: 'پنل‌ها', links: [['ورود', '/login'], ['ثبت‌نام', '/register'], ['پنل زبان‌آموز', '/student'], ['پنل استاد', '/teacher'], ['پنل مدیریت', '/admin']] },
+];
+
+const social = [
+  { icon: Instagram, label: 'اینستاگرام فرتاش' },
+  { icon: Send, label: 'کانال تلگرام فرتاش' },
+  { icon: Youtube, label: 'یوتیوب فرتاش' },
 ];
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-navy text-white/85">
-      <div className="container-x relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
-        <div className="lg:col-span-2">
+    <footer id="contact" className="border-t border-white/10 bg-navy text-white/75">
+      <div className="container-x grid gap-12 py-16 sm:py-20 md:grid-cols-2 lg:grid-cols-12">
+        <div className="lg:col-span-5">
           <Logo light />
-          <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-            فرتاش، آموزشگاه آنلاین زبان‌های خارجی؛ با کلاس‌های زنده، اساتید مجرب و مسیری روشن از اولین کلمه تا تسلط کامل.
-          </p>
-          <ul className="mt-6 space-y-3 text-sm">
-            <li className="flex items-center gap-2"><Phone size={16} className="text-sky2-400" /> <span dir="ltr">021-9100 0000</span></li>
-            <li className="flex items-center gap-2"><Mail size={16} className="text-sky2-400" /> info@fartash.ir</li>
-            <li className="flex items-center gap-2"><MapPin size={16} className="text-sky2-400" /> تهران، خیابان ولیعصر</li>
-          </ul>
+          <p className="mt-5 max-w-sm text-sm leading-7">آموزشگاه آنلاین زبان‌های خارجی، با کلاس‌های زنده و گروه‌های کوچک.</p>
+          <dl className="mt-8 space-y-3 text-sm">
+            <div className="flex gap-3">
+              <dt className="w-14 shrink-0 text-white/50">تلفن</dt>
+              <dd>
+                <a href="tel:+982191000000" dir="ltr" className="text-white hover:text-turq-soft">
+                  021-9100 0000
+                </a>
+              </dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-14 shrink-0 text-white/50">ایمیل</dt>
+              <dd>
+                <a href="mailto:info@fartash.ir" className="text-white hover:text-turq-soft">
+                  info@fartash.ir
+                </a>
+              </dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-14 shrink-0 text-white/50">نشانی</dt>
+              <dd className="text-white">تهران، خیابان ولیعصر</dd>
+            </div>
+          </dl>
         </div>
-        {cols.map((c) => (
-          <div key={c.title}>
-            <h4 className="mb-4 font-bold text-white">{c.title}</h4>
-            <ul className="space-y-2.5 text-sm">
-              {c.links.map(([label, href]) => (
-                <li key={label}>
-                  <Link href={href} className="text-white/70 transition hover:text-white">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <nav aria-label="پیوندهای پانویس" className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-1 lg:col-span-7">
+          {cols.map((c) => (
+            <div key={c.title}>
+              <h2 className="mb-4 text-sm font-bold text-white">{c.title}</h2>
+              <ul className="space-y-2.5 text-sm">
+                {c.links.map(([label, href]) => (
+                  <li key={label}>
+                    <Link href={href} className="transition-colors duration-120 hover:text-white">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
       </div>
-      <div className="relative border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/60 sm:flex-row">
-          <p>© ۱۴۰۵ فرتاش. تمامی حقوق محفوظ است.</p>
-          <div className="flex gap-2">
-            {[Instagram, Send, Youtube].map((Icon, i) => (
-              <a key={i} href="#" aria-label="شبکه اجتماعی" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 text-white/85 transition hover:bg-white/15 hover:text-white">
-                <Icon size={16} />
-              </a>
+      <div className="border-t border-white/10">
+        <div className="container-x flex flex-col-reverse items-start justify-between gap-4 py-6 text-xs text-white/55 sm:flex-row sm:items-center">
+          <p>© ۱۴۰۵ فرتاش. همه‌ی حقوق محفوظ است.</p>
+          <ul className="flex gap-1">
+            {social.map(({ icon: Icon, label }) => (
+              <li key={label}>
+                <a href="#" aria-label={label} className="grid h-10 w-10 place-items-center rounded-md text-white/70 transition-colors duration-120 hover:bg-white/10 hover:text-white focus-visible:ring-offset-navy">
+                  <Icon size={18} aria-hidden />
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </footer>
