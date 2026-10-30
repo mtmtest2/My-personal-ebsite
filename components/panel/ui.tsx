@@ -50,7 +50,7 @@ export function Panel({ title, action, children, className }: { title: string; a
   );
 }
 
-export function Progress({ value, className, barClass = 'bg-brand-gradient' }: { value: number; className?: string; barClass?: string }) {
+export function Progress({ value, className, barClass = 'bg-brand-600' }: { value: number; className?: string; barClass?: string }) {
   return (
     <div className={cn('h-2 w-full overflow-hidden rounded-full bg-slate-100', className)}>
       <div className={cn('h-full rounded-full', barClass)} style={{ width: `${value}%` }} />
@@ -71,7 +71,7 @@ export function BarChart({ data, unit = '' }: { data: { label: string; value: nu
         <div key={d.label} className="group flex h-full flex-1 flex-col items-center justify-end gap-2">
           <span className="text-xs font-bold text-slate-700 opacity-0 transition group-hover:opacity-100">{d.display ?? d.value}{unit}</span>
           <div
-            className={cn('w-full max-w-12 rounded-t-xl transition-all', i === data.length - 1 ? 'bg-brand-gradient' : 'bg-brand-100 group-hover:bg-brand-300')}
+            className={cn('w-full max-w-12 rounded-t-xl transition-all', i === data.length - 1 ? 'bg-brand-600' : 'bg-brand-100 group-hover:bg-brand-300')}
             style={{ height: `${(d.value / max) * 80}%` }}
           />
           <span className="text-[11px] text-slate-500">{d.label}</span>

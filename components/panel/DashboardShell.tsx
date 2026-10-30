@@ -86,7 +86,7 @@ export default function DashboardShell({
               onClick={() => setOpen(false)}
               className={cn(
                 'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition',
-                active ? 'bg-brand-gradient text-white shadow-soft' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                active ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
               )}
             >
               <item.icon size={19} /> {item.label}
@@ -94,7 +94,7 @@ export default function DashboardShell({
           );
         })}
       </nav>
-      <div className="m-3 rounded-2xl bg-brand-950 p-4 text-white">
+      <div className="m-3 rounded-2xl bg-ink p-4 text-white">
         <p className="text-sm font-bold">به کمک نیاز داری؟</p>
         <p className="mt-1 text-xs leading-6 text-brand-200/80">پشتیبانی فرتاش هر روز از ۸ تا ۲۲ پاسخگوست.</p>
         <a href="#" className="mt-3 inline-block rounded-lg bg-white/10 px-3 py-1.5 text-xs font-semibold hover:bg-white/20">تماس با پشتیبانی</a>

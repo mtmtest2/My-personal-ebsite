@@ -10,8 +10,7 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-brand-950 text-brand-100">
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[48rem] -translate-x-1/2 rounded-full bg-brand-600/30 blur-3xl" />
+    <footer id="contact" className="relative overflow-hidden bg-ink text-brand-100">
       <div className="container-x relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo light />

@@ -1,12 +1,12 @@
 // Mock data used across the public site and the panels until a backend is connected.
 
 export const languages = [
-  { code: 'en', name: 'انگلیسی', native: 'English', flag: '🇬🇧', students: 4820, teachers: 38, color: 'from-blue-500 to-indigo-600' },
-  { code: 'de', name: 'آلمانی', native: 'Deutsch', flag: '🇩🇪', students: 1940, teachers: 16, color: 'from-amber-400 to-orange-500' },
-  { code: 'fr', name: 'فرانسوی', native: 'Français', flag: '🇫🇷', students: 1210, teachers: 11, color: 'from-sky-400 to-blue-600' },
-  { code: 'tr', name: 'ترکی استانبولی', native: 'Türkçe', flag: '🇹🇷', students: 980, teachers: 9, color: 'from-rose-400 to-red-600' },
-  { code: 'es', name: 'اسپانیایی', native: 'Español', flag: '🇪🇸', students: 640, teachers: 7, color: 'from-yellow-400 to-red-500' },
-  { code: 'ar', name: 'عربی', native: 'العربية', flag: '🇸🇦', students: 520, teachers: 6, color: 'from-emerald-400 to-teal-600' },
+  { code: 'en', tracks: 'عمومی، مکالمه، IELTS، TOEFL، تجاری', name: 'انگلیسی', native: 'English', flag: '🇬🇧', students: 4820, teachers: 38, color: 'from-blue-500 to-indigo-600' },
+  { code: 'de', tracks: 'عمومی از صفر، آمادگی Goethe و ÖSD', name: 'آلمانی', native: 'Deutsch', flag: '🇩🇪', students: 1940, teachers: 16, color: 'from-amber-400 to-orange-500' },
+  { code: 'fr', tracks: 'عمومی، آمادگی DELF و TCF کانادا', name: 'فرانسوی', native: 'Français', flag: '🇫🇷', students: 1210, teachers: 11, color: 'from-sky-400 to-blue-600' },
+  { code: 'tr', tracks: 'مکالمه‌محور، آمادگی TÖMER', name: 'ترکی استانبولی', native: 'Türkçe', flag: '🇹🇷', students: 980, teachers: 9, color: 'from-rose-400 to-red-600' },
+  { code: 'es', tracks: 'عمومی و مکالمه تا سطح B2', name: 'اسپانیایی', native: 'Español', flag: '🇪🇸', students: 640, teachers: 7, color: 'from-yellow-400 to-red-500' },
+  { code: 'ar', tracks: 'فصیح و محاوره‌ی خلیجی', name: 'عربی', native: 'العربية', flag: '🇸🇦', students: 520, teachers: 6, color: 'from-emerald-400 to-teal-600' },
 ];
 
 export const teachers = [
@@ -44,9 +44,9 @@ export const plans = [
 ];
 
 export const testimonials = [
-  { name: 'نگار طاهری', role: 'IELTS 7.5 — مهاجرت تحصیلی', text: 'در ۵ ماه از نمره ۵.۵ به ۷.۵ رسیدم. برنامه‌ی هفتگی و فیدبک دقیق استاد روی رایتینگ واقعاً همه چیز را تغییر داد.', photo: '/images/people/9.jpg' },
-  { name: 'امیر حسینی', role: 'برنامه‌نویس — آلمانی B1', text: 'کنار کار تمام‌وقت، با کلاس‌های عصرگاهی فرتاش آلمانی را از صفر تا B1 خواندم. پنل دانشجو خیلی مرتب و کاربردی است.', photo: '/images/people/6.jpg' },
-  { name: 'هانیه موسوی', role: 'دانشجوی پزشکی — فرانسه', text: 'کلاب‌های مکالمه بهترین بخش بود. ترسم از صحبت کردن ریخت و الان راحت با هم‌کلاسی‌های فرانسوی‌ام حرف می‌زنم.', photo: '/images/people/7.jpg' },
+  { name: 'نگار طاهری', role: 'IELTS 7.5، مهاجرت تحصیلی', text: 'در ۵ ماه از نمره ۵.۵ به ۷.۵ رسیدم. برنامه‌ی هفتگی و فیدبک دقیق استاد روی رایتینگ واقعاً همه چیز را تغییر داد.', photo: '/images/people/9.jpg' },
+  { name: 'امیر حسینی', role: 'برنامه‌نویس، آلمانی B1', text: 'کنار کار تمام‌وقت، با کلاس‌های عصرگاهی فرتاش آلمانی را از صفر تا B1 خواندم. پنل دانشجو خیلی مرتب و کاربردی است.', photo: '/images/people/6.jpg' },
+  { name: 'هانیه موسوی', role: 'دانشجوی پزشکی، فرانسه', text: 'کلاب‌های مکالمه بهترین بخش بود. ترسم از صحبت کردن ریخت و الان راحت با هم‌کلاسی‌های فرانسوی‌ام حرف می‌زنم.', photo: '/images/people/7.jpg' },
 ];
 
 export const faqs = [

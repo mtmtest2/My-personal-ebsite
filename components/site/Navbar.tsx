@@ -29,7 +29,7 @@ export default function Navbar() {
     <header
       className={cn(
         'sticky top-0 z-50 transition-all',
-        scrolled ? 'border-b border-slate-100 bg-white/85 shadow-sm backdrop-blur-lg' : 'bg-transparent',
+        scrolled ? 'border-b border-rule bg-white/90 backdrop-blur-lg' : 'bg-transparent',
       )}
     >
       <nav className="container-x flex h-16 items-center justify-between lg:h-20">
@@ -37,7 +37,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-brand-50 hover:text-brand-700">
+              <Link href={l.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-brand-700">
                 {l.label}
               </Link>
             </li>
@@ -45,7 +45,7 @@ export default function Navbar() {
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
           <Link href="/login" className="btn-ghost">ورود</Link>
-          <Link href="/register" className="btn-gradient">شروع رایگان</Link>
+          <Link href="/register" className="btn-primary">تعیین سطح رایگان</Link>
         </div>
         <button
           onClick={() => setOpen((v) => !v)}
@@ -66,7 +66,7 @@ export default function Navbar() {
             ))}
             <div className="mt-2 grid grid-cols-2 gap-2">
               <Link href="/login" className="btn-ghost">ورود</Link>
-              <Link href="/register" className="btn-gradient">شروع رایگان</Link>
+              <Link href="/register" className="btn-primary">تعیین سطح رایگان</Link>
             </div>
           </div>
         </div>

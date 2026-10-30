@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import '@fontsource-variable/vazirmatn';
+import '@fontsource/markazi-text/500.css';
+import '@fontsource/markazi-text/600.css';
+import '@fontsource/markazi-text/700.css';
 import './globals.css';
 
 export const metadata: Metadata = {

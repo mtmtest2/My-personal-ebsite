@@ -1,51 +1,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  ArrowLeft,
-  Award,
-  BarChart3,
-  BookOpenCheck,
-  CalendarCheck,
-  Check,
-  ChevronDown,
-  ClipboardCheck,
-  GraduationCap,
-  Headphones,
-  LayoutDashboard,
-  MessagesSquare,
-  Mic,
-  PlayCircle,
-  ShieldCheck,
-  Sparkles,
-  Star,
-  UserPlus,
-  Users,
-  Video,
-} from 'lucide-react';
+import { Check, ChevronDown, Star } from 'lucide-react';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
+import Phrasebook from '@/components/site/Phrasebook';
 import { faqs, languages, plans, teachers, testimonials } from '@/lib/data';
 import { cn, fa } from '@/lib/utils';
 
 export default function HomePage() {
   return (
     <>
-      <div className="relative overflow-hidden bg-gradient-to-b from-brand-50/80 via-white to-white">
-        <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
-        <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-sky2-300/30 blur-3xl" />
-        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-brand-400/20 blur-3xl" />
-        <Navbar />
-        <Hero />
-      </div>
+      <Navbar />
       <main>
-        <Stats />
+        <Hero />
         <HowItWorks />
         <Languages />
-        <Features />
-        <Panels />
+        <Week />
         <Teachers />
         <Pricing />
         <Testimonials />
+        <Panels />
         <Faq />
         <Cta />
       </main>
@@ -54,177 +28,69 @@ export default function HomePage() {
   );
 }
 
-function SectionHeader({ eyebrow, title, desc }: { eyebrow: string; title: React.ReactNode; desc?: string }) {
+function SectionTitle({ title, desc, className }: { title: string; desc?: string; className?: string }) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
-      <span className="section-eyebrow">
-        <Sparkles size={14} /> {eyebrow}
-      </span>
-      <h2 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">{title}</h2>
-      {desc && <p className="mt-4 text-base leading-8 text-slate-500">{desc}</p>}
+    <div className={cn('max-w-2xl', className)}>
+      <h2 className="h-display text-[2.6rem] sm:text-5xl">{title}</h2>
+      {desc && <p className="mt-4 max-w-xl text-[17px] leading-8 text-slate-600">{desc}</p>}
     </div>
   );
 }
 
 function Hero() {
   return (
-    <section className="container-x relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-2 lg:pb-28 lg:pt-16">
+    <section className="container-x grid grid-cols-1 items-center gap-14 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32 lg:pt-16">
       <div>
-        <span className="section-eyebrow">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          ثبت‌نام ترم پاییز آغاز شد
-        </span>
-        <h1 className="mt-6 text-4xl font-black leading-[1.35] text-slate-900 sm:text-5xl lg:text-[3.4rem]">
-          زبان جدید را
-          <br />
-          <span className="text-gradient">زنده و هدفمند</span> یاد بگیر
+        <h1 className="h-display text-[3.4rem] sm:text-7xl lg:text-[5.2rem]">
+          به زبان تازه حرف بزن، از همین هفته.
         </h1>
-        <p className="mt-6 max-w-xl text-lg leading-9 text-slate-500">
-          کلاس‌های آنلاین زنده با اساتید مجرب، برنامه‌ی مطالعه‌ی اختصاصی و پنلی که پیشرفتت را قدم‌به‌قدم نشان می‌دهد. از اولین کلمه تا آزمون‌های بین‌المللی، کنارت هستیم.
+        <p className="mt-7 max-w-lg text-lg leading-9 text-slate-600">
+          کلاس‌های زنده با گروه‌های حداکثر ۸ نفره، برای انگلیسی، آلمانی، فرانسوی، ترکی، اسپانیایی و عربی. اول سطحت را رایگان می‌سنجیم، بعد برنامه‌ات را با هم می‌چینیم.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Link href="/register" className="btn-gradient px-7 py-3.5 text-base">
-            تعیین سطح رایگان
-            <ArrowLeft size={18} />
-          </Link>
-          <Link href="#how" className="btn-ghost px-6 py-3.5 text-base">
-            <PlayCircle size={18} className="text-brand-600" />
-            روش کار فرتاش
+        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <Link href="/register" className="btn-primary px-7 py-3.5 text-base">تعیین سطح رایگان</Link>
+          <Link href="#how" className="text-base font-semibold text-brand-700 underline decoration-rule decoration-2 underline-offset-8 hover:decoration-brand-500">
+            کلاس‌ها چطور برگزار می‌شوند؟
           </Link>
         </div>
-        <div className="mt-10 flex items-center gap-4">
-          <div className="flex -space-x-3 space-x-reverse">
-            {[9, 5, 7, 6, 10].map((n) => (
-              <Image key={n} src={`/images/people/${n}.jpg`} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover ring-4 ring-white" />
+        <div className="mt-12 flex items-center gap-4 border-t border-rule pt-6">
+          <div className="flex shrink-0 -space-x-2.5 space-x-reverse">
+            {[9, 5, 7, 6].map((n) => (
+              <Image key={n} src={`/images/people/${n}.jpg`} alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover ring-[3px] ring-white" />
             ))}
           </div>
-          <div>
-            <div className="flex items-center gap-1 text-amber-400">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={16} fill="currentColor" />
-              ))}
-              <span className="mr-1 text-sm font-bold text-slate-800">۴٫۹</span>
-            </div>
-            <p className="text-sm text-slate-500">بیش از {fa(10000)} زبان‌آموز راضی</p>
-          </div>
+          <p className="text-sm leading-6 text-slate-600">
+            <span className="font-bold text-ink">{fa(10000)} زبان‌آموز</span> در یک سال گذشته با فرتاش کلاس رفتند،
+            <br className="hidden sm:block" /> با میانگین امتیاز <span className="font-bold text-ink">۴٫۹ از ۵</span> به کلاس‌ها.
+          </p>
         </div>
       </div>
-
-      <HeroVisual />
-    </section>
-  );
-}
-
-function HeroVisual() {
-  return (
-    <div className="relative mx-auto w-full max-w-lg">
-      <div className="absolute inset-0 -rotate-6 rounded-[2.5rem] bg-brand-gradient opacity-90" />
-      <div className="relative rounded-[2.5rem] bg-white p-5 shadow-soft">
-        {/* Live class mock */}
-        <div className="relative overflow-hidden rounded-3xl bg-slate-900">
-          <Image src="/images/people/4.jpg" alt="کلاس زنده" width={600} height={420} className="h-64 w-full object-cover opacity-90 sm:h-72" priority />
-          <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" /> زنده
-          </div>
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl bg-white/15 p-3 text-white backdrop-blur-md">
-            <div>
-              <p className="text-sm font-bold">IELTS Speaking — Part 2</p>
-              <p className="text-xs text-white/80">سارا محمدی · ۸ زبان‌آموز</p>
-            </div>
-            <div className="flex gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-white/20"><Mic size={16} /></span>
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-white/20"><Video size={16} /></span>
-            </div>
-          </div>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          {[
-            { k: 'Speaking', v: 72, c: 'bg-brand-500' },
-            { k: 'Listening', v: 81, c: 'bg-sky2-400' },
-            { k: 'Writing', v: 58, c: 'bg-violet-500' },
-          ].map((s) => (
-            <div key={s.k} className="rounded-2xl bg-slate-50 p-3">
-              <p className="text-[11px] font-medium text-slate-500" dir="ltr">{s.k}</p>
-              <p className="mt-1 text-lg font-extrabold text-slate-800">{fa(s.v)}٪</p>
-              <div className="mt-2 h-1.5 rounded-full bg-slate-200">
-                <div className={cn('h-1.5 rounded-full', s.c)} style={{ width: `${s.v}%` }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Floating cards */}
-      <div className="absolute -right-4 top-24 hidden animate-float rounded-2xl bg-white p-3 shadow-soft sm:flex sm:items-center sm:gap-3 lg:-right-14">
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-emerald-600"><Award size={20} /></span>
-        <div>
-          <p className="text-xs text-slate-500">سطح جدید</p>
-          <p className="text-sm font-bold text-slate-800">B1 ← B2 🎉</p>
-        </div>
-      </div>
-      <div className="absolute -left-4 bottom-28 hidden animate-float rounded-2xl bg-white p-3 shadow-soft [animation-delay:1.5s] sm:flex sm:items-center sm:gap-3 lg:-left-12">
-        <span className="grid h-10 w-10 place-items-center rounded-xl bg-amber-100 text-amber-600"><CalendarCheck size={20} /></span>
-        <div>
-          <p className="text-xs text-slate-500">کلاس بعدی</p>
-          <p className="text-sm font-bold text-slate-800">امروز، ۱۸:۰۰</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Stats() {
-  const items = [
-    { v: '+۱۰٬۰۰۰', l: 'زبان‌آموز فعال' },
-    { v: '+۸۵', l: 'استاد مجرب و تأییدشده' },
-    { v: '۶', l: 'زبان زنده دنیا' },
-    { v: '۹۴٪', l: 'رضایت از کلاس‌ها' },
-  ];
-  return (
-    <section className="container-x -mt-6">
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-slate-100 shadow-card lg:grid-cols-4">
-        {items.map((s) => (
-          <div key={s.l} className="bg-white px-6 py-8 text-center">
-            <p className="text-3xl font-black text-brand-700 sm:text-4xl">{s.v}</p>
-            <p className="mt-2 text-sm text-slate-500">{s.l}</p>
-          </div>
-        ))}
-      </div>
+      <Phrasebook />
     </section>
   );
 }
 
 function HowItWorks() {
   const steps = [
-    { icon: UserPlus, title: 'ثبت‌نام و تعیین سطح', desc: 'در چند دقیقه ثبت‌نام کن و در آزمون تعیین سطح رایگان (CEFR) شرکت کن.' },
-    { icon: ClipboardCheck, title: 'برنامه‌ی اختصاصی', desc: 'مشاور آموزشی بر اساس هدف، سطح و زمان آزادت، بهترین کلاس و استاد را پیشنهاد می‌دهد.' },
-    { icon: Video, title: 'کلاس زنده و تعاملی', desc: 'در کلاس‌های گروهی کوچک یا خصوصی شرکت کن؛ ویدیوی هر جلسه هم در پنلت می‌ماند.' },
-    { icon: BarChart3, title: 'پیگیری و گواهی', desc: 'تمرین‌ها، آزمون‌ها و نمودار پیشرفت را در پنل ببین و در پایان هر سطح گواهی بگیر.' },
+    { title: 'آزمون تعیین سطح', time: '۲۰ دقیقه، آنلاین', desc: 'آزمون چهار مهارتی بر اساس CEFR؛ نتیجه را همان لحظه می‌بینی.' },
+    { title: 'گفتگو با مشاور', time: 'تماس ۱۵ دقیقه‌ای', desc: 'هدفت، زمان آزادت و سطحت را کنار هم می‌گذاریم و کلاس و استاد مناسب را پیشنهاد می‌دهیم.' },
+    { title: 'کلاس زنده', time: '۲ یا ۳ جلسه در هفته', desc: 'با گروه کوچک یا خصوصی. ویدیوی هر جلسه در پنلت می‌ماند تا هر وقت خواستی مرور کنی.' },
+    { title: 'آزمون پایان سطح', time: 'هر ۱۰ تا ۱۲ هفته', desc: 'با قبولی، گواهی با کد استعلام می‌گیری و به سطح بعد می‌روی.' },
   ];
   return (
-    <section id="how" className="container-x scroll-mt-24 py-24">
-      <SectionHeader
-        eyebrow="روش کار فرتاش"
-        title={<>در ۴ قدم ساده، <span className="text-gradient">مسیر یادگیری</span> را شروع کن</>}
-        desc="از لحظه‌ی ثبت‌نام تا دریافت گواهی، همه چیز شفاف، منظم و قابل‌پیگیری است."
-      />
-      <div className="relative mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <div className="absolute left-[12%] right-[12%] top-10 hidden h-0.5 bg-gradient-to-l from-brand-200 via-sky2-300 to-brand-200 lg:block" />
-        {steps.map((s, i) => (
-          <div key={s.title} className="card group relative p-6 text-center transition hover:-translate-y-1 hover:shadow-soft">
-            <div className="relative mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-brand-gradient text-white shadow-soft">
-              <s.icon size={32} />
-              <span className="absolute -left-2 -top-2 grid h-8 w-8 place-items-center rounded-full bg-white text-sm font-black text-brand-700 shadow ring-1 ring-brand-100">
-                {fa(i + 1)}
-              </span>
-            </div>
-            <h3 className="mt-6 text-lg font-bold text-slate-900">{s.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-500">{s.desc}</p>
-          </div>
-        ))}
+    <section id="how" className="scroll-mt-20 border-t border-rule bg-tint py-24">
+      <div className="container-x">
+        <SectionTitle title="از ثبت‌نام تا اولین کلاس" desc="بیشتر زبان‌آموزان کمتر از یک هفته بعد از ثبت‌نام، اولین جلسه‌شان را دارند." />
+        <ol className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          {steps.map((s, i) => (
+            <li key={s.title} className="relative lg:border-r lg:border-rule lg:px-7 lg:first:border-r-0 lg:first:pr-0">
+              <span className="font-display text-6xl font-bold leading-none text-brand-600">{fa(i + 1)}</span>
+              <h3 className="mt-5 text-lg font-bold text-ink">{s.title}</h3>
+              <p className="mt-1 text-sm font-medium text-brand-700">{s.time}</p>
+              <p className="mt-3 text-[15px] leading-7 text-slate-600">{s.desc}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -232,103 +98,71 @@ function HowItWorks() {
 
 function Languages() {
   return (
-    <section id="languages" className="scroll-mt-24 bg-slate-50/70 py-24">
-      <div className="container-x">
-        <SectionHeader eyebrow="زبان‌ها" title="کدام زبان را می‌خواهی یاد بگیری؟" desc="دوره‌های عمومی، مکالمه، تجاری و آمادگی آزمون‌های بین‌المللی برای هر سطح." />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {languages.map((l) => (
+    <section id="languages" className="container-x scroll-mt-20 py-24">
+      <SectionTitle title="شش زبان، از سطح صفر" desc="برای هر زبان دوره‌ی عمومی داریم و برای بیشترشان آمادگی آزمون‌های رسمی." />
+      <ul className="mt-12 border-t border-ink/80">
+        {languages.map((l) => (
+          <li key={l.code}>
             <Link
-              key={l.code}
               href="/register"
-              className="card group flex items-center gap-5 p-5 transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-soft"
+              className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-rule py-6 transition-colors hover:bg-tint sm:grid-cols-[11rem_1fr_auto] sm:px-3"
             >
-              <span className={cn('grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br text-3xl shadow-lg', l.color)}>
-                {l.flag}
+              <span lang={l.code} dir={l.code === 'ar' ? 'rtl' : 'ltr'} className="font-display text-4xl font-semibold text-ink sm:text-right">
+                {l.native}
               </span>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-slate-900">{l.name}</h3>
-                  <span className="text-xs font-medium text-slate-400" dir="ltr">{l.native}</span>
-                </div>
-                <div className="mt-2 flex gap-4 text-xs text-slate-500">
-                  <span className="flex items-center gap-1"><Users size={14} /> {fa(l.students)} زبان‌آموز</span>
-                  <span className="flex items-center gap-1"><GraduationCap size={14} /> {fa(l.teachers)} استاد</span>
-                </div>
-              </div>
-              <ArrowLeft size={18} className="text-slate-300 transition group-hover:-translate-x-1 group-hover:text-brand-600" />
+              <span className="col-span-2 row-start-2 sm:col-span-1 sm:row-start-auto">
+                <span className="text-lg font-bold text-ink">{l.name}</span>
+                <span className="mr-3 text-sm text-slate-500">{l.tracks}</span>
+              </span>
+              <span className="row-start-1 text-left text-sm text-slate-500 sm:row-start-auto">
+                {fa(l.teachers)} استاد، {fa(l.students)} زبان‌آموز
+              </span>
             </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Features() {
-  return (
-    <section className="container-x py-24">
-      <SectionHeader eyebrow="چرا فرتاش؟" title="همه چیز برای یادگیری مؤثر، در یک جا" />
-      <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:grid-rows-2">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-8 text-white lg:row-span-2">
-          <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-white/10" />
-          <div className="absolute -bottom-6 -left-6 h-32 w-32 rounded-full bg-white/10" />
-          <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/15"><Video size={28} /></span>
-          <h3 className="mt-6 text-2xl font-extrabold">کلاس‌های زنده با گروه‌های کوچک</h3>
-          <p className="mt-4 leading-8 text-brand-50/90">
-            حداکثر ۸ نفر در هر کلاس؛ یعنی هر جلسه فرصت واقعی برای صحبت کردن داری. استاد اشتباهاتت را همان لحظه اصلاح می‌کند و ویدیوی کامل جلسه برای مرور در پنلت ذخیره می‌شود.
-          </p>
-          <ul className="relative mt-8 space-y-3 text-sm">
-            {['کلاس‌های صبح، عصر و آخر هفته', 'تخته‌ی آنلاین و تمرین تعاملی', 'فایل ضبط‌شده‌ی همه‌ی جلسات'].map((t) => (
-              <li key={t} className="flex items-center gap-2"><span className="grid h-5 w-5 place-items-center rounded-full bg-white/20"><Check size={12} /></span>{t}</li>
-            ))}
-          </ul>
-        </div>
-        {[
-          { icon: GraduationCap, title: 'اساتید گزینش‌شده', desc: 'فقط ۸٪ متقاضیان تدریس، پس از مصاحبه و کلاس آزمایشی پذیرفته می‌شوند.', c: 'bg-amber-100 text-amber-600' },
-          { icon: MessagesSquare, title: 'کلاب‌های مکالمه', desc: 'هر هفته با موضوعات جذاب و زبان‌آموزان هم‌سطح، ترس از صحبت را کنار بگذار.', c: 'bg-violet-100 text-violet-600' },
-          { icon: BookOpenCheck, title: 'تمرین و آزمون منظم', desc: 'تکالیف هفتگی، کوییز واژگان و آزمون پایان سطح با تصحیح دقیق استاد.', c: 'bg-emerald-100 text-emerald-600' },
-          { icon: Headphones, title: 'پشتیبانی همیشگی', desc: 'مشاور آموزشی اختصاصی و پشتیبانی آنلاین برای هر سوال یا مشکل.', c: 'bg-rose-100 text-rose-600' },
-        ].map((f) => (
-          <div key={f.title} className="card p-7 transition hover:shadow-soft">
-            <span className={cn('grid h-12 w-12 place-items-center rounded-xl', f.c)}><f.icon size={24} /></span>
-            <h3 className="mt-5 text-lg font-bold text-slate-900">{f.title}</h3>
-            <p className="mt-2 text-sm leading-7 text-slate-500">{f.desc}</p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
 
-function Panels() {
-  const panels = [
-    { icon: GraduationCap, title: 'پنل دانشجو', desc: 'برنامه‌ی کلاس‌ها، تکالیف، نمودار پیشرفت مهارت‌ها و دسترسی به ویدیوی جلسات.', href: '/student', c: 'from-brand-600 to-brand-400' },
-    { icon: Users, title: 'پنل استاد', desc: 'مدیریت کلاس‌ها، حضور و غیاب، تصحیح تکالیف و پیگیری عملکرد هر زبان‌آموز.', href: '/teacher', c: 'from-sky2-500 to-sky2-300' },
-    { icon: LayoutDashboard, title: 'پنل مدیریت', desc: 'گزارش‌های مالی، مدیریت کاربران، دوره‌ها، اساتید و تنظیمات کل سایت.', href: '/admin', c: 'from-violet-600 to-violet-400' },
+function Week() {
+  const days = [
+    { d: 'شنبه', what: 'کلاس گروهی', detail: '۹۰ دقیقه، حداکثر ۸ نفر', kind: 'class' },
+    { d: 'یکشنبه', what: 'مرور ویدیو', detail: 'فایل جلسه در پنل', kind: 'self' },
+    { d: 'دوشنبه', what: 'تکلیف رایتینگ', detail: 'بازخورد استاد تا ۴۸ ساعت', kind: 'self' },
+    { d: 'سه‌شنبه', what: 'کلاس گروهی', detail: '۹۰ دقیقه، حداکثر ۸ نفر', kind: 'class' },
+    { d: 'چهارشنبه', what: 'کلاب مکالمه', detail: 'یک موضوع، ۶۰ دقیقه حرف زدن', kind: 'club' },
+    { d: 'پنجشنبه', what: 'آزمونک واژگان', detail: '۱۰ دقیقه در پنل', kind: 'self' },
+    { d: 'جمعه', what: 'استراحت', detail: '', kind: 'off' },
   ];
+  const tone: Record<string, string> = {
+    class: 'bg-brand-600 text-white',
+    club: 'bg-ink text-white',
+    self: 'bg-white text-ink border border-rule',
+    off: 'text-slate-400 border border-dashed border-rule',
+  };
   return (
-    <section className="relative overflow-hidden bg-brand-950 py-24 text-white">
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
-      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-600/40 blur-3xl" />
-      <div className="container-x relative">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-sky2-300 ring-1 ring-white/15">
-            <ShieldCheck size={14} /> یک پلتفرم، سه نقش
-          </span>
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">پنل اختصاصی برای هر نقش</h2>
-          <p className="mt-4 leading-8 text-brand-200/80">زبان‌آموز، استاد و مدیر هر کدام دقیقاً ابزارهایی را می‌بینند که لازم دارند.</p>
+    <section className="border-y border-rule bg-tint py-24">
+      <div className="container-x">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+          <SectionTitle title="یک هفته‌ی معمولی در فرتاش" />
+          <p className="max-w-lg text-[17px] leading-8 text-slate-600">
+            برنامه‌ی سطح B1 با پلن حرفه‌ای. کلاس‌ها زنده‌اند و بین دو جلسه، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند.
+          </p>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {panels.map((p) => (
-            <Link key={p.title} href={p.href} className="group rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10">
-              <span className={cn('grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br shadow-lg', p.c)}><p.icon size={26} /></span>
-              <h3 className="mt-6 text-xl font-bold">{p.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-brand-200/80">{p.desc}</p>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-sky2-300">
-                مشاهده‌ی دموی پنل <ArrowLeft size={16} className="transition group-hover:-translate-x-1" />
-              </span>
-            </Link>
+        <ol className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+          {days.map((x) => (
+            <li key={x.d} className={cn('flex min-h-40 flex-col rounded-xl p-4', tone[x.kind])}>
+              <span className={cn('text-xs', x.kind === 'class' || x.kind === 'club' ? 'text-white/75' : 'text-slate-500')}>{x.d}</span>
+              <span className="mt-auto font-bold">{x.what}</span>
+              {x.detail && <span className={cn('mt-1 text-xs leading-5', x.kind === 'class' || x.kind === 'club' ? 'text-white/80' : 'text-slate-500')}>{x.detail}</span>}
+            </li>
           ))}
+        </ol>
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-600">
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-brand-600" /> کلاس زنده با استاد</span>
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-ink" /> کلاب مکالمه</span>
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border border-rule bg-white" /> کار شخصی در پنل</span>
         </div>
       </div>
     </section>
@@ -337,31 +171,25 @@ function Panels() {
 
 function Teachers() {
   return (
-    <section id="teachers" className="container-x scroll-mt-24 py-24">
-      <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-        <div>
-          <span className="section-eyebrow"><Sparkles size={14} /> اساتید فرتاش</span>
-          <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">با بهترین‌ها یاد بگیر</h2>
-        </div>
-        <Link href="/register" className="btn-ghost">همه‌ی اساتید <ArrowLeft size={16} /></Link>
+    <section id="teachers" className="container-x scroll-mt-20 py-24">
+      <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+        <SectionTitle title="اساتید" desc="هر استاد قبل از شروع، مصاحبه و یک کلاس آزمایشی با تیم آموزشی را گذرانده است." />
+        <Link href="/register" className="btn-ghost shrink-0">دیدن همه‌ی اساتید</Link>
       </div>
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {teachers.map((t) => (
-          <div key={t.id} className="card group overflow-hidden">
-            <div className="relative h-64 overflow-hidden">
-              <Image src={t.photo} alt={t.name} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
-              <span className="absolute right-3 top-3 badge bg-white/90 text-brand-700 backdrop-blur">{t.lang}</span>
+          <article key={t.id}>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-tint">
+              <Image src={t.photo} alt={t.name} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
             </div>
-            <div className="p-5">
-              <h3 className="font-bold text-slate-900">{t.name}</h3>
-              <p className="mt-1 text-sm text-slate-500">{t.title}</p>
-              <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
-                <span className="flex items-center gap-1 font-bold text-slate-700"><Star size={14} className="text-amber-400" fill="currentColor" /> {fa(t.rating.toString()).replace('.', '٫')}</span>
-                <span>{fa(t.students)} زبان‌آموز</span>
-                <span>{fa(t.years)} سال سابقه</span>
-              </div>
-            </div>
-          </div>
+            <h3 className="mt-4 text-lg font-bold text-ink">{t.name}</h3>
+            <p className="text-sm text-slate-600">{t.lang}، {t.title}</p>
+            <p className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
+              <Star size={14} className="text-amber-500" fill="currentColor" />
+              <span className="font-semibold text-ink">{fa(t.rating.toString()).replace('.', '٫')}</span>
+              <span>از {fa(t.students)} زبان‌آموز، {fa(t.years)} سال تدریس</span>
+            </p>
+          </article>
         ))}
       </div>
     </section>
@@ -370,42 +198,36 @@ function Teachers() {
 
 function Pricing() {
   return (
-    <section id="pricing" className="scroll-mt-24 bg-slate-50/70 py-24">
+    <section id="pricing" className="scroll-mt-20 border-t border-rule bg-tint py-24">
       <div className="container-x">
-        <SectionHeader eyebrow="تعرفه‌ها" title="پلنی که با هدفت جور است" desc="بدون هزینه‌ی پنهان. اگر تا پایان جلسه‌ی دوم راضی نبودی، کل مبلغ را برمی‌گردانیم." />
-        <div className="mt-14 grid items-center gap-6 lg:grid-cols-3">
-          {plans.map((p) => (
+        <SectionTitle title="شهریه‌ی ماهانه" desc="اگر تا پایان جلسه‌ی دوم راضی نبودی، کل مبلغ را برمی‌گردانیم." />
+        <div className="mt-12 grid overflow-hidden rounded-[20px] border border-rule bg-white lg:grid-cols-3">
+          {plans.map((p, i) => (
             <div
               key={p.name}
               className={cn(
-                'relative rounded-3xl p-8',
-                p.featured ? 'bg-brand-gradient text-white shadow-soft lg:scale-105' : 'card',
+                'relative flex flex-col p-8',
+                i > 0 && 'border-t border-rule lg:border-r lg:border-t-0',
+                p.featured && 'outline outline-2 -outline-offset-2 outline-brand-600',
               )}
             >
-              {p.featured && (
-                <span className="absolute -top-3 right-8 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-amber-950">پیشنهاد ویژه</span>
-              )}
-              <h3 className={cn('text-lg font-bold', p.featured ? 'text-white' : 'text-slate-900')}>{p.name}</h3>
-              <p className={cn('mt-1 text-sm', p.featured ? 'text-brand-50/90' : 'text-slate-500')}>{p.desc}</p>
-              <p className="mt-6 flex items-baseline gap-2">
-                <span className={cn('text-4xl font-black', p.featured ? 'text-white' : 'text-slate-900')}>{fa(p.price)}</span>
-                <span className={cn('text-sm', p.featured ? 'text-brand-50/80' : 'text-slate-500')}>تومان / {p.period}</span>
+              {p.featured && <p className="mb-3 text-sm font-semibold text-brand-700">انتخاب بیشتر زبان‌آموزان</p>}
+              <h3 className="font-display text-3xl font-bold text-ink">{p.name}</h3>
+              <p className="mt-1 text-sm text-slate-600">{p.desc}</p>
+              <p className="mt-6">
+                <span className="font-display text-5xl font-bold text-ink">{fa(p.price)}</span>
+                <span className="mr-2 text-sm text-slate-500">تومان در ماه</span>
               </p>
-              <ul className="mt-8 space-y-3.5 text-sm">
+              <ul className="mt-7 flex-1 space-y-3 text-[15px] text-slate-700">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5">
-                    <span className={cn('grid h-5 w-5 shrink-0 place-items-center rounded-full', p.featured ? 'bg-white/20' : 'bg-brand-50 text-brand-600')}>
-                      <Check size={12} />
-                    </span>
+                  <li key={f} className="flex gap-2.5">
+                    <Check size={18} className="mt-0.5 shrink-0 text-brand-600" />
                     {f}
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/register"
-                className={cn('btn mt-8 w-full py-3', p.featured ? 'bg-white text-brand-700 hover:bg-brand-50' : 'bg-brand-600 text-white hover:bg-brand-700')}
-              >
-                انتخاب پلن {p.name}
+              <Link href="/register" className={cn('mt-8 w-full', p.featured ? 'btn-primary' : 'btn-ghost')}>
+                شروع با پلن {p.name}
               </Link>
             </div>
           ))}
@@ -416,25 +238,60 @@ function Pricing() {
 }
 
 function Testimonials() {
+  const [lead, ...rest] = testimonials;
   return (
     <section className="container-x py-24">
-      <SectionHeader eyebrow="تجربه‌ی زبان‌آموزان" title="آن‌ها با فرتاش به هدفشان رسیدند" />
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {testimonials.map((t) => (
-          <figure key={t.name} className="card flex flex-col p-7">
-            <div className="flex gap-0.5 text-amber-400">
-              {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+      <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+        <figure>
+          <blockquote className="font-display text-[2rem] font-semibold leading-[1.45] text-ink sm:text-[2.4rem]">«{lead.text}»</blockquote>
+          <figcaption className="mt-8 flex items-center gap-3">
+            <Image src={lead.photo} alt={lead.name} width={52} height={52} className="h-[52px] w-[52px] rounded-full object-cover" />
+            <div>
+              <p className="font-bold text-ink">{lead.name}</p>
+              <p className="text-sm text-slate-500">{lead.role}</p>
             </div>
-            <blockquote className="mt-5 flex-1 leading-8 text-slate-600">«{t.text}»</blockquote>
-            <figcaption className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5">
-              <Image src={t.photo} alt={t.name} width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
-              <div>
-                <p className="font-bold text-slate-900">{t.name}</p>
-                <p className="text-xs text-slate-500">{t.role}</p>
-              </div>
-            </figcaption>
-          </figure>
-        ))}
+          </figcaption>
+        </figure>
+        <div className="space-y-8 border-rule lg:border-r lg:pr-12">
+          {rest.map((t) => (
+            <figure key={t.name} className="border-b border-rule pb-8 last:border-0 last:pb-0">
+              <blockquote className="leading-8 text-slate-700">«{t.text}»</blockquote>
+              <figcaption className="mt-4 flex items-center gap-3">
+                <Image src={t.photo} alt={t.name} width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
+                <div>
+                  <p className="text-sm font-bold text-ink">{t.name}</p>
+                  <p className="text-xs text-slate-500">{t.role}</p>
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Panels() {
+  const panels = [
+    { title: 'زبان‌آموز', desc: 'برنامه‌ی کلاس‌ها، ویدیوی جلسات، تکالیف و نمودار پیشرفت هر مهارت.', href: '/student', cta: 'دیدن پنل زبان‌آموز' },
+    { title: 'استاد', desc: 'حضور و غیاب، تصحیح تکالیف و پیگیری زبان‌آموزانی که عقب افتاده‌اند.', href: '/teacher', cta: 'دیدن پنل استاد' },
+    { title: 'مدیر', desc: 'کاربران، دوره‌ها، درخواست‌های همکاری و گزارش پرداخت‌ها.', href: '/admin', cta: 'دیدن پنل مدیریت' },
+  ];
+  return (
+    <section className="border-t border-rule bg-tint py-20">
+      <div className="container-x grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <SectionTitle title="هر نقش، یک پنل" />
+        <div className="grid gap-8 sm:grid-cols-3">
+          {panels.map((p) => (
+            <div key={p.title}>
+              <h3 className="text-lg font-bold text-ink">{p.title}</h3>
+              <p className="mt-2 text-[15px] leading-7 text-slate-600">{p.desc}</p>
+              <Link href={p.href} className="mt-3 inline-block text-sm font-semibold text-brand-700 underline decoration-rule decoration-2 underline-offset-[6px] hover:decoration-brand-500">
+                {p.cta}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -442,22 +299,22 @@ function Testimonials() {
 
 function Faq() {
   return (
-    <section id="faq" className="scroll-mt-24 bg-slate-50/70 py-24">
-      <div className="container-x grid gap-12 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <span className="section-eyebrow"><Sparkles size={14} /> سوالات متداول</span>
-          <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">سوالی داری؟</h2>
-          <p className="mt-4 leading-8 text-slate-500">پاسخ رایج‌ترین سوال‌ها این‌جاست. اگر جوابت را پیدا نکردی، مشاوران ما آماده‌ی پاسخگویی هستند.</p>
-          <a href="#contact" className="btn-primary mt-6">گفتگو با مشاور</a>
+    <section id="faq" className="container-x scroll-mt-20 py-24">
+      <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <div>
+          <SectionTitle title="سوال‌های رایج" />
+          <p className="mt-4 text-[15px] leading-7 text-slate-600">
+            جوابت این‌جا نبود؟ با <span dir="ltr">021-9100 0000</span> تماس بگیر؛ هر روز از ۸ تا ۲۲.
+          </p>
         </div>
-        <div className="space-y-3 lg:col-span-3">
+        <div className="border-t border-ink/80">
           {faqs.map((f, i) => (
-            <details key={f.q} className="card group p-5 open:shadow-soft" open={i === 0}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-slate-900 [&::-webkit-details-marker]:hidden">
+            <details key={f.q} className="group border-b border-rule" open={i === 0}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
                 {f.q}
-                <ChevronDown size={20} className="shrink-0 text-slate-400 transition group-open:rotate-180 group-open:text-brand-600" />
+                <ChevronDown size={20} className="shrink-0 text-slate-400 transition-transform group-open:rotate-180" />
               </summary>
-              <p className="mt-3 text-sm leading-7 text-slate-500">{f.a}</p>
+              <p className="-mt-1 max-w-2xl pb-6 leading-8 text-slate-600">{f.a}</p>
             </details>
           ))}
         </div>
@@ -468,15 +325,15 @@ function Faq() {
 
 function Cta() {
   return (
-    <section className="container-x py-24">
-      <div className="relative overflow-hidden rounded-[2rem] bg-brand-gradient px-6 py-16 text-center text-white sm:px-16">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10" />
-        <div className="absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-white/10" />
-        <h2 className="relative text-3xl font-black sm:text-4xl">همین امروز اولین قدم را بردار</h2>
-        <p className="relative mx-auto mt-4 max-w-xl leading-8 text-brand-50/90">تعیین سطح و جلسه‌ی مشاوره‌ی اول رایگان است. فقط ۲ دقیقه تا شروع فاصله داری.</p>
-        <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/register" className="btn bg-white px-7 py-3.5 text-base text-brand-700 hover:bg-brand-50">ثبت‌نام رایگان <ArrowLeft size={18} /></Link>
-          <Link href="/login" className="btn border border-white/30 px-7 py-3.5 text-base text-white hover:bg-white/10">ورود به پنل</Link>
+    <section className="container-x pb-24">
+      <div className="grid items-center gap-8 rounded-[20px] bg-ink px-8 py-14 text-white sm:px-14 lg:grid-cols-[1fr_auto]">
+        <div>
+          <h2 className="font-display text-4xl font-bold leading-tight sm:text-5xl">سطحت را در ۲۰ دقیقه بسنج.</h2>
+          <p className="mt-3 max-w-xl leading-8 text-white/75">آزمون تعیین سطح و تماس با مشاور رایگان است و تعهدی برای ثبت‌نام ایجاد نمی‌کند.</p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/register" className="btn bg-white px-7 py-3.5 text-base text-ink hover:bg-brand-50">شروع آزمون</Link>
+          <Link href="/login" className="btn border border-white/30 px-6 py-3.5 text-base text-white hover:bg-white/10">ورود به پنل</Link>
         </div>
       </div>
     </section>

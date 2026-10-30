@@ -13,7 +13,7 @@ export default function StudentDashboard() {
     <div className="space-y-6">
       {/* Welcome + next class */}
       <div className="grid gap-6 xl:grid-cols-3">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-6 text-white sm:p-8 xl:col-span-2">
+        <div className="relative overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-8 xl:col-span-2">
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-white/10" />
           <p className="text-sm text-brand-50/80">سلام {student.name.split(' ')[0]} عزیز 👋</p>
           <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">آماده‌ی کلاس امروز هستی؟</h1>
@@ -58,7 +58,7 @@ export default function StudentDashboard() {
                     <p className="truncate font-bold text-slate-900">{c.title}</p>
                     <span className="text-sm font-bold text-brand-700">{fa(c.progress)}٪</span>
                   </div>
-                  <p className="mt-0.5 text-xs text-slate-500">{c.teacher} · {fa(c.done)} از {fa(c.lessons)} جلسه</p>
+                  <p className="mt-0.5 text-xs text-slate-500">{c.teacher}، {fa(c.done)} از {fa(c.lessons)} جلسه</p>
                   <Progress value={c.progress} className="mt-2.5" />
                 </div>
               </div>
@@ -74,7 +74,7 @@ export default function StudentDashboard() {
                   <span className="font-medium text-slate-700" dir="ltr">{s.name}</span>
                   <span className="font-bold text-slate-900">{fa(s.value)}٪</span>
                 </div>
-                <Progress value={s.value} barClass={s.value < 65 ? 'bg-amber-400' : 'bg-brand-gradient'} />
+                <Progress value={s.value} barClass={s.value < 65 ? 'bg-amber-400' : 'bg-brand-600'} />
               </div>
             ))}
           </div>
@@ -88,7 +88,7 @@ export default function StudentDashboard() {
             {weeklyStudy.map((v, i) => (
               <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
                 <span className="text-[11px] font-bold text-slate-600">{fa(v)}</span>
-                <div className={cn('w-full rounded-lg', i === 5 ? 'bg-brand-gradient' : 'bg-brand-100')} style={{ height: `${(v / maxStudy) * 75}%` }} />
+                <div className={cn('w-full rounded-lg', i === 5 ? 'bg-brand-600' : 'bg-brand-100')} style={{ height: `${(v / maxStudy) * 75}%` }} />
                 <span className="text-xs text-slate-500">{days[i]}</span>
               </div>
             ))}

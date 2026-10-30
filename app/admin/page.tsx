@@ -86,7 +86,7 @@ export default function AdminDashboard() {
                   <Avatar src={u.photo} name={u.name} size={40} />
                   <div className="flex-1">
                     <p className="text-sm font-bold text-slate-800">{u.name}</p>
-                    <p className="text-xs text-slate-500">مدرس فرانسوی · ۶ سال سابقه</p>
+                    <p className="text-xs text-slate-500">مدرس فرانسوی، ۶ سال سابقه</p>
                   </div>
                 </div>
                 <div className="mt-3 grid grid-cols-2 gap-2">

@@ -6,6 +6,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['"Vazirmatn Variable"', 'Vazirmatn', 'system-ui', 'sans-serif'],
+        display: ['"Markazi Text"', '"Vazirmatn Variable"', 'serif'],
       },
       colors: {
         brand: {
@@ -21,6 +22,10 @@ const config: Config = {
           900: '#1e2d7c',
           950: '#151c4b',
         },
+        ink: '#15237A',
+        rule: '#DCE3F0',
+        tint: '#F2F6FD',
+        marker: '#7EE6F5',
         sky2: {
           300: '#67e8f9',
           400: '#22d3ee',

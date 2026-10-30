@@ -8,16 +8,14 @@ export default function TeacherDashboard() {
   const today = teacherClasses[0];
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-6 text-white sm:p-8">
-        <div className="bg-grid absolute inset-0 opacity-30" />
-        <div className="absolute -left-16 -top-16 h-56 w-56 rounded-full bg-brand-600/50 blur-2xl" />
+      <div className="relative overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-8">
         <div className="relative flex flex-col justify-between gap-6 md:flex-row md:items-center">
           <div>
             <p className="text-sm text-brand-200">روز بخیر، {teacher.name} 🌤️</p>
             <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری</h1>
           </div>
           <div className="rounded-2xl bg-white/10 p-4 backdrop-blur md:min-w-72">
-            <p className="text-xs text-brand-200">کلاس بعدی · {today.next}</p>
+            <p className="text-xs text-brand-200">کلاس بعدی، {today.next}</p>
             <p className="mt-1 font-bold">{today.title}</p>
             <button className="btn mt-3 w-full bg-white text-brand-700 hover:bg-brand-50"><Video size={16} /> شروع کلاس</button>
           </div>
@@ -76,7 +74,7 @@ export default function TeacherDashboard() {
               <Avatar src={s.photo} name={s.name} size={48} />
               <div className="flex-1">
                 <p className="font-bold text-slate-900">{s.name}</p>
-                <p className="text-xs text-slate-500">حضور {fa(s.attendance)}٪ · میانگین {fa(s.avg)}</p>
+                <p className="text-xs text-slate-500">حضور {fa(s.attendance)}٪، میانگین {fa(s.avg)}</p>
               </div>
               <StatusBadge status={s.status} />
             </div>
