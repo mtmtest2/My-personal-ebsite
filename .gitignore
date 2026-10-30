@@ -6,3 +6,6 @@ next-env.d.ts
 .env*.local
 .DS_Store
 __pycache__/
+
+# Screenshot exports (shared separately, not versioned)
+fartash-screenshots.zip
