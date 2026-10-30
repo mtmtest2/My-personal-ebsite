@@ -2,78 +2,162 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fartash design tokens. Spec and rationale: docs/design-system.md */
 @layer base {
   :root {
     color-scheme: light;
+    /* Surfaces and text */
     --paper: 255 255 255;
-    --tint: 242 246 253;
-    --rule: 220 227 240;
-    --ink: 21 35 122;
-    --body: 43 52 73;
-    --brand-50: 238 244 255;
-    --brand-100: 219 231 255;
-    --brand-200: 191 211 255;
-    --brand-300: 147 180 255;
-    --brand-400: 95 139 251;
-    --brand-500: 58 99 243;
-    --brand-600: 36 69 224;
-    --brand-700: 29 54 196;
-    --brand-800: 29 47 158;
-    --brand-900: 30 45 124;
-    --brand-950: 21 28 75;
-    --slate-50: 248 250 252;
-    --slate-100: 241 245 249;
-    --slate-200: 226 232 240;
-    --slate-300: 203 213 225;
-    --slate-400: 148 163 184;
-    --slate-500: 100 116 139;
-    --slate-600: 71 85 105;
-    --slate-700: 51 65 85;
-    --slate-800: 30 41 59;
-    --slate-900: 15 23 42;
-    --mark: 126 230 245;
+    --tint: 245 247 251;
+    --raised: 255 255 255;
+    --rule: 227 231 239;
+    --line: 138 145 166;
+    --ink: 18 27 69;
+    --body: 53 60 85;
+    --muted: 95 102 123;
+
+    /* Lapis (لاجورد): the one action colour */
+    --brand-50: 238 242 255;
+    --brand-100: 223 230 254;
+    --brand-200: 195 208 252;
+    --brand-300: 155 176 248;
+    --brand-400: 109 136 241;
+    --brand-500: 69 99 227;
+    --brand-600: 43 71 209;
+    --brand-700: 34 56 176;
+    --brand-800: 30 48 140;
+    --brand-900: 28 43 110;
+    --brand-950: 18 27 69;
+    --brand-hover: 34 56 176;
+    --brand-text: 43 71 209;
+
+    /* Turquoise (فیروزه): what the student is learning */
+    --accent-50: 232 251 253;
+    --accent-100: 200 244 249;
+    --accent-200: 151 233 242;
+    --accent-300: 92 218 233;
+    --accent-400: 34 198 220;
+    --accent-500: 14 168 192;
+    --accent-600: 10 122 140;
+    --accent-700: 13 107 123;
+    --accent-800: 16 86 100;
+    --accent-900: 17 72 85;
+    --accent-950: 6 46 55;
+    --mark: 34 198 220;
+
+    /* Cool neutrals */
+    --slate-50: 246 247 250;
+    --slate-100: 238 240 245;
+    --slate-200: 225 228 236;
+    --slate-300: 201 206 218;
+    --slate-400: 138 145 166;
+    --slate-500: 95 102 123;
+    --slate-600: 76 83 104;
+    --slate-700: 58 64 87;
+    --slate-800: 38 43 62;
+    --slate-900: 18 27 69;
+
+    /* Status */
+    --success: 20 116 71;
+    --success-soft: 233 246 239;
+    --warning: 168 90 0;
+    --warning-soft: 253 243 226;
+    --danger: 192 53 43;
+    --danger-soft: 253 236 234;
+
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   }
-  /* Dark: deep blue-black paper, light ink; the brand scale's light and dark
-     ends swap so tints stay subtle and text stays readable. */
+
+  /* Dark: deep lapis paper. The brand/accent/slate scales flip so `-50`
+     stays a subtle tint and `-700` stays readable text. */
   .dark {
     color-scheme: dark;
-    --paper: 13 18 36;
-    --tint: 19 26 50;
-    --rule: 39 48 78;
-    --ink: 232 237 252;
-    --body: 196 204 224;
-    --brand-50: 23 33 72;
-    --brand-100: 30 43 94;
-    --brand-200: 40 56 124;
-    --brand-300: 64 88 170;
-    --brand-400: 95 139 251;
-    --brand-500: 74 114 247;
-    --brand-600: 52 88 236;
-    --brand-700: 147 180 255;
-    --brand-800: 191 211 255;
-    --brand-900: 219 231 255;
-    --brand-950: 238 244 255;
-    --slate-50: 17 23 44;
-    --slate-100: 26 33 60;
-    --slate-200: 40 49 80;
-    --slate-300: 60 70 104;
-    --slate-400: 112 122 152;
-    --slate-500: 142 152 180;
-    --slate-600: 166 175 200;
-    --slate-700: 190 198 218;
-    --slate-800: 218 224 238;
-    --slate-900: 238 241 248;
-    --mark: 14 150 176;
+    --paper: 10 16 41;
+    --tint: 16 24 58;
+    --raised: 17 26 62;
+    --rule: 36 48 86;
+    --line: 86 98 140;
+    --ink: 238 241 251;
+    --body: 197 203 224;
+    --muted: 143 151 179;
+
+    --brand-50: 20 30 74;
+    --brand-100: 26 38 96;
+    --brand-200: 36 52 128;
+    --brand-300: 58 80 170;
+    --brand-400: 98 128 245;
+    --brand-500: 74 104 240;
+    --brand-600: 61 90 230;
+    --brand-700: 142 164 255;
+    --brand-800: 184 199 255;
+    --brand-900: 219 227 255;
+    --brand-950: 238 242 255;
+    --brand-hover: 82 108 240;
+    --brand-text: 142 164 255;
+
+    --accent-50: 9 38 56;
+    --accent-100: 10 52 70;
+    --accent-200: 12 80 100;
+    --accent-300: 20 130 155;
+    --accent-400: 34 198 220;
+    --accent-500: 50 210 230;
+    --accent-600: 63 216 234;
+    --accent-700: 63 216 234;
+    --accent-800: 140 234 244;
+    --accent-900: 200 244 249;
+    --accent-950: 232 251 253;
+    --mark: 13 107 123;
+
+    --slate-50: 15 22 50;
+    --slate-100: 22 31 66;
+    --slate-200: 36 46 86;
+    --slate-300: 60 70 110;
+    --slate-400: 125 134 166;
+    --slate-500: 143 151 179;
+    --slate-600: 166 174 200;
+    --slate-700: 190 197 218;
+    --slate-800: 218 223 238;
+    --slate-900: 238 241 251;
+
+    --success: 74 222 155;
+    --success-soft: 18 56 50;
+    --warning: 245 181 74;
+    --warning-soft: 60 44 22;
+    --danger: 255 138 128;
+    --danger-soft: 70 28 40;
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-paper text-body antialiased transition-colors duration-200;
+    @apply bg-paper text-base text-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* No colour here: headings on dark blocks inherit white. Components set text-ink. */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p, li, dd {
+    text-wrap: pretty;
+  }
+  /* The language being learned is set in a book face; Persian is the UI voice.
+     Deliberately specific enough to beat font utilities like `font-display`. */
+  [lang]:not([lang|='fa']):not([lang|='ar']) {
+    font-family: theme('fontFamily.latin');
+  }
+  [lang|='ar']:not(html) {
+    font-family: theme('fontFamily.naskh');
+    font-size: 1.15em;
+  }
+  /* One stroke weight for every Lucide icon. */
+  svg.lucide {
+    stroke-width: 1.75;
   }
   ::selection {
-    @apply bg-marker text-ink;
+    background-color: rgb(var(--mark) / 0.45);
+    color: rgb(var(--ink));
   }
   :focus-visible {
     @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-paper;
@@ -86,6 +170,7 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
   }
@@ -93,45 +178,221 @@
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8;
   }
+
+  /* ---------- Buttons ---------- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-60;
+    @apply inline-flex h-10 select-none items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 text-sm font-semibold;
+    transition-property: color, background-color, border-color, box-shadow, transform;
+    transition-duration: 120ms;
+    transition-timing-function: var(--ease-out);
+  }
+  .btn:active:not(:disabled):not([aria-disabled='true']) {
+    transform: scale(0.97);
+  }
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .btn[aria-busy='true'] {
+    @apply cursor-progress opacity-100;
   }
   .btn-primary {
-    @apply btn bg-brand-600 text-white hover:brightness-110;
+    @apply btn bg-brand-600 text-white hover:bg-brand-hover;
   }
-  /* Kept for the panels; now a solid fill rather than a gradient. */
+  .btn-secondary {
+    @apply btn border border-slate-300 bg-paper text-ink hover:border-slate-400 hover:bg-tint;
+  }
+  .btn-quiet {
+    @apply btn text-body hover:bg-tint hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-paper hover:brightness-95;
+  }
+  /* Legacy names still used by pages that haven't been redesigned yet. */
   .btn-gradient {
     @apply btn-primary;
   }
   .btn-ghost {
-    @apply btn border border-rule bg-paper text-ink hover:border-brand-400;
+    @apply btn-secondary;
   }
-  .card {
-    @apply rounded-2xl border border-rule bg-paper dark:bg-tint;
+  /* Size modifiers come after the variants (which re-apply .btn) so they win. */
+  .btn-sm {
+    @apply h-8 gap-1.5 px-3 text-sm;
   }
+  .btn-lg {
+    @apply h-12 px-6 text-base;
+  }
+  .btn-icon {
+    @apply w-10 px-0;
+  }
+  .btn-sm.btn-icon {
+    @apply w-8;
+  }
+  .link {
+    @apply font-medium text-brand-600 underline decoration-brand-600/30 decoration-1 underline-offset-[6px] transition-colors hover:decoration-brand-600;
+  }
+
+  /* ---------- Forms ---------- */
   .input {
-    @apply w-full rounded-lg border border-rule bg-paper px-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100;
+    @apply block h-11 w-full rounded-md border border-line bg-paper px-3.5 text-sm text-ink placeholder:text-slate-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/25 disabled:cursor-not-allowed disabled:bg-tint disabled:text-muted;
+    transition: border-color 120ms, box-shadow 120ms;
+  }
+  textarea.input {
+    @apply h-auto min-h-28 py-2.5 leading-7;
+  }
+  select.input {
+    @apply appearance-none bg-no-repeat pl-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%235F667B' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: left 0.875rem center;
+  }
+  .input[aria-invalid='true'] {
+    @apply border-danger focus:border-danger focus:ring-danger/25;
   }
   .label {
-    @apply mb-1.5 block text-sm font-medium text-slate-700;
+    @apply mb-2 block text-sm font-medium text-ink;
   }
+  .hint {
+    @apply mt-1.5 text-xs text-muted;
+  }
+  .field-error {
+    @apply mt-1.5 flex items-center gap-1.5 text-xs font-medium text-danger;
+  }
+  .check {
+    @apply h-[18px] w-[18px] shrink-0 cursor-pointer rounded-sm border-line accent-brand-600;
+  }
+
+  /* ---------- Surfaces ---------- */
+  .card {
+    @apply rounded-xl border border-rule bg-raised;
+  }
+  .surface-tint {
+    @apply rounded-xl bg-tint;
+  }
+
+  /* ---------- Badges ---------- */
   .badge {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm px-2 py-0.5 text-xs font-medium;
   }
+  .badge-neutral { @apply bg-slate-100 text-slate-700; }
+  .badge-brand { @apply bg-brand-50 text-brand-700; }
+  .badge-accent { @apply bg-accent-50 text-accent-700; }
+  .badge-success { @apply bg-success-soft text-success; }
+  .badge-warning { @apply bg-warning-soft text-warning; }
+  .badge-danger { @apply bg-danger-soft text-danger; }
+  .badge-outline { @apply border border-rule bg-transparent text-body; }
+  .dot {
+    @apply inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-current;
+  }
+
+  /* ---------- Tables ---------- */
+  .table {
+    @apply w-full border-collapse text-sm;
+  }
+  .table thead th {
+    @apply whitespace-nowrap border-b border-rule bg-tint px-4 py-2.5 text-start text-xs font-medium text-muted;
+  }
+  .table tbody td {
+    @apply border-b border-rule px-4 py-3.5 align-middle text-body;
+  }
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .table .num {
+    @apply text-end;
+  }
+  @media (hover: hover) {
+    .table-hover tbody tr:hover td {
+      @apply bg-tint/60;
+    }
+  }
+
+  /* ---------- Navigation ---------- */
+  .nav-link {
+    @apply relative py-2 text-sm font-medium text-body transition-colors duration-120 hover:text-ink;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute inset-x-0 -bottom-0.5 h-px origin-right scale-x-0 bg-current transition-transform duration-180 ease-out;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current='page']::after {
+    @apply scale-x-100;
+  }
+  .nav-link[aria-current='page'] {
+    @apply text-ink;
+  }
+  .side-link {
+    @apply relative flex h-10 items-center gap-3 rounded-md px-3 text-sm font-medium text-body transition-colors duration-120 hover:bg-tint hover:text-ink;
+  }
+  .side-link[aria-current='page'] {
+    @apply bg-brand-50 font-semibold text-ink;
+  }
+  .side-link[aria-current='page']::before {
+    content: '';
+    @apply absolute inset-y-2 start-0 w-[3px] rounded-full bg-brand-600;
+  }
+  .tab-list {
+    @apply flex gap-6 overflow-x-auto border-b border-rule;
+    scrollbar-width: none;
+  }
+  .tab {
+    @apply relative -mb-px whitespace-nowrap border-b-2 border-transparent pb-3 pt-1 text-sm font-medium text-muted transition-colors duration-120 hover:text-ink;
+  }
+  .tab[aria-selected='true'] {
+    @apply border-brand-600 text-ink;
+  }
+  .segmented {
+    @apply inline-grid auto-cols-fr grid-flow-col gap-1 rounded-lg bg-slate-100 p-1;
+  }
+  .segmented > button {
+    @apply flex h-9 items-center justify-center gap-2 rounded-md px-3 text-sm font-medium text-muted transition-colors duration-120 hover:text-ink;
+  }
+  .segmented > button[aria-pressed='true'],
+  .segmented > button[aria-checked='true'] {
+    @apply bg-raised text-ink shadow-[0_1px_2px_rgb(18_27_69/0.12)] ring-1 ring-rule;
+  }
+
+  /* ---------- Feedback ---------- */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-slate-100;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(-90deg, transparent, rgb(var(--paper) / 0.55), transparent);
+    animation: skeleton-sweep 1.4s ease-in-out infinite;
+  }
+  .spinner {
+    @apply inline-block h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-current border-l-transparent;
+    animation-duration: 0.6s;
+  }
+
+  /* ---------- Type helpers ---------- */
   .h-display {
-    @apply font-display font-bold leading-[1.15] text-ink;
+    @apply font-display font-extrabold leading-[1.2] text-ink;
+  }
+  /* Numbers that should never wrap. (Estedad's tabular Persian digits are far too
+     wide, so figures keep proportional widths; tables align them to one edge.) */
+  .num {
+    white-space: nowrap;
   }
   /* Highlighter stroke: reserved for words in the language being learned. */
   .mark {
     @apply rounded-[3px] px-1;
-    background: linear-gradient(to top, rgb(var(--mark) / 0.75) 62%, transparent 62%);
+    background: linear-gradient(to top, rgb(var(--mark) / 0.55) 46%, transparent 46%);
     box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 }
 
-/* Status tints (badges, icon chips, notes) use Tailwind's fixed hues; soften them for dark. */
+@keyframes skeleton-sweep {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+/* Status tints that unredesigned pages still use with Tailwind's fixed hues; soften them for dark. */
 .dark .bg-emerald-50 { background-color: rgb(16 185 129 / 0.14); }
 .dark .bg-amber-50 { background-color: rgb(245 158 11 / 0.14); }
 .dark .bg-rose-50 { background-color: rgb(244 63 94 / 0.14); }
@@ -164,5 +425,5 @@
   to { opacity: 1; transform: none; }
 }
 .phrase-in {
-  animation: phrase-in 0.35s ease-out both;
+  animation: phrase-in 0.24s var(--ease-out) both;
 }

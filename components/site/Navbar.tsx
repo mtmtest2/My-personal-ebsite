@@ -29,16 +29,16 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-all',
-        scrolled ? 'border-b border-rule bg-paper/90 backdrop-blur-lg' : 'bg-transparent',
+        'sticky top-0 z-50 border-b bg-paper transition-colors duration-180',
+        scrolled || open ? 'border-rule' : 'border-transparent',
       )}
     >
       <nav className="container-x flex h-16 items-center justify-between lg:h-20">
         <Logo />
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-brand-700">
+              <Link href={l.href} className="nav-link">
                 {l.label}
               </Link>
             </li>
@@ -46,32 +46,33 @@ export default function Navbar() {
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
           <ThemeToggle />
-          <Link href="/login" className="btn-ghost">ورود</Link>
+          <Link href="/login" className="btn-quiet">ورود</Link>
           <Link href="/register" className="btn-primary">تعیین سطح رایگان</Link>
         </div>
         <div className="flex items-center gap-1 lg:hidden">
-        <ThemeToggle />
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-lg text-slate-700 hover:bg-tint"
-          aria-label="منو"
-          aria-expanded={open}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="btn-quiet btn-icon"
+            aria-label={open ? 'بستن منو' : 'باز کردن منو'}
+            aria-expanded={open}
+            aria-controls="site-menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </nav>
       {open && (
-        <div className="border-t border-rule bg-paper lg:hidden">
-          <div className="container-x flex flex-col gap-1 py-4">
+        <div id="site-menu" className="bg-paper lg:hidden">
+          <div className="container-x flex flex-col py-3">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-brand-50">
+              <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="border-b border-rule py-3.5 text-base font-medium text-ink">
                 {l.label}
               </Link>
             ))}
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <Link href="/login" className="btn-ghost">ورود</Link>
-              <Link href="/register" className="btn-primary">تعیین سطح رایگان</Link>
+            <div className="mt-4 grid grid-cols-2 gap-2 pb-2">
+              <Link href="/login" className="btn-secondary btn-lg">ورود</Link>
+              <Link href="/register" className="btn-primary btn-lg">تعیین سطح رایگان</Link>
             </div>
           </div>
         </div>

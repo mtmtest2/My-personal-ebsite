@@ -51,7 +51,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={dark ? 'حالت روز' : 'حالت شب'}
       title={dark ? 'حالت روز' : 'حالت شب'}
-      className={cn('grid h-10 w-10 place-items-center rounded-lg text-slate-600 transition-colors hover:bg-tint hover:text-ink', className)}
+      className={cn('btn-quiet btn-icon', className)}
     >
       {dark ? <Sun size={19} /> : <Moon size={19} />}
     </button>

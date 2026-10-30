@@ -1,9 +1,18 @@
-import type { Metadata } from 'next';
-import '@fontsource-variable/vazirmatn';
-import '@fontsource/markazi-text/500.css';
-import '@fontsource/markazi-text/600.css';
-import '@fontsource/markazi-text/700.css';
+import type { Metadata, Viewport } from 'next';
+// Persian UI face, the target-language book face (with italics), and a Naskh for Arabic examples.
+import '@fontsource-variable/estedad';
+import '@fontsource-variable/literata/opsz.css';
+import '@fontsource-variable/literata/opsz-italic.css';
+import '@fontsource/markazi-text/arabic-500.css';
+import '@fontsource/markazi-text/arabic-700.css';
 import './globals.css';
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a1029' },
+  ],
+};
 
 export const metadata: Metadata = {
   title: {
