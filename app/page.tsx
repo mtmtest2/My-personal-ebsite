@@ -56,7 +56,7 @@ function Hero() {
         <div className="mt-12 flex items-center gap-4 border-t border-rule pt-6">
           <div className="flex shrink-0 -space-x-2.5 space-x-reverse">
             {[9, 5, 7, 6].map((n) => (
-              <Image key={n} src={`/images/people/${n}.jpg`} alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover ring-[3px] ring-white" />
+              <Image key={n} src={`/images/people/${n}.jpg`} alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover ring-[3px] ring-paper" />
             ))}
           </div>
           <p className="text-sm leading-6 text-slate-600">
@@ -137,8 +137,8 @@ function Week() {
   ];
   const tone: Record<string, string> = {
     class: 'bg-brand-600 text-white',
-    club: 'bg-ink text-white',
-    self: 'bg-white text-ink border border-rule',
+    club: 'bg-navy text-white',
+    self: 'bg-paper text-ink border border-rule',
     off: 'text-slate-400 border border-dashed border-rule',
   };
   return (
@@ -161,8 +161,8 @@ function Week() {
         </ol>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-600">
           <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-brand-600" /> کلاس زنده با استاد</span>
-          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-ink" /> کلاب مکالمه</span>
-          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border border-rule bg-white" /> کار شخصی در پنل</span>
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-navy" /> کلاب مکالمه</span>
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border border-rule bg-paper" /> کار شخصی در پنل</span>
         </div>
       </div>
     </section>
@@ -201,7 +201,7 @@ function Pricing() {
     <section id="pricing" className="scroll-mt-20 border-t border-rule bg-tint py-24">
       <div className="container-x">
         <SectionTitle title="شهریه‌ی ماهانه" desc="اگر تا پایان جلسه‌ی دوم راضی نبودی، کل مبلغ را برمی‌گردانیم." />
-        <div className="mt-12 grid overflow-hidden rounded-[20px] border border-rule bg-white lg:grid-cols-3">
+        <div className="mt-12 grid overflow-hidden rounded-[20px] border border-rule bg-paper lg:grid-cols-3">
           {plans.map((p, i) => (
             <div
               key={p.name}
@@ -326,13 +326,13 @@ function Faq() {
 function Cta() {
   return (
     <section className="container-x pb-24">
-      <div className="grid items-center gap-8 rounded-[20px] bg-ink px-8 py-14 text-white sm:px-14 lg:grid-cols-[1fr_auto]">
+      <div className="grid items-center gap-8 rounded-[20px] bg-navy px-8 py-14 text-white sm:px-14 lg:grid-cols-[1fr_auto]">
         <div>
           <h2 className="font-display text-4xl font-bold leading-tight sm:text-5xl">سطحت را در ۲۰ دقیقه بسنج.</h2>
           <p className="mt-3 max-w-xl leading-8 text-white/75">آزمون تعیین سطح و تماس با مشاور رایگان است و تعهدی برای ثبت‌نام ایجاد نمی‌کند.</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href="/register" className="btn bg-white px-7 py-3.5 text-base text-ink hover:bg-brand-50">شروع آزمون</Link>
+          <Link href="/register" className="btn bg-white px-7 py-3.5 text-base text-navy hover:bg-white/90">شروع آزمون</Link>
           <Link href="/login" className="btn border border-white/30 px-6 py-3.5 text-base text-white hover:bg-white/10">ورود به پنل</Link>
         </div>
       </div>

@@ -10,11 +10,11 @@ const cols = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-ink text-brand-100">
+    <footer id="contact" className="relative overflow-hidden bg-navy text-white/85">
       <div className="container-x relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo light />
-          <p className="mt-5 max-w-sm text-sm leading-7 text-brand-200/80">
+          <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
             فرتاش، آموزشگاه آنلاین زبان‌های خارجی؛ با کلاس‌های زنده، اساتید مجرب و مسیری روشن از اولین کلمه تا تسلط کامل.
           </p>
           <ul className="mt-6 space-y-3 text-sm">
@@ -29,7 +29,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {c.links.map(([label, href]) => (
                 <li key={label}>
-                  <Link href={href} className="text-brand-200/80 transition hover:text-white">{label}</Link>
+                  <Link href={href} className="text-white/70 transition hover:text-white">{label}</Link>
                 </li>
               ))}
             </ul>
@@ -37,11 +37,11 @@ export default function Footer() {
         ))}
       </div>
       <div className="relative border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-brand-200/70 sm:flex-row">
+        <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/60 sm:flex-row">
           <p>© ۱۴۰۵ فرتاش. تمامی حقوق محفوظ است.</p>
           <div className="flex gap-2">
             {[Instagram, Send, Youtube].map((Icon, i) => (
-              <a key={i} href="#" aria-label="شبکه اجتماعی" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 text-brand-100 transition hover:bg-white/15 hover:text-white">
+              <a key={i} href="#" aria-label="شبکه اجتماعی" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 text-white/85 transition hover:bg-white/15 hover:text-white">
                 <Icon size={16} />
               </a>
             ))}

@@ -13,15 +13,15 @@ export default function StudentDashboard() {
     <div className="space-y-6">
       {/* Welcome + next class */}
       <div className="grid gap-6 xl:grid-cols-3">
-        <div className="relative overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-8 xl:col-span-2">
+        <div className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white sm:p-8 xl:col-span-2">
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-white/10" />
-          <p className="text-sm text-brand-50/80">سلام {student.name.split(' ')[0]} عزیز 👋</p>
+          <p className="text-sm text-white/80">سلام {student.name.split(' ')[0]} عزیز 👋</p>
           <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">آماده‌ی کلاس امروز هستی؟</h1>
-          <p className="mt-3 max-w-lg text-sm leading-7 text-brand-50/90">
+          <p className="mt-3 max-w-lg text-sm leading-7 text-white/90">
             این هفته ۸۰٪ برنامه‌ی مطالعه‌ات را انجام دادی. فقط ۲ تمرین دیگر تا رسیدن به هدف هفتگی مانده!
           </p>
           <div className="relative mt-6 flex flex-wrap gap-3">
-            <Link href="/student/schedule" className="btn bg-white text-brand-700 hover:bg-brand-50"><Video size={18} /> ورود به کلاس بعدی</Link>
+            <Link href="/student/schedule" className="btn bg-white text-navy hover:bg-white/90"><Video size={18} /> ورود به کلاس بعدی</Link>
             <Link href="/student/assignments" className="btn border border-white/30 text-white hover:bg-white/10">تکالیف من</Link>
           </div>
         </div>

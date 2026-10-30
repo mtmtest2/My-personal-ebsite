@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Logo from '@/components/Logo';
+import ThemeToggle from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 const links = [
@@ -29,7 +30,7 @@ export default function Navbar() {
     <header
       className={cn(
         'sticky top-0 z-50 transition-all',
-        scrolled ? 'border-b border-rule bg-white/90 backdrop-blur-lg' : 'bg-transparent',
+        scrolled ? 'border-b border-rule bg-paper/90 backdrop-blur-lg' : 'bg-transparent',
       )}
     >
       <nav className="container-x flex h-16 items-center justify-between lg:h-20">
@@ -44,20 +45,24 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
+          <ThemeToggle />
           <Link href="/login" className="btn-ghost">ورود</Link>
           <Link href="/register" className="btn-primary">تعیین سطح رایگان</Link>
         </div>
+        <div className="flex items-center gap-1 lg:hidden">
+        <ThemeToggle />
         <button
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-xl text-slate-700 hover:bg-slate-100 lg:hidden"
+          className="grid h-10 w-10 place-items-center rounded-lg text-slate-700 hover:bg-tint"
           aria-label="منو"
           aria-expanded={open}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
+        </div>
       </nav>
       {open && (
-        <div className="border-t border-slate-100 bg-white lg:hidden">
+        <div className="border-t border-rule bg-paper lg:hidden">
           <div className="container-x flex flex-col gap-1 py-4">
             {links.map((l) => (
               <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-brand-50">

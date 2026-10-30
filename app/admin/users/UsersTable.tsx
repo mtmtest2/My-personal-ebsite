@@ -25,7 +25,7 @@ export default function UsersTable() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={cn('rounded-lg px-4 py-1.5 text-sm font-semibold transition', filter === f ? 'bg-white text-brand-700 shadow-sm' : 'text-slate-500 hover:text-slate-800')}
+              className={cn('rounded-lg px-4 py-1.5 text-sm font-semibold transition', filter === f ? 'bg-paper text-brand-700 shadow-sm' : 'text-slate-500 hover:text-slate-800')}
             >
               {f}
             </button>

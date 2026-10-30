@@ -1,6 +1,12 @@
 import type { Config } from 'tailwindcss';
 
+// Theme-aware colors read CSS variables (see app/globals.css) so dark mode
+// swaps the palette without a `dark:` variant on every class.
+const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+const scale = (name: string, steps: number[]) => Object.fromEntries(steps.map((s) => [s, v(`${name}-${s}`)]));
+
 const config: Config = {
+  darkMode: 'class',
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.ts'],
   theme: {
     extend: {
@@ -9,35 +15,21 @@ const config: Config = {
         display: ['"Markazi Text"', '"Vazirmatn Variable"', 'serif'],
       },
       colors: {
-        brand: {
-          50: '#eef4ff',
-          100: '#dbe7ff',
-          200: '#bfd3ff',
-          300: '#93b4ff',
-          400: '#5f8bfb',
-          500: '#3a63f3',
-          600: '#2445e0',
-          700: '#1d36c4',
-          800: '#1d2f9e',
-          900: '#1e2d7c',
-          950: '#151c4b',
-        },
-        ink: '#15237A',
-        rule: '#DCE3F0',
-        tint: '#F2F6FD',
+        brand: scale('brand', [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]),
+        slate: scale('slate', [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
+        paper: v('paper'),
+        ink: v('ink'),
+        body: v('body'),
+        rule: v('rule'),
+        tint: v('tint'),
         marker: '#7EE6F5',
+        // Fixed deep blue for solid blocks (footer, CTA) in both themes.
+        navy: '#15237A',
         sky2: {
           300: '#67e8f9',
           400: '#22d3ee',
           500: '#06b6d4',
         },
-      },
-      boxShadow: {
-        soft: '0 10px 40px -12px rgba(36, 69, 224, 0.25)',
-        card: '0 1px 2px rgba(16,24,40,.04), 0 4px 16px -4px rgba(16,24,40,.08)',
-      },
-      backgroundImage: {
-        'brand-gradient': 'linear-gradient(135deg, #2445e0 0%, #3a8bf5 55%, #22d3ee 100%)',
       },
       keyframes: {
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },

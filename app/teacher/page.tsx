@@ -8,16 +8,16 @@ export default function TeacherDashboard() {
   const today = teacherClasses[0];
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-8">
+      <div className="relative overflow-hidden rounded-3xl bg-navy p-6 text-white sm:p-8">
         <div className="relative flex flex-col justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="text-sm text-brand-200">روز بخیر، {teacher.name} 🌤️</p>
+            <p className="text-sm text-white/70">روز بخیر، {teacher.name} 🌤️</p>
             <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">امروز ۲ کلاس و ۳ تکلیف برای تصحیح داری</h1>
           </div>
           <div className="rounded-2xl bg-white/10 p-4 backdrop-blur md:min-w-72">
-            <p className="text-xs text-brand-200">کلاس بعدی، {today.next}</p>
+            <p className="text-xs text-white/70">کلاس بعدی، {today.next}</p>
             <p className="mt-1 font-bold">{today.title}</p>
-            <button className="btn mt-3 w-full bg-white text-brand-700 hover:bg-brand-50"><Video size={16} /> شروع کلاس</button>
+            <button className="btn mt-3 w-full bg-paper text-brand-700 hover:bg-brand-50"><Video size={16} /> شروع کلاس</button>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function TeacherDashboard() {
         <Panel title="کلاس‌های من" className="xl:col-span-2" action={<Link href="/teacher/classes" className="flex items-center gap-1 text-sm font-semibold text-brand-600">همه <ArrowLeft size={16} /></Link>}>
           <div className="grid gap-4 sm:grid-cols-2">
             {teacherClasses.map((c) => (
-              <div key={c.id} className="rounded-2xl border border-slate-100 p-4 transition hover:border-brand-200 hover:shadow-card">
+              <div key={c.id} className="rounded-2xl border border-slate-100 p-4 transition hover:border-brand-200">
                 <div className="flex items-start justify-between gap-2">
                   <p className="font-bold text-slate-900">{c.title}</p>
                   <span className="badge bg-brand-50 text-brand-700">{c.level}</span>

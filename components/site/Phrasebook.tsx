@@ -45,7 +45,7 @@ export default function Phrasebook() {
     <div className="relative">
       {/* Spine of the book: the stacked pages behind the open card */}
       <div className="absolute inset-x-3 -bottom-2 h-full rounded-[20px] border border-rule bg-tint" aria-hidden />
-      <div className="relative rounded-[20px] border border-rule bg-white">
+      <div className="relative rounded-[20px] border border-rule bg-paper">
         <div role="tablist" aria-label="زبان" className="flex gap-1 overflow-x-auto border-b border-rule px-3 pt-3">
           {phrases.map((ph, i) => (
             <button
