@@ -231,6 +231,16 @@
   .btn-sm.btn-icon {
     @apply w-8;
   }
+  /* On touch screens every regular button and icon button gets a 44px target
+     (small buttons are reserved for dense desktop toolbars). */
+  @media (pointer: coarse) {
+    .btn:not(.btn-sm) {
+      min-height: 2.75rem;
+    }
+    .btn-icon:not(.btn-sm) {
+      @apply h-11 w-11;
+    }
+  }
   .link {
     @apply font-medium text-brand-600 underline decoration-brand-600/30 decoration-1 underline-offset-[6px] transition-colors hover:decoration-brand-600;
   }

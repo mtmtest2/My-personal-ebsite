@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Check, ChevronDown, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Check, ChevronDown, Clock, ShieldCheck } from 'lucide-react';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
 import Phrasebook from '@/components/site/Phrasebook';
-import { faqs, languages, plans, teachers } from '@/lib/data';
+import { faqs, languages, plans, teachers, type Teacher } from '@/lib/data';
 import { cn, fa } from '@/lib/utils';
 
 export default function HomePage() {
@@ -41,7 +41,7 @@ function Hero() {
             <Link href="/register" className="btn-primary btn-lg">
               تعیین سطح رایگان
             </Link>
-            <Link href="#how" className="link text-base">
+            <Link href="#how" className="link inline-flex min-h-11 items-center text-base">
               کلاس‌ها چطور برگزار می‌شوند؟
             </Link>
           </div>
@@ -55,10 +55,10 @@ function Hero() {
 }
 
 const steps = [
-  { title: 'آزمون تعیین سطح', time: '۲۰ دقیقه، آنلاین', desc: 'آزمون چهار مهارتی بر اساس CEFR؛ نتیجه را همان لحظه می‌بینی.' },
-  { title: 'گفتگو با مشاور', time: 'تماس ۱۵ دقیقه‌ای', desc: 'هدف، زمان آزاد و سطحت را کنار هم می‌گذاریم و کلاس و استاد مناسب را پیشنهاد می‌دهیم.' },
-  { title: 'کلاس زنده', time: '۲ یا ۳ جلسه در هفته', desc: 'گروهی یا خصوصی. ویدیوی هر جلسه در پنلت می‌ماند تا هر وقت خواستی مرور کنی.' },
-  { title: 'آزمون پایان سطح', time: 'هر ۱۰ تا ۱۲ هفته', desc: 'با قبولی، گواهی با کد استعلام می‌گیری و به سطح بعد می‌روی.' },
+  { title: 'آزمون تعیین سطح', time: '۲۰ دقیقه، آنلاین', free: true, desc: 'آزمون چهار مهارتی بر اساس CEFR؛ نتیجه را همان لحظه می‌بینی.' },
+  { title: 'گفتگو با مشاور', time: 'تماس ۱۵ دقیقه‌ای', free: true, desc: 'هدف، زمان آزاد و سطحت را کنار هم می‌گذاریم و کلاس و استاد مناسب را پیشنهاد می‌دهیم.' },
+  { title: 'کلاس زنده', time: '۲ یا ۳ جلسه در هفته', free: false, desc: 'گروهی یا خصوصی. ویدیوی هر جلسه در پنلت می‌ماند تا هر وقت خواستی مرور کنی.' },
+  { title: 'آزمون پایان سطح', time: 'هر ۱۰ تا ۱۲ هفته', free: false, desc: 'با قبولی، گواهی با کد استعلام می‌گیری و به سطح بعد می‌روی.' },
 ];
 
 const week = [
@@ -71,11 +71,11 @@ const week = [
   { d: 'جمعه', what: 'استراحت', detail: '', kind: 'off' },
 ] as const;
 
-const kindBar: Record<(typeof week)[number]['kind'], string> = {
-  class: 'bg-brand-600',
-  club: 'bg-accent-500',
-  self: 'bg-slate-300',
-  off: 'bg-transparent',
+const kinds = {
+  class: { bar: 'bg-brand-600', label: 'کلاس زنده با استاد' },
+  club: { bar: 'bg-accent-500', label: 'کلاب مکالمه' },
+  self: { bar: 'bg-slate-300', label: 'کار شخصی در پنل' },
+  off: { bar: 'bg-transparent', label: '' },
 };
 
 function HowItWorks() {
@@ -87,54 +87,61 @@ function HowItWorks() {
           <p className="mt-4 text-lg text-body">بیشتر زبان‌آموزان کمتر از یک هفته بعد از ثبت‌نام، اولین جلسه‌شان را دارند.</p>
         </div>
 
-        {/* A real sequence, so it gets a rail: vertical on phones, horizontal from lg. */}
-        <ol className="relative mt-12 grid gap-9 before:absolute before:bottom-3 before:right-[7px] before:top-2 before:w-px before:bg-rule lg:mt-16 lg:grid-cols-4 lg:gap-10 lg:before:inset-x-0 lg:before:bottom-auto lg:before:top-[7px] lg:before:h-px lg:before:w-auto">
+        {/* A real sequence, so it gets a numbered rail: vertical on phones, horizontal from lg.
+            The rail runs through the centre of the 40px number nodes. */}
+        <ol className="relative mt-12 grid gap-10 before:absolute before:bottom-6 before:right-5 before:top-6 before:w-px before:bg-rule lg:mt-16 lg:grid-cols-4 lg:gap-8 lg:before:inset-x-5 lg:before:bottom-auto lg:before:top-5 lg:before:h-px lg:before:w-auto">
           {steps.map((s, i) => (
-            <li key={s.title} className="relative pr-10 lg:pr-0 lg:pt-11">
+            <li key={s.title} className="relative grid grid-cols-[2.5rem_1fr] gap-x-5 lg:block">
               <span
                 aria-hidden
                 className={cn(
-                  'absolute right-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-accent-600 lg:top-0',
-                  i === 0 ? 'bg-accent-600' : 'bg-paper',
+                  'relative z-10 grid h-10 w-10 place-items-center rounded-full border-2 text-base font-bold',
+                  i === 0 ? 'border-accent-600 bg-accent-600 text-white dark:text-paper' : 'border-accent-600 bg-paper text-accent-700',
                 )}
-              />
-              <p className="text-sm text-muted">گام {fa(i + 1)}</p>
-              <h3 className="mt-1 text-xl font-bold text-ink">{s.title}</h3>
-              <p className="mt-0.5 text-sm font-medium text-accent-700">{s.time}</p>
-              <p className="mt-3 max-w-xs text-[0.9375rem] leading-7 text-body">{s.desc}</p>
+              >
+                {fa(i + 1)}
+              </span>
+              <div className="lg:mt-6">
+                <p className="sr-only">گام {fa(i + 1)}:</p>
+                <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xl font-bold text-ink">
+                  {s.title}
+                  {s.free && <span className="badge badge-success">رایگان</span>}
+                </h3>
+                <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-accent-700">
+                  <Clock size={16} aria-hidden />
+                  {s.time}
+                </p>
+                <p className="mt-3 max-w-sm text-base text-body">{s.desc}</p>
+              </div>
             </li>
           ))}
         </ol>
 
         <div className="mt-20 sm:mt-24">
-          <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
             <div>
-              <h3 className="text-xl font-bold text-ink">یک هفته‌ی معمولی، سطح B1</h3>
-              <p className="mt-1 text-[0.9375rem] text-muted">بین دو کلاس، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند.</p>
+              <h3 className="text-2xl font-bold text-ink">یک هفته‌ی معمولی، سطح B1</h3>
+              <p className="mt-2 text-base text-body">بین دو کلاس، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند.</p>
             </div>
-            <ul className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted" aria-label="راهنمای رنگ‌ها">
-              <li className="flex items-center gap-2">
-                <span className="h-1 w-4 rounded-full bg-brand-600" aria-hidden /> کلاس زنده با استاد
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1 w-4 rounded-full bg-accent-500" aria-hidden /> کلاب مکالمه
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1 w-4 rounded-full bg-slate-300" aria-hidden /> کار شخصی در پنل
-              </li>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-body" aria-label="راهنمای رنگ‌ها">
+              {(['class', 'club', 'self'] as const).map((k) => (
+                <li key={k} className="flex items-center gap-2">
+                  <span className={cn('h-1.5 w-5 rounded-full', kinds[k].bar)} aria-hidden /> {kinds[k].label}
+                </li>
+              ))}
             </ul>
           </div>
-          <ol className="mt-6 divide-y divide-rule border-y border-rule md:grid md:grid-cols-7 md:divide-x md:divide-y-0 md:divide-x-reverse md:border md:rounded-xl md:overflow-hidden">
+
+          {/* A list until lg (seven columns are too narrow on tablets), a timetable from lg. */}
+          <ol className="mt-8 divide-y divide-rule border-y border-rule lg:grid lg:grid-cols-7 lg:divide-x lg:divide-y-0 lg:divide-x-reverse lg:overflow-hidden lg:rounded-xl lg:border">
             {week.map((x) => (
-              <li key={x.d} className={cn('flex items-baseline gap-4 py-3.5 md:block md:min-h-36 md:p-4', x.kind === 'off' && 'text-muted')}>
-                <span className={cn('hidden h-1 w-8 rounded-full md:mb-4 md:block', kindBar[x.kind])} aria-hidden />
-                <span className="w-20 shrink-0 text-sm text-muted md:block md:w-auto md:text-xs">{x.d}</span>
-                <span className="flex flex-1 items-baseline justify-between gap-3 md:mt-6 md:block">
-                  <span className={cn('flex items-center gap-2 text-[0.9375rem] font-semibold md:text-sm', x.kind === 'off' ? 'text-muted' : 'text-ink')}>
-                    <span className={cn('h-2 w-2 shrink-0 rounded-full md:hidden', kindBar[x.kind])} aria-hidden />
-                    {x.what}
-                  </span>
-                  {x.detail && <span className="text-xs text-muted md:mt-1 md:block">{x.detail}</span>}
+              <li key={x.d} className="flex gap-4 py-4 lg:block lg:min-h-40 lg:p-5">
+                <span className={cn('w-1 shrink-0 self-stretch rounded-full lg:mb-5 lg:block lg:h-1.5 lg:w-10', kinds[x.kind].bar)} aria-hidden />
+                <span className="w-20 shrink-0 pt-0.5 text-sm text-muted lg:block lg:w-auto lg:pt-0">{x.d}</span>
+                <span className="lg:mt-5 lg:block">
+                  <span className={cn('block text-base font-semibold lg:text-[0.9375rem]', x.kind === 'off' ? 'text-muted' : 'text-ink')}>{x.what}</span>
+                  {x.detail && <span className="mt-0.5 block text-sm text-muted">{x.detail}</span>}
+                  {x.kind !== 'off' && <span className="sr-only">، {kinds[x.kind].label}</span>}
                 </span>
               </li>
             ))}
@@ -187,33 +194,53 @@ function Languages() {
 function Teachers() {
   return (
     <section id="teachers" className="container-x scroll-mt-20 py-20 sm:py-28">
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
+      <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+        <div className="max-w-xl">
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">اساتید</h2>
-          <p className="mt-4 max-w-md text-lg text-body">
-            هر استاد قبل از شروع، مصاحبه و یک کلاس آزمایشی با تیم آموزشی را گذرانده است.
-          </p>
-          <Link href="/register" className="btn-secondary mt-8">
-            دیدن همه‌ی اساتید
-          </Link>
+          <p className="mt-4 text-lg text-body">هر استاد قبل از شروع، مصاحبه و یک کلاس آزمایشی با تیم آموزشی را گذرانده است.</p>
         </div>
-        <ul className="grid border-t border-rule sm:grid-cols-2 sm:gap-x-10 lg:col-span-7">
-          {teachers.map((t) => (
-            <li key={t.id} className="flex items-center gap-4 border-b border-rule py-6">
-              {/* Portraits come from mixed sources; one monochrome treatment keeps them a set. */}
-              <Image src={t.photo} alt="" width={64} height={64} className="h-16 w-16 shrink-0 rounded-full object-cover contrast-[1.08] grayscale" />
-              <div className="min-w-0">
-                <h3 className="font-bold text-ink">{t.name}</h3>
-                <p className="text-sm text-body">
-                  {t.lang}، {t.title}
-                </p>
-                <p className="mt-0.5 text-xs text-muted">{fa(t.years)} سال تدریس</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <Link href="/register" className="btn-secondary shrink-0 self-start lg:self-auto">
+          دیدن همه‌ی اساتید
+        </Link>
       </div>
+      <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
+        {teachers.map((t) => (
+          <li key={t.id}>
+            <TeacherPortrait teacher={t} />
+            <p className="mt-4 text-sm font-medium text-brand-600">{t.lang}</p>
+            <h3 className="mt-0.5 text-lg font-bold leading-snug text-ink">{t.name}</h3>
+            <p className="mt-1 text-sm text-body">{t.title}</p>
+            <p className="mt-2 text-sm text-muted">{fa(t.years)} سال تدریس</p>
+          </li>
+        ))}
+      </ul>
     </section>
+  );
+}
+
+/**
+ * 4:5 frame sized for real studio portraits. Until a teacher has one
+ * (`portrait` in lib/data.ts), the small avatar sits centred in the frame
+ * rather than being stretched past its resolution, with the language they
+ * teach written in that language.
+ */
+function TeacherPortrait({ teacher: t }: { teacher: Teacher }) {
+  const native = languages.find((l) => l.name === t.lang);
+  return (
+    <div className="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-xl bg-tint ring-1 ring-inset ring-rule">
+      {t.portrait ? (
+        <Image src={t.portrait} alt={t.name} fill sizes="(min-width: 1024px) 280px, 45vw" className="object-cover" />
+      ) : (
+        <>
+          <Image src={t.photo} alt={t.name} width={112} height={112} className="h-24 w-24 rounded-full object-cover contrast-[1.08] grayscale sm:h-28 sm:w-28" />
+          {native && (
+            <span lang={native.code} dir="ltr" aria-hidden className="absolute inset-x-0 bottom-4 text-center text-lg text-muted sm:bottom-5 sm:text-xl">
+              {native.native}
+            </span>
+          )}
+        </>
+      )}
+    </div>
   );
 }
 
@@ -224,41 +251,58 @@ function Pricing() {
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-xl">
             <h2 className="text-3xl font-bold text-ink sm:text-4xl">شهریه‌ی ماهانه</h2>
-            <p className="mt-4 text-body">همه‌ی پلن‌ها با آزمون تعیین سطح رایگان شروع می‌شوند.</p>
+            <p className="mt-4 text-lg text-body">همه‌ی پلن‌ها با آزمون تعیین سطح رایگان شروع می‌شوند.</p>
           </div>
-          <p className="flex max-w-sm items-start gap-3 text-sm text-body">
-            <ShieldCheck size={20} className="mt-0.5 shrink-0 text-success" aria-hidden />
+          <p className="flex max-w-sm items-start gap-3 text-base text-ink">
+            <ShieldCheck size={22} className="mt-0.5 shrink-0 text-success" aria-hidden />
             اگر تا پایان جلسه‌ی دوم راضی نبودی، کل مبلغ را برمی‌گردانیم.
           </p>
         </div>
 
-        <div className="mt-12 grid overflow-hidden rounded-xl border border-rule bg-raised lg:grid-cols-3">
-          {plans.map((p, i) => (
-            <div key={p.name} className={cn('relative flex flex-col p-7 sm:p-9', i > 0 && 'border-t border-rule lg:border-r lg:border-t-0', p.featured && 'bg-brand-50/60')}>
-              {p.featured && <span className="absolute inset-x-0 top-0 h-1 bg-brand-600" aria-hidden />}
-              <div className="flex items-baseline justify-between gap-3">
+        <ul className="mt-12 grid gap-5 lg:grid-cols-3 lg:items-stretch">
+          {plans.map((p) => {
+            const sessions = p.features.slice(0, p.lead);
+            const extras = p.features.slice(p.lead);
+            return (
+              <li
+                key={p.name}
+                className={cn('flex flex-col rounded-xl bg-raised p-6 sm:p-8', p.featured ? 'border-2 border-brand-600' : 'border border-rule')}
+              >
                 <h3 className="text-2xl font-bold text-ink">{p.name}</h3>
-                {p.featured && <span className="text-sm font-medium text-brand-600">انتخاب بیشتر زبان‌آموزان</span>}
-              </div>
-              <p className="mt-1 text-sm text-muted">{p.desc}</p>
-              <p className="mt-7 flex flex-wrap items-baseline gap-x-2">
-                <span className="num text-4xl font-extrabold text-ink">{fa(p.price)}</span>
-                <span className="text-sm text-muted">تومان در ماه</span>
-              </p>
-              <ul className="mt-7 flex-1 space-y-3 border-t border-rule pt-7 text-[0.9375rem] text-body">
-                {p.features.map((f) => (
-                  <li key={f} className="flex gap-3">
-                    <Check size={18} className="mt-1 shrink-0 text-brand-600" aria-hidden />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/register" className={cn('btn-lg mt-9 w-full', p.featured ? 'btn-primary' : 'btn-secondary')}>
-                شروع با پلن {p.name}
-              </Link>
-            </div>
-          ))}
-        </div>
+                <p className="mt-1 text-base text-body">{p.desc}</p>
+
+                <p className="mt-6 flex flex-wrap items-baseline gap-x-2 border-b border-rule pb-6">
+                  <span className="num text-[2.5rem] font-extrabold leading-none text-ink">{fa(p.price)}</span>
+                  <span className="text-sm text-muted">تومان در ماه</span>
+                </p>
+
+                {/* What a month actually contains is the real difference between plans, so it leads. */}
+                <div className="mt-6">
+                  <p className="text-sm text-muted">در هر ماه</p>
+                  <ul className="mt-2 space-y-1">
+                    {sessions.map((f) => (
+                      <li key={f} className="text-lg font-bold text-ink">
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <ul className="mt-6 flex-1 space-y-3 text-[0.9375rem] text-body">
+                  {extras.map((f) => (
+                    <li key={f} className="flex gap-3">
+                      <Check size={18} className="mt-1 shrink-0 text-brand-600" aria-hidden />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/register" className={cn('btn-lg mt-8 w-full', p.featured ? 'btn-primary' : 'btn-secondary')}>
+                  شروع با پلن {p.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
@@ -270,18 +314,19 @@ function Faq() {
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">سوال‌های رایج</h2>
-          <p className="mt-4 text-body">
-            جوابت این‌جا نبود؟ با <span dir="ltr">021-9100 0000</span> تماس بگیر؛ هر روز از ۸ تا ۲۲.
-          </p>
+          <p className="mt-4 text-base text-body">جوابت این‌جا نبود؟ هر روز از ۸ تا ۲۲ پاسخ می‌دهیم.</p>
+          <a href="tel:+982191000000" dir="ltr" className="link mt-2 inline-flex min-h-11 items-center text-lg">
+            021-9100 0000
+          </a>
         </div>
         <div className="border-t border-ink/70 lg:col-span-8">
           {faqs.map((f, i) => (
             <details key={f.q} className="group border-b border-rule" open={i === 0}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-start justify-between gap-6 py-6 text-[1.0625rem] font-bold leading-8 text-ink transition-colors duration-120 hover:text-brand-600 sm:text-lg [&::-webkit-details-marker]:hidden">
                 {f.q}
-                <ChevronDown size={20} aria-hidden className="shrink-0 text-muted transition-transform duration-180 ease-out group-open:rotate-180" />
+                <ChevronDown size={22} aria-hidden className="mt-1 shrink-0 text-muted transition-transform duration-180 ease-out group-open:rotate-180" />
               </summary>
-              <p className="-mt-1 max-w-prose pb-6 text-body">{f.a}</p>
+              <p className="max-w-[62ch] pb-8 pl-10 text-base leading-[1.95] text-body">{f.a}</p>
             </details>
           ))}
         </div>

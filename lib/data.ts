@@ -9,7 +9,13 @@ export const languages = [
   { code: 'ar', tracks: 'فصیح و محاوره‌ی خلیجی', name: 'عربی', native: 'العربية', flag: '🇸🇦', students: 520, teachers: 6, color: 'from-emerald-400 to-teal-600' },
 ];
 
-export const teachers = [
+// `photo` is the small avatar used across the panels. `portrait` is an optional
+// high-resolution photo for the homepage (4:5, at least 960x1200, same backdrop
+// and light for every teacher); until one is added the homepage falls back to
+// the avatar. Files go in public/images/teachers/.
+export type Teacher = { id: string; name: string; lang: string; title: string; rating: number; students: number; years: number; photo: string; portrait?: string };
+
+export const teachers: Teacher[] = [
   { id: 't1', name: 'سارا محمدی', lang: 'انگلیسی', title: 'مدرس IELTS و مکالمه', rating: 4.9, students: 320, years: 9, photo: '/images/people/4.jpg' },
   { id: 't2', name: 'علی رضایی', lang: 'آلمانی', title: 'آمادگی آزمون Goethe', rating: 4.8, students: 210, years: 7, photo: '/images/people/1.jpg' },
   { id: 't3', name: 'مریم کریمی', lang: 'فرانسوی', title: 'مدرس DELF و فرانسه عمومی', rating: 4.9, students: 165, years: 6, photo: '/images/people/3.jpg' },
@@ -19,6 +25,8 @@ export const teachers = [
 export const plans = [
   {
     name: 'پایه',
+    // How many of the first features describe the monthly sessions (shown as the plan's headline).
+    lead: 1,
     price: 890000,
     period: 'ماهانه',
     desc: 'برای شروع یادگیری با کلاس‌های گروهی',
@@ -27,6 +35,7 @@ export const plans = [
   },
   {
     name: 'حرفه‌ای',
+    lead: 2,
     price: 1890000,
     period: 'ماهانه',
     desc: 'محبوب‌ترین انتخاب زبان‌آموزان فرتاش',
@@ -35,6 +44,7 @@ export const plans = [
   },
   {
     name: 'خصوصی',
+    lead: 1,
     price: 3490000,
     period: 'ماهانه',
     desc: 'یادگیری سریع با تمرکز کامل روی شما',

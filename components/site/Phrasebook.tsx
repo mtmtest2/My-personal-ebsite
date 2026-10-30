@@ -128,7 +128,7 @@ function PhraseBody({ phrase: p, live = false, onSpeak }: { phrase: Phrase; live
           <dt className="text-xs text-white/55">نکته‌ی استاد</dt>
           <dd className="mt-1.5 text-sm leading-7 text-white/80">{p.note}</dd>
           {onSpeak && (
-            <button type="button" onClick={onSpeak} className="btn btn-sm mt-4 border border-white/25 text-white hover:border-white/50 hover:bg-white/10 focus-visible:ring-offset-navy">
+            <button type="button" onClick={onSpeak} className="btn mt-4 border border-white/25 text-white hover:border-white/50 hover:bg-white/10 focus-visible:ring-offset-navy">
               <Volume2 size={16} aria-hidden />
               شنیدن تلفظ
             </button>
