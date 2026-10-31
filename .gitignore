@@ -9,3 +9,6 @@ __pycache__/
 
 # Design-skill working files (screenshots, reports)
 .taste-skill/
+
+# Screenshot exports (shared separately, not versioned)
+fartash-screenshots*.zip
