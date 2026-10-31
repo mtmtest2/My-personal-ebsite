@@ -12,27 +12,30 @@ import ArticleCard from '@/components/magazine/ArticleCard';
 import { contact, faqs, languages, plans, teachers } from '@/lib/data';
 import { featuredArticle, getArticles } from '@/lib/magazine';
 import { cn, fa } from '@/lib/utils';
+import PageTransition from '@/components/ui/PageTransition';
 
 export default function HomePage() {
   return (
-    <>
-      <Hero />
-      <HowItWorks />
-      <Languages />
-      <OnlineClasses />
-      <Week />
-      <Teachers />
-      <Pricing />
-      <Magazine />
-      <Testimonials />
-      <Faq />
-      <CtaBand
-        title="اول با یک مشاور حرف بزن."
-        desc="مشاوره و تعیین سطح رایگان است و تعهدی برای ثبت‌نام ایجاد نمی‌کند."
-        primary={{ href: '/consultation', label: 'درخواست تعیین سطح' }}
-        secondary={{ href: '/online-classes', label: 'کلاس‌ها چطور برگزار می‌شوند' }}
-      />
-    </>
+    <PageTransition>
+      <>
+        <Hero />
+        <HowItWorks />
+        <Languages />
+        <OnlineClasses />
+        <Week />
+        <Teachers />
+        <Pricing />
+        <Magazine />
+        <Testimonials />
+        <Faq />
+        <CtaBand
+          title="اول با یک مشاور حرف بزن."
+          desc="مشاوره و تعیین سطح رایگان است و تعهدی برای ثبت‌نام ایجاد نمی‌کند."
+          primary={{ href: '/consultation', label: 'درخواست تعیین سطح' }}
+          secondary={{ href: '/online-classes', label: 'کلاس‌ها چطور برگزار می‌شوند' }}
+        />
+      </>
+    </PageTransition>
   );
 }
 

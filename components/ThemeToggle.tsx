@@ -33,7 +33,11 @@ export default function ThemeToggle({ className }: { className?: string }) {
     const x = left + width / 2;
     const y = top + height / 2;
     const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    // Marks this transition as the theme reveal, so the page-transition rules (live root) stay out of it.
+    const root = document.documentElement;
+    root.classList.add('theme-reveal');
     const t = document.startViewTransition(() => flushSync(apply));
+    t.finished.finally(() => root.classList.remove('theme-reveal'));
     t.ready
       .then(() => {
         document.documentElement.animate(

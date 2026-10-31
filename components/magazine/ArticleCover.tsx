@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ViewTransition } from 'react';
 import { getLanguage } from '@/lib/data';
 import type { Article } from '@/lib/magazine';
 import { getTopic } from '@/lib/magazine';
@@ -23,7 +24,7 @@ const sizes = {
  * part being taught. With `cover.image`, the photograph fills the cover and the phrase sits on
  * a paper label in its corner.
  */
-export default function ArticleCover({ article, size = 'md', wide = false, priority = false, className }: { article: Pick<Article, 'lang' | 'topic' | 'cover'>; size?: keyof typeof sizes; wide?: boolean; priority?: boolean; className?: string }) {
+export default function ArticleCover({ article, size = 'md', wide = false, priority = false, className }: { article: Pick<Article, 'slug' | 'lang' | 'topic' | 'cover'>; size?: keyof typeof sizes; wide?: boolean; priority?: boolean; className?: string }) {
   const lang = getLanguage(article.lang)!;
   const { before, marked, after, tone, image } = article.cover;
   const phrase = (
@@ -35,6 +36,8 @@ export default function ArticleCover({ article, size = 'md', wide = false, prior
   );
 
   return (
+    // Same name in the card and on the article page: the cover morphs between them (share).
+    <ViewTransition name={`cover-${article.slug}`} share="morph" default="none">
     <div
       className={cn(
         'relative flex flex-col justify-between overflow-hidden rounded-[20px] [container-type:inline-size]',
@@ -62,5 +65,6 @@ export default function ArticleCover({ article, size = 'md', wide = false, prior
         </>
       )}
     </div>
+    </ViewTransition>
   );
 }

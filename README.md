@@ -35,7 +35,8 @@ npm run lint:design   # بررسی نشانه‌های طراحی AI‌مانن�
 - محتوای عمومی در `lib/data.ts` و محتوای مجله در `lib/magazine.ts` است. صفحه‌ها فقط از توابع کمکی پایین `lib/magazine.ts` استفاده می‌کنند تا بعداً بتوان منبع داده را بدون تغییر کامپوننت‌ها عوض کرد.
 - هر محتوای نمونه (`isSample: true`) برچسب «نمونه» می‌گیرد و مقاله‌ها و نویسنده‌های نمونه `noindex` هستند.
 - رنگ‌های برند در `tailwind.config.ts` (پالت `brand`) و کلاس‌های مشترک در `app/globals.css` تعریف شده‌اند.
-- عکس‌ها از کیت [Tail-Kit](https://github.com/Charlie85270/tail-kit) (MIT) گرفته شده‌اند: `public/images/people` (پنل‌های نمونه و نمای نمونه‌ی کلاس) و `public/images/scenes` (میز مطالعه، دفتر و قهوه، دست‌نوشته، ماشین تحریر). عکس آماده هرگز به‌عنوان مدرس یا زبان‌آموز واقعی معرفی نمی‌شود.
+- عکس‌ها موقتی‌اند و از کیت‌های متن‌باز آمده‌اند: [Tail-Kit](https://github.com/Charlie85270/tail-kit)، [Flowbite Admin Dashboard](https://github.com/themesberg/flowbite-admin-dashboard) و [Material Tailwind](https://github.com/creativetimofficial/material-tailwind) (همه MIT). فهرست کامل در `public/images/scenes/CREDITS.md`. هیچ‌کدام مدرس، زبان‌آموز یا دفتر فرتاش نیست؛ پیش از انتشار با عکس‌های واقعی جایگزین شوند.
+- انتقال بین صفحه‌ها با `<ViewTransition>` ری‌اکت (`components/ui/PageTransition.tsx`): صفحه‌ی قبلی محو و صفحه‌ی جدید با کمی بالا آمدن ظاهر می‌شود، و جلد هر مقاله از کارتش به بالای صفحه‌ی مقاله منتقل می‌شود. CSS آن در انتهای `app/globals.css` است.
 - اسکیل‌های Claude Code در `.claude/skills` نصب‌اند و منبعشان در `skills-lock.json` ثبت است:
   - طراحی: design-taste-frontend ([taste-skill](https://github.com/leonxlnx/taste-skill))، frontend-design، ui-ux-pro-max، emil-design-eng
   - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills): web-design-guidelines، writing-guidelines، vercel-react-best-practices، vercel-composition-patterns، vercel-react-view-transitions، vercel-react-native-skills، vercel-optimize، deploy-to-vercel، vercel-cli-with-tokens

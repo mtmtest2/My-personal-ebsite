@@ -36,7 +36,7 @@ export default function Navbar() {
     cn('rounded-lg px-3 py-2 text-sm font-medium transition hover:text-brand-700', active ? 'text-ink underline decoration-brand-500 decoration-2 underline-offset-[10px]' : 'text-slate-600');
 
   return (
-    <header /* taste-skill-ignore: sticky bar */ className={cn('sticky top-0 z-50 bg-paper transition-shadow duration-200', (scrolled || open) && 'shadow-[0_6px_24px_-12px_rgb(21_35_122/0.25)]')}>
+    <header /* taste-skill-ignore: sticky bar */ style={{ viewTransitionName: 'site-header' }} className={cn('sticky top-0 z-50 bg-paper transition-shadow duration-200', (scrolled || open) && 'shadow-[0_6px_24px_-12px_rgb(21_35_122/0.25)]')}>
       <nav className="container-x flex h-16 items-center justify-between lg:h-20">
         <Logo />
         <ul className="hidden items-center gap-1 lg:flex">
