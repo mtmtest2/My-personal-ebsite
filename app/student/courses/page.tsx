@@ -1,4 +1,5 @@
-import { BookOpen, CalendarClock, PlayCircle, User } from 'lucide-react';
+import Link from 'next/link';
+import { BookOpen, CalendarClock, User, Video } from 'lucide-react';
 import { PageHeader, Progress } from '@/components/panel/ui';
 import { studentCourses } from '@/lib/data';
 import { cn, fa } from '@/lib/utils';
@@ -6,7 +7,7 @@ import { cn, fa } from '@/lib/utils';
 export default function StudentCourses() {
   return (
     <>
-      <PageHeader title="دوره‌های من" desc="پیشرفت هر دوره و دسترسی به ویدیوی جلسات" action={<button className="btn-primary">ثبت‌نام در دوره‌ی جدید</button>} />
+      <PageHeader title="کلاس‌های من" desc="کلاس‌های زنده‌ای که در آن‌ها ثبت‌نام کرده‌ای و پیشرفتت در هر کدام" action={<Link href="/consultation" className="btn-primary">درخواست کلاس جدید</Link>} />
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {studentCourses.map((c) => (
           <div key={c.id} className="card overflow-hidden">
@@ -28,8 +29,8 @@ export default function StudentCourses() {
                 <Progress value={c.progress} />
               </div>
               <div className="flex gap-2">
-                <button className="btn-primary flex-1"><PlayCircle size={16} /> ادامه</button>
-                <button className="btn-ghost flex-1">ویدیوی جلسات</button>
+                <Link href="/student/schedule" className="btn-primary flex-1"><Video size={16} /> برنامه‌ی جلسه‌ها</Link>
+                <Link href="/student/assignments" className="btn-ghost flex-1">تکالیف</Link>
               </div>
             </div>
           </div>

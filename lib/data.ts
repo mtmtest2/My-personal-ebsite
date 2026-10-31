@@ -1,60 +1,109 @@
-// Mock data used across the public site and the panels until a backend is connected.
+// Static content for the public site, plus mock data for the demo panels until a backend is connected.
 
+export type LanguageSlug = 'english' | 'german' | 'french';
+
+/** The three languages Fartash teaches. Single source for the site, forms and panels. */
 export const languages = [
-  { code: 'en', tracks: 'عمومی، مکالمه، IELTS، TOEFL، تجاری', name: 'انگلیسی', native: 'English', flag: '🇬🇧', students: 4820, teachers: 38, color: 'from-blue-500 to-indigo-600' },
-  { code: 'de', tracks: 'عمومی از صفر، آمادگی Goethe و ÖSD', name: 'آلمانی', native: 'Deutsch', flag: '🇩🇪', students: 1940, teachers: 16, color: 'from-amber-400 to-orange-500' },
-  { code: 'fr', tracks: 'عمومی، آمادگی DELF و TCF کانادا', name: 'فرانسوی', native: 'Français', flag: '🇫🇷', students: 1210, teachers: 11, color: 'from-sky-400 to-blue-600' },
-  { code: 'tr', tracks: 'مکالمه‌محور، آمادگی TÖMER', name: 'ترکی استانبولی', native: 'Türkçe', flag: '🇹🇷', students: 980, teachers: 9, color: 'from-rose-400 to-red-600' },
-  { code: 'es', tracks: 'عمومی و مکالمه تا سطح B2', name: 'اسپانیایی', native: 'Español', flag: '🇪🇸', students: 640, teachers: 7, color: 'from-yellow-400 to-red-500' },
-  { code: 'ar', tracks: 'فصیح و محاوره‌ی خلیجی', name: 'عربی', native: 'العربية', flag: '🇸🇦', students: 520, teachers: 6, color: 'from-emerald-400 to-teal-600' },
+  {
+    code: 'en',
+    slug: 'english' as LanguageSlug,
+    name: 'انگلیسی',
+    native: 'English',
+    tracks: 'عمومی، مکالمه، انگلیسی کاری، آمادگی IELTS و TOEFL',
+    exams: ['IELTS', 'TOEFL'],
+    intro: 'از اولین جمله‌ها تا نوشتن ایمیل کاری و آماده‌شدن برای IELTS؛ با کلاس زنده و استادی که پیشرفتت را دنبال می‌کند.',
+    phrase: { before: 'Could you ', marked: 'say that again', after: ', please?', fa: 'می‌شود دوباره بگویید؟' },
+  },
+  {
+    code: 'de',
+    slug: 'german' as LanguageSlug,
+    name: 'آلمانی',
+    native: 'Deutsch',
+    tracks: 'عمومی از صفر، مکالمه، آمادگی Goethe و ÖSD',
+    exams: ['Goethe', 'ÖSD', 'telc'],
+    intro: 'برای تحصیل، کار یا مهاجرت؛ آلمانی را از حروف تعریف تا مصاحبه‌ی شفاهی Goethe قدم‌به‌قدم با استاد پیش می‌بری.',
+    phrase: { before: 'Ich ', marked: 'hätte gern', after: ' einen Kaffee.', fa: 'یک قهوه می‌خواستم.' },
+  },
+  {
+    code: 'fr',
+    slug: 'french' as LanguageSlug,
+    name: 'فرانسوی',
+    native: 'Français',
+    tracks: 'عمومی، مکالمه، آمادگی DELF و TCF',
+    exams: ['DELF', 'TCF'],
+    intro: 'فرانسه‌ی روزمره، تلفظی که شنیده شود و آمادگی DELF و TCF؛ همه در کلاس زنده با گروه کوچک یا خصوصی.',
+    phrase: { before: 'Je ', marked: 'voudrais', after: ' un croissant.', fa: 'یک کروسان می‌خواستم.' },
+  },
 ];
 
+export type Language = (typeof languages)[number];
+export const getLanguage = (slug: string) => languages.find((l) => l.slug === slug);
+export const getLanguageByCode = (code: string) => languages.find((l) => l.code === code);
+
+/** CEFR levels, described the way a learner would notice them. */
+export const levels = [
+  { code: 'A1', name: 'مبتدی', can: 'خودت را معرفی می‌کنی، سفارش می‌دهی و جمله‌های کوتاه روزمره را می‌فهمی.' },
+  { code: 'A2', name: 'پایه', can: 'درباره‌ی کار، خانواده و برنامه‌هایت حرف می‌زنی و پیام‌های ساده می‌نویسی.' },
+  { code: 'B1', name: 'متوسط', can: 'در سفر از پس بیشتر موقعیت‌ها برمی‌آیی و نظرت را با دلیل می‌گویی.' },
+  { code: 'B2', name: 'فوق متوسط', can: 'در بحث‌ها شرکت می‌کنی، متن‌های تخصصی را می‌خوانی و بیشتر آزمون‌های مهاجرتی را هدف می‌گیری.' },
+  { code: 'C1', name: 'پیشرفته', can: 'روان و دقیق حرف می‌زنی و برای تحصیل یا کار در محیط دانشگاهی آماده‌ای.' },
+  { code: 'C2', name: 'تسلط', can: 'تفاوت‌های ظریف لحن و معنا را می‌فهمی و تقریباً مثل اهل زبان می‌نویسی.' },
+];
+
+/**
+ * Sample teacher profiles. They only show how a profile will look; every card
+ * renders a «نمونه» badge until real, approved profiles replace them.
+ */
 export const teachers = [
-  { id: 't1', name: 'سارا محمدی', lang: 'انگلیسی', title: 'مدرس IELTS و مکالمه', rating: 4.9, students: 320, years: 9, photo: '/images/people/4.jpg' },
-  { id: 't2', name: 'علی رضایی', lang: 'آلمانی', title: 'آمادگی آزمون Goethe', rating: 4.8, students: 210, years: 7, photo: '/images/people/1.jpg' },
-  { id: 't3', name: 'مریم کریمی', lang: 'فرانسوی', title: 'مدرس DELF و فرانسه عمومی', rating: 4.9, students: 165, years: 6, photo: '/images/people/3.jpg' },
-  { id: 't4', name: 'رضا احمدی', lang: 'انگلیسی', title: 'انگلیسی تجاری و TOEFL', rating: 4.7, students: 280, years: 11, photo: '/images/people/5.jpg' },
+  { id: 't1', slug: 'sara-mohammadi', name: 'سارا محمدی', lang: 'english' as LanguageSlug, title: 'مکالمه و آمادگی IELTS', levels: 'A2 تا C1', focus: ['Speaking', 'IELTS Writing'], bio: 'روی جمله‌سازی در لحظه کار می‌کند؛ هر جلسه با یک موقعیت واقعی شروع می‌شود.', isSample: true },
+  { id: 't2', slug: 'ali-rezaei', name: 'علی رضایی', lang: 'german' as LanguageSlug, title: 'آلمانی از صفر و Goethe', levels: 'A1 تا B2', focus: ['Grammatik', 'Goethe B1'], bio: 'گرامر آلمانی را با جدول‌های کوچک و تمرین‌های شفاهی کوتاه درس می‌دهد.', isSample: true },
+  { id: 't3', slug: 'maryam-karimi', name: 'مریم کریمی', lang: 'french' as LanguageSlug, title: 'فرانسه‌ی عمومی و DELF', levels: 'A1 تا B2', focus: ['Prononciation', 'DELF B1'], bio: 'تلفظ را از جلسه‌ی اول جدی می‌گیرد و برای هر زبان‌آموز فهرست صداهای سخت می‌سازد.', isSample: true },
+  { id: 't4', slug: 'reza-ahmadi', name: 'رضا احمدی', lang: 'english' as LanguageSlug, title: 'انگلیسی کاری و TOEFL', levels: 'B1 تا C2', focus: ['Business English', 'TOEFL'], bio: 'ایمیل، جلسه‌ی کاری و ارائه را با نمونه‌های واقعی محیط کار تمرین می‌کند.', isSample: true },
+  { id: 't5', slug: 'neda-farahani', name: 'ندا فراهانی', lang: 'german' as LanguageSlug, title: 'مکالمه و آمادگی ÖSD', levels: 'B1 تا C1', focus: ['Sprechen', 'ÖSD B2'], bio: 'کلاس‌هایش بیشتر حرف زدن است؛ اصلاح‌ها را بعد از هر تمرین جمع‌بندی می‌کند.', isSample: true },
+  { id: 't6', slug: 'kaveh-amini', name: 'کاوه امینی', lang: 'french' as LanguageSlug, title: 'آمادگی TCF', levels: 'B1 تا C1', focus: ['Compréhension orale', 'TCF'], bio: 'برای TCF با آزمون‌های زمان‌دار کوتاه و مرور خطاهای پرتکرار کار می‌کند.', isSample: true },
 ];
 
+export type Teacher = (typeof teachers)[number];
+
+/** Illustrative tuition plans: amounts are placeholders until pricing is final. */
 export const plans = [
   {
-    name: 'پایه',
+    name: 'گروهی',
     price: 890000,
-    period: 'ماهانه',
-    desc: 'برای شروع یادگیری با کلاس‌های گروهی',
-    features: ['۸ جلسه کلاس گروهی در ماه', 'دسترسی به منابع آموزشی', 'تمرین و آزمون هفتگی', 'پشتیبانی تیکتی'],
+    desc: 'کلاس زنده با گروه کوچک هم‌سطح',
+    features: ['۸ جلسه‌ی زنده در ماه', 'تکلیف و بازخورد استاد', 'آزمونک واژگان در پنل'],
     featured: false,
   },
   {
-    name: 'حرفه‌ای',
+    name: 'گروهی + خصوصی',
     price: 1890000,
-    period: 'ماهانه',
-    desc: 'محبوب‌ترین انتخاب زبان‌آموزان فرتاش',
-    features: ['۱۲ جلسه کلاس گروهی کوچک', '۲ جلسه خصوصی با استاد', 'برنامه مطالعه شخصی‌سازی‌شده', 'کلاب مکالمه هفتگی', 'گواهی پایان دوره'],
+    desc: 'کلاس گروهی به‌همراه جلسه‌های خصوصی',
+    features: ['۱۲ جلسه‌ی زنده‌ی گروهی', '۲ جلسه‌ی خصوصی با استاد', 'کلاب مکالمه‌ی هفتگی', 'برنامه‌ی تمرین شخصی'],
     featured: true,
   },
   {
     name: 'خصوصی',
     price: 3490000,
-    period: 'ماهانه',
-    desc: 'یادگیری سریع با تمرکز کامل روی شما',
-    features: ['۱۲ جلسه کاملاً خصوصی', 'انتخاب آزادانه استاد و زمان', 'آمادگی آزمون‌های بین‌المللی', 'پشتیبانی اختصاصی', 'گواهی پایان دوره'],
+    desc: 'تمام جلسه‌ها یک‌به‌یک با استاد',
+    features: ['۱۲ جلسه‌ی خصوصی', 'انتخاب استاد و ساعت', 'برنامه‌ی آمادگی آزمون'],
     featured: false,
   },
 ];
 
-export const testimonials = [
-  { name: 'نگار طاهری', role: 'IELTS آکادمیک، رایتینگ ۷', text: 'رایتینگم همیشه ۵.۵ می‌شد. آقای احمدی هر هفته دو تا essay ازم می‌گرفت و کنار هر پاراگراف می‌نوشت کجا ایده‌ام گم شده. آزمون بعدی ۷ گرفتم.', photo: '/images/people/9.jpg' },
-  { name: 'امیر حسینی', role: 'برنامه‌نویس، آلمانی B1', text: 'کلاس‌هایم ساعت ۸ شب بود، بعد از کار. هر جلسه‌ای که جا می‌ماندم، ویدیویش را توی مترو می‌دیدم. یک سال طول کشید تا B1.', photo: '/images/people/6.jpg' },
-  { name: 'هانیه موسوی', role: 'دانشجوی پزشکی، فرانسه', text: 'سه ماه اول در کلاب مکالمه فقط گوش می‌دادم. خانم کریمی یک روز من را مسئول توضیح موضوع جلسه کرد و از آن به بعد ساکت نماندم.', photo: '/images/people/7.jpg' },
+export const faqs = [
+  { q: 'کلاس‌ها زنده‌اند یا ضبط‌شده؟', a: 'همه‌ی کلاس‌های فرتاش زنده و آنلاین برگزار می‌شوند. در حال حاضر دوره‌ی ضبط‌شده یا ویدیویی نداریم.' },
+  { q: 'کدام زبان‌ها را آموزش می‌دهید؟', a: 'انگلیسی، آلمانی و فرانسوی؛ برای هر سه، دوره‌ی عمومی از سطح صفر و آمادگی آزمون‌های رسمی داریم.' },
+  { q: 'تعیین سطح چطور انجام می‌شود؟', a: 'در گفت‌وگوی مشاوره، چند سؤال شنیداری و شفاهی می‌پرسیم و سطحت را بر اساس چارچوب CEFR (از A1 تا C2) مشخص می‌کنیم. بعد کلاس و استاد مناسب را پیشنهاد می‌دهیم.' },
+  { q: 'برای کلاس آنلاین به چه چیزی نیاز دارم؟', a: 'اینترنت پایدار، هدفون با میکروفون و یک جای آرام. با لپ‌تاپ راحت‌تری، ولی گوشی هم کافی است.' },
+  { q: 'اگر یک جلسه را از دست بدهم چه می‌شود؟', a: 'قانون جابه‌جایی و جبران جلسه پیش از شروع کلاس، در گفت‌وگوی مشاوره برایت توضیح داده می‌شود.' },
 ];
 
-export const faqs = [
-  { q: 'تعیین سطح چطور انجام می‌شود؟', a: 'بعد از ثبت‌نام، یک آزمون آنلاین ۲۰ دقیقه‌ای و یک مصاحبه‌ی کوتاه شفاهی با مشاور آموزشی دارید. سطح شما بر اساس چارچوب CEFR (از A1 تا C2) مشخص می‌شود.' },
-  { q: 'کلاس‌ها به صورت زنده هستند یا ضبط‌شده؟', a: 'همه‌ی کلاس‌ها زنده و تعاملی برگزار می‌شوند و فایل ضبط‌شده‌ی هر جلسه تا پایان دوره در پنل شما در دسترس است.' },
-  { q: 'اگر یک جلسه را از دست بدهم چه می‌شود؟', a: 'می‌توانید ویدیوی جلسه را ببینید و در کلاس‌های پرسش و پاسخ هفتگی شرکت کنید. در پلن خصوصی تا ۲۴ ساعت قبل امکان جابه‌جایی جلسه وجود دارد.' },
-  { q: 'آیا گواهی پایان دوره دریافت می‌کنم؟', a: 'بله، پس از گذراندن آزمون پایانی هر سطح، گواهی معتبر فرتاش با کد استعلام آنلاین برای شما صادر می‌شود.' },
-  { q: 'امکان بازگشت وجه وجود دارد؟', a: 'اگر تا پایان جلسه‌ی دوم از کیفیت کلاس راضی نبودید، کل مبلغ بدون هیچ پرسشی بازگردانده می‌شود.' },
+/* ---------- Panel mock data (demo only) ---------- */
+
+export const languageShare = [
+  { name: 'انگلیسی', value: 58, color: 'from-blue-500 to-indigo-600' },
+  { name: 'آلمانی', value: 27, color: 'from-amber-400 to-orange-500' },
+  { name: 'فرانسوی', value: 15, color: 'from-sky-400 to-blue-600' },
 ];
 
 /* ---------- Student panel ---------- */
@@ -144,7 +193,7 @@ export const adminCourses = [
   { title: 'آلمانی از صفر تا B1', lang: 'آلمانی', teachers: 9, students: 1120, price: 990000, status: 'منتشر شده' },
   { title: 'آمادگی Goethe B2', lang: 'آلمانی', teachers: 4, students: 310, price: 1690000, status: 'منتشر شده' },
   { title: 'فرانسه عمومی', lang: 'فرانسوی', teachers: 6, students: 740, price: 890000, status: 'منتشر شده' },
-  { title: 'ترکی استانبولی مکالمه‌محور', lang: 'ترکی', teachers: 5, students: 520, price: 790000, status: 'پیش‌نویس' },
+  { title: 'فرانسه: آمادگی TCF', lang: 'فرانسوی', teachers: 3, students: 0, price: 1590000, status: 'پیش‌نویس' },
 ];
 
 export const recentPayments = [

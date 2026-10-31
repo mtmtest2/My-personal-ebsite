@@ -1,27 +1,26 @@
 import Link from 'next/link';
-import { Instagram, Mail, MapPin, Phone, Send, Youtube } from 'lucide-react';
 import Logo from '@/components/Logo';
+import { languages } from '@/lib/data';
+import { topics } from '@/lib/magazine';
 
-const cols = [
-  { title: 'فرتاش', links: [['درباره ما', '/#how'], ['اساتید', '/#teachers'], ['همکاری با ما', '/register?role=teacher'], ['تماس با ما', '/#contact']] },
-  { title: 'دوره‌ها', links: [['انگلیسی', '/#languages'], ['آلمانی', '/#languages'], ['فرانسوی', '/#languages'], ['آمادگی آزمون', '/#languages']] },
-  { title: 'پشتیبانی', links: [['سوالات متداول', '/#faq'], ['تعرفه‌ها', '/#pricing'], ['ورود به پنل', '/login'], ['ثبت‌نام', '/register']] },
+const cols: { title: string; links: [string, string][] }[] = [
+  { title: 'فرتاش', links: [['کلاس‌های آنلاین', '/online-classes'], ['اساتید', '/teachers'], ['همکاری با ما', '/register?role=teacher'], ['سوالات متداول', '/#faq']] },
+  { title: 'زبان‌ها', links: languages.map((l) => [l.name, `/languages/${l.slug}`] as [string, string]) },
+  { title: 'مجله', links: [['همه‌ی مقاله‌ها', '/magazine'], ...topics.slice(0, 3).map((t) => [t.name, `/magazine/topics/${t.slug}`] as [string, string])] },
 ];
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-navy text-white/85">
+    <footer className="relative overflow-hidden bg-navy text-white/85">
       <div className="container-x relative grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo light />
           <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-            فرتاش، آموزشگاه آنلاین زبان‌های خارجی؛ با کلاس‌های زنده، اساتید مجرب و مسیری روشن از اولین کلمه تا تسلط کامل.
+            فرتاش، آموزشگاه آنلاین انگلیسی، آلمانی و فرانسوی؛ همه‌ی کلاس‌ها زنده‌اند و با استاد برگزار می‌شوند.
           </p>
-          <ul className="mt-6 space-y-3 text-sm">
-            <li className="flex items-center gap-2"><Phone size={16} className="text-sky2-400" /> <span dir="ltr">021-9100 0000</span></li>
-            <li className="flex items-center gap-2"><Mail size={16} className="text-sky2-400" /> info@fartash.ir</li>
-            <li className="flex items-center gap-2"><MapPin size={16} className="text-sky2-400" /> تهران، خیابان ولیعصر</li>
-          </ul>
+          <Link href="/consultation" className="mt-6 inline-flex rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">
+            درخواست مشاوره و تعیین سطح
+          </Link>
         </div>
         {cols.map((c) => (
           <div key={c.title}>
@@ -37,15 +36,9 @@ export default function Footer() {
         ))}
       </div>
       <div className="relative border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/60 sm:flex-row">
+        <div className="container-x flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/60 sm:flex-row">
           <p>© ۱۴۰۵ فرتاش. تمامی حقوق محفوظ است.</p>
-          <div className="flex gap-2">
-            {[Instagram, Send, Youtube].map((Icon, i) => (
-              <a key={i} href="#" aria-label="شبکه اجتماعی" className="grid h-9 w-9 place-items-center rounded-lg bg-white/5 text-white/85 transition hover:bg-white/15 hover:text-white">
-                <Icon size={16} />
-              </a>
-            ))}
-          </div>
+          <Link href="/login" className="hover:text-white">ورود به پنل</Link>
         </div>
       </div>
     </footer>

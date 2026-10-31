@@ -9,7 +9,6 @@ type Phrase = {
   code: string;
   speechLang: string;
   label: string;
-  dir: 'ltr' | 'rtl';
   // The sentence is split so the phrase being taught can be highlighted.
   before: string;
   marked: string;
@@ -21,12 +20,9 @@ type Phrase = {
 const source = 'سلام، اسم من نگار است. از آشنایی‌تان خوشحالم.';
 
 const phrases: Phrase[] = [
-  { code: 'en', speechLang: 'en-GB', label: 'English', dir: 'ltr', before: 'Hi, ', marked: 'my name is', after: ' Negar. Nice to meet you.', pron: 'های، مای نِیم ایز نگار. نایس تو میت یو.', note: '«my name is» یعنی «اسم من … است». در جلسه‌ی اول سطح A1 همین را می‌گویی.' },
-  { code: 'de', speechLang: 'de-DE', label: 'Deutsch', dir: 'ltr', before: 'Hallo, ', marked: 'ich heiße', after: ' Negar. Freut mich.', pron: 'هالو، ایش هایسه نگار. فُرُیت میش.', note: '«ich heiße» از فعل heißen است؛ آلمانی‌ها برای معرفی خودشان بیشتر از این استفاده می‌کنند تا «mein Name ist».' },
-  { code: 'fr', speechLang: 'fr-FR', label: 'Français', dir: 'ltr', before: 'Bonjour, ', marked: "je m'appelle", after: ' Negar. Enchantée.', pron: 'بُنژور، ژُ ماپِل نگار. آنشانته.', note: '«je m’appelle» یعنی «خودم را … صدا می‌زنم». Enchantée با e آخر، چون گوینده زن است.' },
-  { code: 'tr', speechLang: 'tr-TR', label: 'Türkçe', dir: 'ltr', before: 'Merhaba, ', marked: 'benim adım', after: ' Negar. Memnun oldum.', pron: 'مِرحَبا، بِنیم آدِم نگار. مِمنون اولدوم.', note: '«adım» یعنی «اسمم»؛ ad همان «اسم» است و ım ضمیر ملکی «ـم».' },
-  { code: 'es', speechLang: 'es-ES', label: 'Español', dir: 'ltr', before: 'Hola, ', marked: 'me llamo', after: ' Negar. Encantada.', pron: 'اُلا، مه یامو نگار. اِنکانتادا.', note: 'حرف h در Hola خوانده نمی‌شود و ll در llamo شبیه «ی» تلفظ می‌شود.' },
-  { code: 'ar', speechLang: 'ar-SA', label: 'العربية', dir: 'rtl', before: 'مرحباً، ', marked: 'اسمي', after: ' نگار. تشرفنا.', pron: 'مَرحَباً، اِسمی نِگار. تَشَرَّفنا.', note: '«اسمي» یعنی «اسمم». «تشرفنا» در عربی محاوره‌ای رایج‌ترین جواب آشنایی است.' },
+  { code: 'en', speechLang: 'en-GB', label: 'English', before: 'Hi, ', marked: 'my name is', after: ' Negar. Nice to meet you.', pron: 'های، مای نِیم ایز نگار. نایس تو میت یو.', note: '«my name is» یعنی «اسم من … است». در جلسه‌ی اول سطح A1 همین را می‌گویی.' },
+  { code: 'de', speechLang: 'de-DE', label: 'Deutsch', before: 'Hallo, ', marked: 'ich heiße', after: ' Negar. Freut mich.', pron: 'هالو، ایش هایسه نگار. فُرُیت میش.', note: '«ich heiße» از فعل heißen است؛ آلمانی‌ها برای معرفی خودشان بیشتر از این استفاده می‌کنند تا «mein Name ist».' },
+  { code: 'fr', speechLang: 'fr-FR', label: 'Français', before: 'Bonjour, ', marked: "je m'appelle", after: ' Negar. Enchantée.', pron: 'بُنژور، ژُ ماپِل نگار. آنشانته.', note: '«je m’appelle» یعنی «خودم را … صدا می‌زنم». Enchantée با e آخر، چون گوینده زن است.' },
 ];
 
 export default function Phrasebook() {
@@ -68,9 +64,9 @@ export default function Phrasebook() {
         <div className="p-6 sm:p-8">
           <p className="text-sm text-slate-500">{source}</p>
 
-          <p key={p.code} lang={p.code} dir={p.dir} className={cn('phrase-in mt-5 font-display text-[2.1rem] font-semibold leading-[1.35] text-ink sm:text-[2.5rem]', p.dir === 'ltr' && 'text-left')}>
+          <p key={p.code} lang={p.code} dir="ltr" className="phrase-in mt-5 text-left font-display text-[2.1rem] font-semibold leading-[1.35] text-ink sm:text-[2.5rem]">
             {p.before}
-            <Highlighter rtl={p.dir === 'rtl'} padding={3}>{p.marked}</Highlighter>
+            <Highlighter padding={3}>{p.marked}</Highlighter>
             {p.after}
           </p>
 

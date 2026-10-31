@@ -6,7 +6,7 @@ import { fa } from '@/lib/utils';
 export default function AdminCourses() {
   return (
     <>
-      <PageHeader title="مدیریت دوره‌ها" desc="ایجاد، ویرایش و انتشار دوره‌ها" action={<button className="btn-primary"><Plus size={16} /> دوره‌ی جدید</button>} />
+      <PageHeader title="کلاس‌ها و سطح‌ها" desc="کلاس‌های آنلاین زنده‌ی هر زبان و سطح" action={<button className="btn-primary"><Plus size={16} /> کلاس جدید</button>} />
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {adminCourses.map((c) => (
           <div key={c.title} className="card p-5">
@@ -20,7 +20,7 @@ export default function AdminCourses() {
               <span className="flex items-center gap-1.5"><Users size={16} /> {fa(c.students)} زبان‌آموز</span>
             </div>
             <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-              <p className="text-sm"><span className="text-lg font-extrabold text-slate-900">{fa(c.price)}</span> <span className="text-slate-500">تومان</span></p>
+              <p className="text-sm"><span className="text-lg font-extrabold text-slate-900">{fa(c.price)}</span> <span className="text-slate-500">تومان در ماه</span></p>
               <button className="btn-ghost px-3 py-1.5 text-xs"><Pencil size={14} /> ویرایش</button>
             </div>
           </div>

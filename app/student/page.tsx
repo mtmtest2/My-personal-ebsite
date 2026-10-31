@@ -43,12 +43,12 @@ export default function StudentDashboard() {
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatCard icon={Flame} tone="rose" label="روزهای پیاپی مطالعه" value={`${fa(student.streak)} روز`} />
         <StatCard icon={Trophy} tone="amber" label="امتیاز کسب‌شده" value={fa(student.xp)} trend="+۱۲۰" />
-        <StatCard icon={BookOpen} tone="brand" label="دوره‌های فعال" value={fa(studentCourses.length)} />
+        <StatCard icon={BookOpen} tone="brand" label="کلاس‌های فعال" value={fa(studentCourses.length)} />
         <StatCard icon={Clock} tone="emerald" label="ساعت مطالعه این ماه" value={`${fa(26)} ساعت`} />
       </div>
 
       <div className="grid gap-6 xl:grid-cols-3">
-        <Panel title="دوره‌های در حال یادگیری" className="xl:col-span-2" action={<Link href="/student/courses" className="flex items-center gap-1 text-sm font-semibold text-brand-600">همه <ArrowLeft size={16} /></Link>}>
+        <Panel title="کلاس‌های در حال یادگیری" className="xl:col-span-2" action={<Link href="/student/courses" className="flex items-center gap-1 text-sm font-semibold text-brand-600">همه <ArrowLeft size={16} /></Link>}>
           <div className="space-y-4">
             {studentCourses.map((c) => (
               <div key={c.id} className="flex items-center gap-4 rounded-2xl border border-slate-100 p-4 transition hover:border-brand-200">

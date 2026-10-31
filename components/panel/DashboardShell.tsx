@@ -30,7 +30,7 @@ const nav: Record<Role, { label: string; items: { href: string; label: string; i
     label: 'پنل دانشجو',
     items: [
       { href: '/student', label: 'داشبورد', icon: LayoutDashboard },
-      { href: '/student/courses', label: 'دوره‌های من', icon: BookOpen },
+      { href: '/student/courses', label: 'کلاس‌های من', icon: BookOpen },
       { href: '/student/schedule', label: 'برنامه‌ی کلاس‌ها', icon: CalendarDays },
       { href: '/student/assignments', label: 'تکالیف و آزمون‌ها', icon: ClipboardList },
     ],
@@ -48,7 +48,7 @@ const nav: Record<Role, { label: string; items: { href: string; label: string; i
     items: [
       { href: '/admin', label: 'نمای کلی', icon: LayoutDashboard },
       { href: '/admin/users', label: 'کاربران', icon: Users },
-      { href: '/admin/courses', label: 'دوره‌ها', icon: Library },
+      { href: '/admin/courses', label: 'کلاس‌ها و سطح‌ها', icon: Library },
     ],
   },
 };

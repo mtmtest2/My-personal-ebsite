@@ -13,7 +13,7 @@ export default function StudentAssignments() {
             <thead>
               <tr className="border-b border-slate-100 text-right text-xs text-slate-500">
                 <th className="pb-3 font-medium">عنوان</th>
-                <th className="pb-3 font-medium">دوره</th>
+                <th className="pb-3 font-medium">کلاس</th>
                 <th className="pb-3 font-medium">مهلت / وضعیت</th>
                 <th className="pb-3 font-medium">نمره</th>
                 <th className="pb-3" />

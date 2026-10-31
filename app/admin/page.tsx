@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, CreditCard, GraduationCap, UserCheck, Users } from 'lucide-react';
 import { Avatar, BarChart, Panel, StatCard, StatusBadge } from '@/components/panel/ui';
-import { adminUsers, languages, recentPayments, revenueByMonth } from '@/lib/data';
+import { adminUsers, languageShare, recentPayments, revenueByMonth } from '@/lib/data';
 import { fa } from '@/lib/utils';
 
 export default function AdminDashboard() {
-  const totalStudents = languages.reduce((s, l) => s + l.students, 0);
   const pendingTeachers = adminUsers.filter((u) => u.status === 'در انتظار تأیید');
   return (
     <div className="space-y-6">
@@ -16,12 +15,12 @@ export default function AdminDashboard() {
         </div>
         <div className="flex gap-2">
           <button className="btn-ghost">خروجی Excel</button>
-          <Link href="/admin/courses" className="btn-primary">افزودن دوره</Link>
+          <Link href="/admin/courses" className="btn-primary">افزودن کلاس</Link>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard icon={Users} label="کل زبان‌آموزان" value={fa(totalStudents)} tone="brand" trend="+۸٪" />
+        <StatCard icon={Users} label="کل زبان‌آموزان" value={fa(1265)} tone="brand" trend="+۸٪" />
         <StatCard icon={GraduationCap} label="اساتید فعال" value={fa(87)} tone="violet" trend="+۳" />
         <StatCard icon={CreditCard} label="درآمد مهر (تومان)" value="۴۶۸ م" tone="emerald" trend="+۱۴٪" />
         <StatCard icon={BookOpen} label="کلاس‌های این هفته" value={fa(342)} tone="amber" />
@@ -33,20 +32,17 @@ export default function AdminDashboard() {
         </Panel>
         <Panel title="سهم زبان‌ها">
           <ul className="space-y-4">
-            {languages.map((l) => {
-              const pct = Math.round((l.students / totalStudents) * 100);
-              return (
-                <li key={l.code}>
-                  <div className="mb-1.5 flex items-center justify-between text-sm">
-                    <span className="flex items-center gap-2 font-medium text-slate-700"><span className="text-lg">{l.flag}</span> {l.name}</span>
-                    <span className="font-bold text-slate-900">{fa(pct)}٪</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-                    <div className={`h-full rounded-full bg-gradient-to-l ${l.color}`} style={{ width: `${pct}%` }} />
-                  </div>
-                </li>
-              );
-            })}
+            {languageShare.map((l) => (
+              <li key={l.name}>
+                <div className="mb-1.5 flex items-center justify-between text-sm">
+                  <span className="font-medium text-slate-700">{l.name}</span>
+                  <span className="font-bold text-slate-900">{fa(l.value)}٪</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                  <div className={`h-full rounded-full bg-gradient-to-l ${l.color}`} style={{ width: `${l.value}%` }} />
+                </div>
+              </li>
+            ))}
           </ul>
         </Panel>
       </div>
