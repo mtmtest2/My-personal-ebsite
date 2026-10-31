@@ -1,6 +1,6 @@
 # فرتاش — آموزشگاه آنلاین زبان
 
-وب‌سایت آموزش زبان با Next.js 15، React 19 و Tailwind CSS (راست‌به‌چپ، فونت وزیرمتن).
+وب‌سایت آموزش زبان با Next.js 16 (Turbopack)، React 19.3 و Tailwind CSS (راست‌به‌چپ، فونت وزیرمتن).
 
 ## اجرا
 
@@ -8,6 +8,8 @@
 npm install
 npm run dev     # http://localhost:3000
 npm run build && npm start
+npm run typecheck     # بررسی TypeScript
+npm run lint:design   # بررسی نشانه‌های طراحی AI‌مانند (taste-skill)
 ```
 
 ## صفحات

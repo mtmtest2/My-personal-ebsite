@@ -40,7 +40,7 @@ export function StatCard({ icon: Icon, label, value, hint, tone = 'brand', trend
 
 export function Panel({ title, action, children, className }: { title: string; action?: React.ReactNode; children: React.ReactNode; className?: string }) {
   return (
-    <section className={cn('card p-5 sm:p-6', className)}>
+    <section className={cn('card min-w-0 p-5 sm:p-6', className)}>
       <div className="mb-5 flex items-center justify-between gap-3">
         <h2 className="font-bold text-slate-900">{title}</h2>
         {action}
