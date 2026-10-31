@@ -12,3 +12,5 @@ __pycache__/
 
 # Screenshot exports (shared separately, not versioned)
 fartash-screenshots*.zip
+# Playwright CLI output (may contain credentials)
+.playwright-cli/

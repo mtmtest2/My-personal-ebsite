@@ -34,5 +34,10 @@ npm run build && npm start
 - هر محتوای نمونه (`isSample: true`) برچسب «نمونه» می‌گیرد و مقاله‌ها و نویسنده‌های نمونه `noindex` هستند.
 - رنگ‌های برند در `tailwind.config.ts` (پالت `brand`) و کلاس‌های مشترک در `app/globals.css` تعریف شده‌اند.
 - عکس‌ها از کیت [Tail-Kit](https://github.com/Charlie85270/tail-kit) (MIT) گرفته شده‌اند: `public/images/people` (پنل‌های نمونه و نمای نمونه‌ی کلاس) و `public/images/scenes` (میز مطالعه، دفتر و قهوه، دست‌نوشته، ماشین تحریر). عکس آماده هرگز به‌عنوان مدرس یا زبان‌آموز واقعی معرفی نمی‌شود.
-- اسکیل‌های طراحی در `.claude/skills` نصب‌اند (design-taste-frontend، ui-ux-pro-max، emil-design-eng، web-design-guidelines، vercel-react-best-practices، frontend-design). بازرسی ظاهر: `node .claude/skills/design-taste-frontend/scripts/inspect.mjs <url>`.
+- اسکیل‌های Claude Code در `.claude/skills` نصب‌اند و منبعشان در `skills-lock.json` ثبت است:
+  - طراحی: design-taste-frontend ([taste-skill](https://github.com/leonxlnx/taste-skill))، frontend-design، ui-ux-pro-max، emil-design-eng
+  - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills): web-design-guidelines، writing-guidelines، vercel-react-best-practices، vercel-composition-patterns، vercel-react-view-transitions، vercel-react-native-skills، vercel-optimize، deploy-to-vercel، vercel-cli-with-tokens
+  - design-md-library: ۸۴ فایل DESIGN.md از [awesome-design-md](https://github.com/voltagent/awesome-design-md) به‌عنوان مرجع ساختار (نه برای کپی هویت برندها)
+  - playwright-cli: اسکیل و ابزار [Playwright CLI](https://github.com/microsoft/playwright-cli)؛ با `npx playwright-cli` اجرا می‌شود (در devDependencies). به‌روزرسانی اسکیل: `npx playwright-cli install --skills`
+- بازرسی ظاهر: `node .claude/skills/design-taste-frontend/scripts/inspect.mjs <url>`.
 - علامت‌گذاری دست‌کشیده (`components/ui/Highlighter.tsx`) و انیمیشن تغییر تم از [Magic UI](https://magicui.design) (MIT) اقتباس شده‌اند.
