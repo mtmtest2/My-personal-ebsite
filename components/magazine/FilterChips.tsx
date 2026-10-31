@@ -12,12 +12,12 @@ export default function FilterChips({ items, label }: { items: { href: string; l
               href={it.href}
               aria-current={it.active ? 'page' : undefined}
               className={cn(
-                'inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-3.5 py-2 text-sm transition-colors',
-                it.active ? 'border-ink bg-ink font-semibold text-paper' : 'border-rule text-slate-700 hover:border-brand-400 hover:text-ink',
+                'inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm transition-colors',
+                it.active ? 'bg-ink font-semibold text-paper' : 'bg-tint text-slate-700 hover:bg-brand-50 hover:text-ink',
               )}
             >
               {it.label}
-              {it.count !== undefined && <span className={cn('text-xs', it.active ? 'text-paper/70' : 'text-slate-400')}>{it.count.toLocaleString('fa-IR')}</span>}
+              {it.count !== undefined && <span className={cn('text-xs', it.active ? 'text-paper/75' : 'text-slate-500')}>{it.count.toLocaleString('fa-IR')}</span>}
             </Link>
           </li>
         ))}

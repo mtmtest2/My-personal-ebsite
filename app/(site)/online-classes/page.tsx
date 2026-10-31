@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Check, ChevronDown } from 'lucide-react';
 import CtaBand from '@/components/site/CtaBand';
-import PageIntro from '@/components/site/PageIntro';
+import Breadcrumbs from '@/components/site/Breadcrumbs';
+import ClassWindow from '@/components/site/ClassWindow';
+import Reveal from '@/components/ui/Reveal';
 import SectionTitle from '@/components/site/SectionTitle';
 import SessionTimeline from '@/components/site/SessionTimeline';
 import { faqs } from '@/lib/data';
@@ -31,13 +34,23 @@ const checklist = ['اینترنت پایدار (برای تماس تصویری)
 export default function OnlineClassesPage() {
   return (
     <>
-      <PageIntro
-        crumbs={[{ href: '/', label: 'فرتاش' }, { label: 'کلاس‌های آنلاین' }]}
-        title="کلاس آنلاین، با استادی که صدایت را می‌شنود."
-        lead="همه‌ی کلاس‌های فرتاش زنده‌اند. استاد و هم‌کلاسی‌هایت را می‌بینی، حرف می‌زنی، اصلاح می‌شوی و دوباره امتحان می‌کنی؛ همان چیزی که یادگیری زبان لازم دارد."
-      />
+      <section className="container-x pb-20 pt-8 lg:pt-12">
+        <Breadcrumbs items={[{ href: '/', label: 'فرتاش' }, { label: 'کلاس‌های آنلاین' }]} />
+        <div className="mt-8 grid items-center gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
+          <div>
+            <h1 className="h-display text-[3rem] sm:text-6xl">کلاس آنلاین زنده</h1>
+            <p className="mt-6 max-w-md text-lg leading-9 text-slate-700">
+              همه‌ی کلاس‌های فرتاش زنده‌اند. استاد و هم‌کلاسی‌هایت را می‌بینی، حرف می‌زنی، اصلاح می‌شوی و دوباره امتحان می‌کنی؛ همان چیزی که یادگیری زبان لازم دارد.
+            </p>
+            <Link href="/consultation" className="btn-primary mt-8 px-7 py-3.5 text-base">درخواست تعیین سطح</Link>
+          </div>
+          <Reveal delay={100}>
+            <ClassWindow />
+          </Reveal>
+        </div>
+      </section>
 
-      <section className="border-y border-rule bg-tint py-20">
+      <section className="bg-tint py-20">
         <div className="container-x">
           <SectionTitle title="۹۰ دقیقه‌ی یک کلاس گروهی" desc="بیشتر وقت جلسه به حرف زدن خودت می‌گذرد؛ بخش‌های پررنگ زمانی است که تو صحبت می‌کنی." />
           <SessionTimeline className="mt-14" />
@@ -46,19 +59,15 @@ export default function OnlineClassesPage() {
 
       <section className="container-x py-24">
         <SectionTitle title="سه شکل کلاس" desc="در مشاوره بر اساس هدف و زمانت یکی را انتخاب می‌کنی؛ بعداً هم می‌توانی تغییرش بدهی." />
-        <div className="mt-12 grid overflow-hidden rounded-[20px] border border-rule lg:grid-cols-3">
+        <ul className="mt-12 space-y-3">
           {formats.map((f, i) => (
-            <div key={f.name} className={i > 0 ? 'border-t border-rule p-8 lg:border-r lg:border-t-0' : 'p-8'}>
-              <h3 className="font-display text-3xl font-bold text-ink">{f.name}</h3>
-              <p className="mt-2 text-[15px] leading-7 text-slate-600">{f.who}</p>
-              <ul className="mt-6 space-y-3 text-[15px] text-slate-700">
-                {f.how.map((h) => (
-                  <li key={h} className="flex gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-brand-600" />{h}</li>
-                ))}
-              </ul>
-            </div>
+            <Reveal as="li" key={f.name} delay={i * 90} className="grid gap-x-10 gap-y-3 rounded-[20px] bg-tint px-6 py-7 sm:px-8 lg:grid-cols-[14rem_1fr_1fr]">
+              <h3 className="font-display text-[2rem] font-bold leading-tight text-ink">{f.name}</h3>
+              <p className="text-[15px] leading-8 text-slate-700">{f.who}</p>
+              <p className="text-[15px] leading-8 text-ink">{f.how.join('، ')}</p>
+            </Reveal>
           ))}
-        </div>
+        </ul>
       </section>
 
       <section className="bg-navy py-24 text-white">
@@ -74,14 +83,17 @@ export default function OnlineClassesPage() {
               ))}
             </dl>
           </div>
-          <div className="rounded-[20px] border border-white/15 p-8">
+          <div className="rounded-[20px] bg-white/5 p-8">
+            <Reveal image className="relative -mx-8 -mt-8 mb-8 aspect-[3/2] overflow-hidden rounded-t-[20px]">
+              <Image src="/images/scenes/desk-laptop.jpg" alt="میز کار با لپ‌تاپ، نمایشگر و چراغ مطالعه" fill sizes="(min-width: 1024px) 520px, 100vw" className="object-cover" />
+            </Reveal>
             <h2 className="text-lg font-bold">پیش از اولین جلسه</h2>
             <ul className="mt-6 space-y-4">
               {checklist.map((c) => (
                 <li key={c} className="flex gap-3 text-[15px] text-white/85"><Check size={18} className="mt-0.5 shrink-0 text-sky2-300" />{c}</li>
               ))}
             </ul>
-            <p className="mt-8 border-t border-white/15 pt-6 text-sm leading-7 text-white/70">
+            <p className="mt-8 text-sm leading-7 text-white/80">
               فرتاش در حال حاضر فقط کلاس زنده برگزار می‌کند؛ دوره‌ی ضبط‌شده یا ویدیوی آماده نداریم.
             </p>
           </div>
@@ -94,9 +106,9 @@ export default function OnlineClassesPage() {
             <SectionTitle title="سوال‌های رایج" />
             <Link href="/#faq" className="mt-4 inline-block text-sm font-semibold text-brand-700 hover:underline">همه‌ی سوال‌ها</Link>
           </div>
-          <div className="border-t border-ink/80">
+          <div className="space-y-2">
             {[faqs[0], faqs[3], faqs[4]].map((f) => (
-              <details key={f.q} className="group border-b border-rule">
+              <details key={f.q} className="group rounded-xl bg-tint px-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <ChevronDown size={20} className="shrink-0 text-slate-400 transition-transform group-open:rotate-180" />

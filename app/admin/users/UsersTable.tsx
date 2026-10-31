@@ -60,7 +60,7 @@ export default function UsersTable() {
                   </span>
                 </td>
                 <td className="py-3.5">
-                  <span className={cn('badge', u.role === 'معلم' ? 'bg-violet-50 text-violet-700' : 'bg-cyan-50 text-cyan-700')}>{u.role}</span>
+                  <span className={cn('badge', u.role === 'معلم' ? 'bg-brand-50 text-brand-700' : 'bg-cyan-50 text-cyan-700')}>{u.role}</span>
                 </td>
                 <td className="py-3.5 text-slate-500">{u.joined}</td>
                 <td className="py-3.5"><StatusBadge status={u.status} /></td>

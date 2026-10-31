@@ -1,5 +1,13 @@
 // Static content for the public site, plus mock data for the demo panels until a backend is connected.
 
+/** Fartash's office and phone line. */
+export const contact = {
+  phone: '۰۹۰۵ ۰۳۱ ۸۹۰۹',
+  phoneHref: 'tel:+989050318909',
+  address: 'مشهد، طبرسی جنوبی ۶۰، فتاح ۲',
+  city: 'مشهد',
+};
+
 export type LanguageSlug = 'english' | 'german' | 'french';
 
 /** The three languages Fartash teaches. Single source for the site, forms and panels. */
@@ -96,14 +104,15 @@ export const faqs = [
   { q: 'تعیین سطح چطور انجام می‌شود؟', a: 'در گفت‌وگوی مشاوره، چند سؤال شنیداری و شفاهی می‌پرسیم و سطحت را بر اساس چارچوب CEFR (از A1 تا C2) مشخص می‌کنیم. بعد کلاس و استاد مناسب را پیشنهاد می‌دهیم.' },
   { q: 'برای کلاس آنلاین به چه چیزی نیاز دارم؟', a: 'اینترنت پایدار، هدفون با میکروفون و یک جای آرام. با لپ‌تاپ راحت‌تری، ولی گوشی هم کافی است.' },
   { q: 'اگر یک جلسه را از دست بدهم چه می‌شود؟', a: 'قانون جابه‌جایی و جبران جلسه پیش از شروع کلاس، در گفت‌وگوی مشاوره برایت توضیح داده می‌شود.' },
+  { q: 'دفتر فرتاش کجاست؟', a: 'دفتر ما در مشهد، طبرسی جنوبی ۶۰، فتاح ۲ است. کلاس‌ها آنلاین برگزار می‌شوند، پس از هر شهری می‌توانی شرکت کنی.' },
 ];
 
 /* ---------- Panel mock data (demo only) ---------- */
 
 export const languageShare = [
-  { name: 'انگلیسی', value: 58, color: 'from-blue-500 to-indigo-600' },
-  { name: 'آلمانی', value: 27, color: 'from-amber-400 to-orange-500' },
-  { name: 'فرانسوی', value: 15, color: 'from-sky-400 to-blue-600' },
+  { name: 'انگلیسی', value: 58 },
+  { name: 'آلمانی', value: 27 },
+  { name: 'فرانسوی', value: 15 },
 ];
 
 /* ---------- Student panel ---------- */
@@ -113,7 +122,7 @@ export const student = { name: 'نگار طاهری', level: 'B2', photo: '/imag
 export const studentCourses = [
   { id: 'c1', title: 'انگلیسی عمومی B2', teacher: 'سارا محمدی', progress: 68, lessons: 36, done: 24, next: 'شنبه ۱۸:۰۰', color: 'bg-brand-600' },
   { id: 'c2', title: 'آمادگی IELTS Academic', teacher: 'رضا احمدی', progress: 42, lessons: 30, done: 13, next: 'دوشنبه ۲۰:۰۰', color: 'bg-sky2-500' },
-  { id: 'c3', title: 'کلاب مکالمه هفتگی', teacher: 'سارا محمدی', progress: 80, lessons: 10, done: 8, next: 'چهارشنبه ۱۹:۳۰', color: 'bg-violet-500' },
+  { id: 'c3', title: 'کلاب مکالمه هفتگی', teacher: 'سارا محمدی', progress: 80, lessons: 10, done: 8, next: 'چهارشنبه ۱۹:۳۰', color: 'bg-navy' },
 ];
 
 export const studentSchedule = [

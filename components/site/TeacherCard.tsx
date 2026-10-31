@@ -12,16 +12,16 @@ export default function TeacherCard({ t, full = false }: { t: Teacher; full?: bo
   const lang = getLanguage(t.lang)!;
   return (
     <article className="flex flex-col">
-      <div className="relative flex aspect-[5/4] flex-col justify-between overflow-hidden rounded-[20px] border border-rule bg-tint p-5">
-        <div className="flex items-start justify-between">
-          <Foreign lang={lang.code} className="font-display text-xl font-semibold text-slate-500">{lang.native}</Foreign>
-          {t.isSample && <SampleBadge label="پروفایل نمونه" />}
-        </div>
+      <div className="relative flex aspect-[5/4] flex-col justify-between overflow-hidden rounded-[20px] bg-tint p-5">
+        <Foreign lang={lang.code} className="self-start font-display text-xl font-semibold text-slate-500">{lang.native}</Foreign>
         <span className="font-display text-[5.5rem] font-bold leading-none text-brand-600" aria-hidden>{t.name.charAt(0)}</span>
       </div>
-      <h3 className="mt-4 text-lg font-bold text-ink">{t.name}</h3>
-      <p className="text-sm text-slate-600">مدرس {lang.name}، {t.title}</p>
-      <p className="mt-1 text-sm text-slate-500">سطح‌ها: {t.levels}</p>
+      <h3 className="mt-4 flex flex-wrap items-center gap-2 text-lg font-bold text-ink">
+        {t.name}
+        {t.isSample && <SampleBadge label="پروفایل نمونه" />}
+      </h3>
+      <p className="text-[15px] text-slate-700">مدرس {lang.name}، {t.title}</p>
+      <p className="mt-1 text-[15px] text-slate-600">سطح‌ها: {t.levels}</p>
       {full && (
         <>
           <p className="mt-3 text-[15px] leading-7 text-slate-600">{t.bio}</p>

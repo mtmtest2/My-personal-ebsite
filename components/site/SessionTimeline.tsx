@@ -24,7 +24,7 @@ export default function SessionTimeline({ className, dark = false }: { className
           />
         ))}
       </div>
-      <ol className="grid gap-5 sm:mt-5 sm:flex sm:gap-0">
+      <ol className="grid gap-9 sm:mt-5 sm:flex sm:gap-0">
         {segments.map((s, i) => (
           <li key={s.title} style={{ flexGrow: s.min, flexBasis: 0 }} className={cn('border-r-2 pr-4 sm:border-r-0 sm:pr-0 sm:pl-3', i === 2 || i === 3 ? 'border-brand-600' : dark ? 'border-white/30' : 'border-brand-200')}>
             <p className={cn('font-display text-3xl font-bold leading-none', dark ? 'text-white' : 'text-ink')}>

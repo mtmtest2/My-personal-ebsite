@@ -30,7 +30,7 @@ export default async function AuthorPage({ params }: Props) {
           <span className="grid h-24 w-24 shrink-0 place-items-center rounded-full bg-brand-50 font-display text-5xl font-bold text-brand-600" aria-hidden>{author.name.charAt(0)}</span>
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="h-display text-5xl">{author.name}</h1>
+              <h1 className="h-display text-5xl lg:text-[4.4rem]">{author.name}</h1>
               {author.isSample && <SampleBadge label="نویسنده‌ی نمونه" />}
             </div>
             <p className="mt-2 text-slate-600">{author.role}</p>
@@ -44,7 +44,7 @@ export default async function AuthorPage({ params }: Props) {
         )}
       </section>
       <section className="container-x pb-24">
-        <h2 className="border-t border-ink/80 pt-6 text-lg font-bold text-ink">{fa(list.length)} مقاله</h2>
+        <h2 className="pt-6 text-lg font-bold text-ink">{fa(list.length)} مقاله</h2>
         <div className="mt-10"><ArticleGrid articles={list} /></div>
       </section>
     </>

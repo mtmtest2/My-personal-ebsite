@@ -17,7 +17,7 @@ export function PageHeader({ title, desc, action }: { title: string; desc?: stri
 const tones = {
   brand: 'bg-brand-50 text-brand-600',
   sky: 'bg-cyan-50 text-cyan-600',
-  violet: 'bg-violet-50 text-violet-600',
+  violet: 'bg-brand-50 text-brand-700',
   amber: 'bg-amber-50 text-amber-600',
   emerald: 'bg-emerald-50 text-emerald-600',
   rose: 'bg-rose-50 text-rose-600',

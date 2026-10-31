@@ -13,7 +13,16 @@ export const metadata: Metadata = {
   description: 'فرتاش؛ آموزشگاه آنلاین زبان با کلاس‌های زنده، اساتید مجرب و برنامه‌ی شخصی‌سازی‌شده برای هر زبان‌آموز.',
 };
 
-const themeScript = `try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
+const themeScript = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'فرتاش',
+  description: 'آموزشگاه آنلاین زبان انگلیسی، آلمانی و فرانسوی با کلاس‌های زنده.',
+  telephone: '+989050318909',
+  address: { '@type': 'PostalAddress', streetAddress: 'طبرسی جنوبی ۶۰، فتاح ۲', addressLocality: 'مشهد', addressCountry: 'IR' },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Applies the saved (or system) theme before first paint to avoid a flash. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </head>
       <body className="font-sans">{children}</body>
     </html>

@@ -13,7 +13,7 @@ export default function ArticleMeta({ article, withAuthor = true, linkAuthor = f
   return (
     <p className={cn('flex flex-wrap items-center gap-y-1 text-xs text-slate-500', className)}>
       {items.map((it, i) => (
-        <span key={i} className={cn(i > 0 && 'mr-3 border-r border-rule pr-3')}>{it}</span>
+        <span key={i} className={cn(i > 0 && 'mr-4')}>{it}</span>
       ))}
     </p>
   );

@@ -30,7 +30,7 @@ export default function ArticleListing({
     <>
       <PageIntro crumbs={crumbs} title={title} lead={lead} />
       <section className="container-x pb-24">
-        <div className="flex flex-col gap-4 border-t border-ink/80 pt-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 pt-6 lg:flex-row lg:items-center lg:justify-between">
           <FilterChips items={chips} label={chipsLabel} />
           <p className="shrink-0 text-sm text-slate-500">{fa(articles.length)} مقاله</p>
         </div>

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 const typeTone: Record<string, string> = {
   'گروهی': 'bg-brand-50 text-brand-700',
-  'خصوصی': 'bg-violet-50 text-violet-700',
+  'خصوصی': 'bg-brand-50 text-brand-700',
   'کلاب': 'bg-emerald-50 text-emerald-700',
 };
 

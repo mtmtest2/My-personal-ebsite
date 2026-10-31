@@ -5,7 +5,7 @@ export default function SampleBadge({ label = 'نمونه', className }: { label
   return (
     <span
       title="محتوای نمونه برای پیش‌نمایش طراحی؛ اطلاعات واقعی نیست."
-      className={cn('inline-flex shrink-0 items-center rounded-md border border-dashed border-slate-400 bg-paper px-2 py-0.5 text-xs font-medium text-slate-600', className)}
+      className={cn('inline-flex shrink-0 items-center rounded-md bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800', className)}
     >
       {label}
     </span>

@@ -39,7 +39,7 @@ export default function AdminDashboard() {
                   <span className="font-bold text-slate-900">{fa(l.value)}٪</span>
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-                  <div className={`h-full rounded-full bg-gradient-to-l ${l.color}`} style={{ width: `${l.value}%` }} />
+                  <div className="h-full rounded-full bg-brand-600" style={{ width: `${l.value}%` }} />
                 </div>
               </li>
             ))}

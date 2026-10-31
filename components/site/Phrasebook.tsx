@@ -41,9 +41,9 @@ export default function Phrasebook() {
   return (
     <div className="relative">
       {/* Spine of the book: the stacked pages behind the open card */}
-      <div className="absolute inset-x-3 -bottom-2 h-full rounded-[20px] border border-rule bg-tint" aria-hidden />
+      <div className="absolute inset-x-3 -bottom-2 h-full rounded-[20px] bg-brand-100" aria-hidden />
       <div className="relative rounded-[20px] border border-rule bg-paper">
-        <div role="tablist" aria-label="زبان" className="flex gap-1 overflow-x-auto border-b border-rule px-3 pt-3">
+        <div role="tablist" aria-label="زبان" className="flex gap-1 overflow-x-auto px-3 pt-3">
           {phrases.map((ph, i) => (
             <button
               key={ph.code}
@@ -53,7 +53,7 @@ export default function Phrasebook() {
               lang={ph.code}
               className={cn(
                 'shrink-0 rounded-t-lg border-b-2 px-3 pb-2.5 pt-1.5 text-sm transition-colors',
-                i === active ? 'border-brand-600 font-semibold text-ink' : 'border-transparent text-slate-500 hover:text-ink',
+                i === active ? 'border-brand-600 font-semibold text-ink' : 'border-transparent text-slate-600 hover:text-ink',
               )}
             >
               {ph.label}
@@ -72,7 +72,7 @@ export default function Phrasebook() {
 
           <p key={`${p.code}-pron`} className="phrase-in mt-3 text-[15px] leading-7 text-brand-700">{p.pron}</p>
 
-          <div className="mt-6 flex items-start gap-3 border-t border-dashed border-rule pt-5">
+          <div className="mt-6 flex items-start gap-3 rounded-xl bg-tint p-4">
             <span className="mt-1.5 h-3 w-3 shrink-0 rounded-sm bg-[rgb(var(--mark)/0.8)]" aria-hidden />
             <p className="text-sm leading-7 text-slate-600">{p.note}</p>
           </div>

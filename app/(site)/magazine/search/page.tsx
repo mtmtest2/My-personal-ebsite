@@ -22,11 +22,11 @@ export default async function SearchPage({ searchParams }: Props) {
     <>
       <section className="container-x pb-10 pt-8 lg:pt-12">
         <Breadcrumbs items={[{ href: '/magazine', label: 'مجله' }, { label: 'جست‌وجو' }]} />
-        <h1 className="h-display mt-8 text-5xl sm:text-6xl">جست‌وجو در مجله</h1>
+        <h1 className="h-display mt-8 text-5xl sm:text-6xl lg:text-[4.4rem]">جست‌وجو در مجله</h1>
         <SearchForm q={q} lang={validLang} topic={validTopic} className="mt-8" />
       </section>
       <section className="container-x pb-24">
-        <p className="border-t border-ink/80 pt-6 text-sm text-slate-600" aria-live="polite">
+        <p className="pt-6 text-sm text-slate-600" aria-live="polite">
           {filtered ? (
             <>
               {fa(results.length)} مقاله
@@ -44,7 +44,7 @@ export default async function SearchPage({ searchParams }: Props) {
           {results.length ? (
             <ArticleGrid articles={results} />
           ) : (
-            <div className="rounded-[20px] border border-dashed border-rule px-6 py-14 text-center">
+            <div className="rounded-[20px] px-6 py-14 text-center">
               <p className="text-lg font-bold text-ink">مقاله‌ای پیدا نشد.</p>
               <p className="mt-2 text-slate-600">کلمه‌ی کوتاه‌تری امتحان کن یا یکی از موضوع‌ها را ببین.</p>
               <ul className="mt-6 flex flex-wrap justify-center gap-2">

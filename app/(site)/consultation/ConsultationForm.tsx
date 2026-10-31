@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Info } from 'lucide-react';
 import DemoNotice from '@/components/site/DemoNotice';
+import Reveal from '@/components/ui/Reveal';
 import { getLanguage, languages, levels, teachers } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
@@ -15,7 +16,7 @@ function Chip({ type, name, value, defaultChecked, children }: { type: 'radio' |
   return (
     <label className="cursor-pointer">
       <input type={type} name={name} value={value} defaultChecked={defaultChecked} className="peer sr-only" />
-      <span className="inline-flex rounded-lg border border-rule px-3.5 py-2 text-sm text-slate-700 transition-colors hover:border-brand-400 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-checked:font-semibold peer-checked:text-brand-700 peer-focus-visible:ring-2 peer-focus-visible:ring-brand-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-paper">
+      <span className="inline-flex rounded-lg bg-tint px-3.5 py-2 text-[15px] text-slate-700 ring-inset transition-colors hover:bg-brand-50 peer-checked:bg-brand-50 peer-checked:font-semibold peer-checked:text-brand-700 peer-checked:ring-2 peer-checked:ring-brand-600 peer-focus-visible:ring-2 peer-focus-visible:ring-brand-500 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-paper">
         {children}
       </span>
     </label>
@@ -24,12 +25,14 @@ function Chip({ type, name, value, defaultChecked, children }: { type: 'radio' |
 
 function Field({ legend, hint, children }: { legend: string; hint?: string; children: React.ReactNode }) {
   return (
-    <fieldset className="border-t border-rule pt-6">
-      <legend className="float-right mb-3 w-full text-sm font-bold text-ink">
-        {legend} {hint && <span className="font-normal text-slate-500">({hint})</span>}
+    <Reveal as="section" className="pt-6">
+    <fieldset>
+      <legend className="float-right mb-3 w-full text-[15px] font-bold text-ink">
+        {legend} {hint && <span className="font-normal text-slate-600">({hint})</span>}
       </legend>
       <div className="clear-both">{children}</div>
     </fieldset>
+    </Reveal>
   );
 }
 
@@ -55,8 +58,8 @@ export default function ConsultationForm({ initialLang: langParam, initialTeache
           {languages.map((l) => (
             <label key={l.slug} className="cursor-pointer">
               <input type="radio" name="lang" value={l.slug} checked={lang === l.slug} onChange={() => setLang(l.slug)} className="peer sr-only" />
-              <span className="block rounded-xl border border-rule px-3 py-4 text-center transition-colors hover:border-brand-400 peer-checked:border-brand-600 peer-checked:bg-brand-50 peer-focus-visible:ring-2 peer-focus-visible:ring-brand-500">
-                <span lang={l.code} dir="ltr" className="block font-display text-2xl font-semibold text-ink sm:text-3xl">{l.native}</span>
+              <span className="block rounded-xl bg-tint px-3 py-4 text-center ring-inset transition-colors hover:bg-brand-50 peer-checked:bg-brand-50 peer-checked:ring-2 peer-checked:ring-brand-600 peer-focus-visible:ring-2 peer-focus-visible:ring-brand-500">
+                <span lang={l.code} dir="ltr" className="block font-display text-xl font-semibold text-ink">{l.native}</span>
                 <span className="text-sm text-slate-500">{l.name}</span>
               </span>
             </label>
@@ -98,7 +101,7 @@ export default function ConsultationForm({ initialLang: langParam, initialTeache
         </div>
       </Field>
 
-      <fieldset className="grid gap-4 border-t border-rule pt-6 sm:grid-cols-2">
+      <fieldset className="grid gap-4 pt-6 sm:grid-cols-2">
         <legend className="sr-only">اطلاعات تماس</legend>
         <div>
           <label className="label" htmlFor="c-name">نام</label>
@@ -114,7 +117,7 @@ export default function ConsultationForm({ initialLang: langParam, initialTeache
         </div>
       </fieldset>
 
-      <div className="space-y-4 border-t border-rule pt-6">
+      <div className="space-y-4 pt-6">
         <DemoNotice>نسخه‌ی نمایشی: این فرم هنوز به سرور وصل نیست و اطلاعات آن ارسال یا ذخیره نمی‌شود.</DemoNotice>
         <button type="submit" className="btn-primary w-full py-3.5 text-base sm:w-auto sm:px-10">ارسال درخواست مشاوره</button>
         <div aria-live="polite">

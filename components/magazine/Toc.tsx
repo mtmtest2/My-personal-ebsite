@@ -24,16 +24,16 @@ export default function Toc({ items }: { items: Heading[] }) {
   }, [items]);
 
   const list = (
-    <ol className="space-y-0.5 border-r border-rule text-sm">
+    <ol className="space-y-0.5 text-sm">
       {items.map((h) => (
         <li key={h.id}>
           <a
             href={`#${h.id}`}
             aria-current={active === h.id ? 'location' : undefined}
             className={cn(
-              '-mr-px block border-r-2 py-1.5 leading-6 transition-colors',
-              h.type === 'h3' ? 'pr-7' : 'pr-4',
-              active === h.id ? 'border-brand-600 font-semibold text-ink' : 'border-transparent text-slate-500 hover:text-ink',
+              'block rounded-lg py-1.5 leading-6 transition-colors',
+              h.type === 'h3' ? 'pr-6' : 'pr-3',
+              active === h.id ? 'bg-tint font-semibold text-ink' : 'text-slate-600 hover:text-ink',
             )}
           >
             {h.text}
@@ -45,7 +45,7 @@ export default function Toc({ items }: { items: Heading[] }) {
 
   return (
     <>
-      <details className="group rounded-xl border border-rule bg-paper lg:hidden">
+      <details className="group rounded-xl bg-tint lg:hidden">
         <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-bold text-ink [&::-webkit-details-marker]:hidden">
           فهرست مطالب
           <ChevronDown size={18} className="text-slate-400 transition-transform group-open:rotate-180" />

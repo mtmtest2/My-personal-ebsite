@@ -45,7 +45,8 @@ export type Block =
   | { type: 'table'; head: string[]; rows: string[][]; foreignCols?: number[] }
   | { type: 'tip'; text: string };
 
-export type Cover = { before: string; marked: string; after: string; tone: 'navy' | 'tint' | 'brand' };
+/** Typographic cover; `image` adds a photograph behind it (set in the article data). */
+export type Cover = { before: string; marked: string; after: string; tone: 'navy' | 'tint' | 'brand'; image?: { src: string; alt: string } };
 
 export type Article = {
   slug: string;
@@ -66,7 +67,7 @@ export type Article = {
 export const articles: Article[] = [
   {
     slug: 'german-noun-gender-der-die-das',
-    title: 'der، die یا das؟ نشانه‌هایی که جنس اسم آلمانی را لو می‌دهند',
+    title: 'der، die یا das؟ نشانه‌های جنس اسم',
     excerpt: 'جنس بیشتر اسم‌های آلمانی را باید حفظ کرد، ولی پسوند خیلی از آن‌ها جنس را از قبل مشخص می‌کند. این‌جا مطمئن‌ترین نشانه‌ها را جمع کرده‌ایم.',
     lang: 'german',
     topic: 'grammar',
@@ -107,7 +108,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'everyday-english-phrasal-verbs',
-    title: '۱۰ فعل عبارتی که در مکالمه‌ی روزمره‌ی انگلیسی زیاد می‌شنوی',
+    title: '۱۰ فعل عبارتی پرکاربرد انگلیسی',
     excerpt: 'انگلیسی‌زبان‌ها در گفت‌وگوی روزمره بیشتر از فعل‌های عبارتی استفاده می‌کنند تا معادل رسمی‌شان. با این ده فعل شروع کن.',
     lang: 'english',
     topic: 'vocabulary',
@@ -115,7 +116,7 @@ export const articles: Article[] = [
     author: 'sara-mohammadi',
     publishedAt: '2026-10-19',
     isSample: true,
-    cover: { before: "Let's ", marked: 'figure it out', after: '', tone: 'tint' },
+    cover: { before: "Let's ", marked: 'figure it out', after: '', tone: 'tint', image: { src: '/images/scenes/notebook-coffee.jpg', alt: 'دفتر یادداشت، صفحه‌کلید و یک فنجان قهوه روی میز چوبی' } },
     body: [
       { type: 'p', text: 'فعل عبارتی (phrasal verb) از یک فعل و یک یا دو حرف اضافه یا قید ساخته می‌شود و معنایش معمولاً با معنای تک‌تک اجزا فرق دارد. {{en|give up}} یعنی «دست کشیدن»، نه «بالا دادن».' },
       { type: 'h2', id: 'list', text: 'ده فعل پرکاربرد' },
@@ -146,7 +147,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'french-liaison-rules',
-    title: 'لیزون در فرانسوی: کِی صدای آخر کلمه را به کلمه‌ی بعد وصل کنیم',
+    title: 'لیزون در فرانسوی: کِی وصل کنیم؟',
     excerpt: 'چرا {{fr|les amis}} را «لِزامی» می‌خوانند ولی {{fr|les héros}} را نه؟ قاعده‌های اصلی لیزون، با جاهایی که اجباری و ممنوع است.',
     lang: 'french',
     topic: 'pronunciation',
@@ -178,7 +179,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'ielts-writing-task-2-body-paragraph',
-    title: 'پاراگراف بدنه در IELTS Writing Task 2: چهار جمله با چهار وظیفه',
+    title: 'پاراگراف بدنه در رایتینگ IELTS',
     excerpt: 'بیشتر پاراگراف‌هایی که نمره‌ی پایین می‌گیرند ایده‌ی خوبی دارند ولی آن را گسترش نمی‌دهند. یک ساختار ساده برای نوشتن پاراگرافی که مصحح دنبالش است.',
     lang: 'english',
     topic: 'exams',
@@ -186,7 +187,7 @@ export const articles: Article[] = [
     author: 'fartash-editorial',
     publishedAt: '2026-10-05',
     isSample: true,
-    cover: { before: 'Firstly, ', marked: 'remote work', after: ' saves time.', tone: 'navy' },
+    cover: { before: 'Firstly, ', marked: 'remote work', after: ' saves time.', tone: 'navy', image: { src: '/images/scenes/handwriting.jpg', alt: 'دستی که با خودکار در دفتر می‌نویسد' } },
     body: [
       { type: 'p', text: 'در معیار {{en|Task Response}}، مصحح دنبال این است که ایده‌هایت را «گسترش داده و پشتیبانی کرده باشی». یک ادعای کلی بدون توضیح و مثال، حتی اگر درست باشد، نمره‌ی این بخش را پایین نگه می‌دارد.' },
       { type: 'h2', id: 'structure', text: 'ساختار چهارجمله‌ای' },
@@ -200,7 +201,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'french-cafe-phrases',
-    title: 'هفت جمله برای سفارش دادن در کافه‌ی فرانسوی',
+    title: 'سفارش دادن در کافه‌ی فرانسوی',
     excerpt: 'از سلام اول تا گرفتن صورت‌حساب؛ جمله‌هایی که در کافه و نانوایی واقعاً به کار می‌آیند، با نکته‌های فرهنگی کوچک.',
     lang: 'french',
     topic: 'conversation',
@@ -233,7 +234,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'german-daily-listening-routine',
-    title: 'روال ۲۰ دقیقه‌ای برای تقویت شنیدن آلمانی',
+    title: 'شنیدن آلمانی در ۲۰ دقیقه',
     excerpt: 'گوش دادن زیاد کافی نیست؛ گوش دادن فعال است که شنیدن را تقویت می‌کند. یک روال روزانه در چهار مرحله‌ی پنج دقیقه‌ای.',
     lang: 'german',
     topic: 'skills',
@@ -241,7 +242,7 @@ export const articles: Article[] = [
     author: 'fartash-editorial',
     publishedAt: '2026-09-20',
     isSample: true,
-    cover: { before: 'Ich ', marked: 'verstehe', after: ' schon mehr.', tone: 'brand' },
+    cover: { before: 'Ich ', marked: 'verstehe', after: ' schon mehr.', tone: 'brand', image: { src: '/images/scenes/desk-laptop.jpg', alt: 'میز کار با لپ‌تاپ و نمایشگر کنار پنجره' } },
     body: [
       { type: 'p', text: 'برای این روال یک فایل صوتی کوتاه یک تا دو دقیقه‌ای با متن کامل لازم داری. خبرهای آهسته‌خوانده‌شده‌ی Deutsche Welle ({{de|Langsam gesprochene Nachrichten}}) برای سطح A2 تا B1 مناسب‌اند.' },
       { type: 'h2', id: 'steps', text: 'چهار مرحله' },
@@ -258,7 +259,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'english-th-sound',
-    title: 'صدای th در انگلیسی: فرق think و sink',
+    title: 'صدای th: فرق think و sink',
     excerpt: 'فارسی‌زبان‌ها th را معمولاً «ت»، «س» یا «ز» تلفظ می‌کنند. دو صدای th چطور ساخته می‌شوند و با چه جفت‌کلمه‌هایی تمرین کنیم.',
     lang: 'english',
     topic: 'pronunciation',

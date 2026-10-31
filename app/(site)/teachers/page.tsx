@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import CtaBand from '@/components/site/CtaBand';
+import ClassWindow from '@/components/site/ClassWindow';
+import Reveal from '@/components/ui/Reveal';
 import DemoNotice from '@/components/site/DemoNotice';
 import PageIntro from '@/components/site/PageIntro';
 import TeacherCard from '@/components/site/TeacherCard';
@@ -29,7 +31,7 @@ export default async function TeachersPage({ searchParams }: Props) {
         lead="هر مدرس روی چند سطح و یک هدف مشخص کار می‌کند: مکالمه، آزمون یا زبان کاری. در پروفایلش می‌بینی کلاسش برای چه کسی مناسب است و می‌توانی در مشاوره همان مدرس را درخواست کنی."
       />
       <section className="container-x pb-24">
-        <div className="flex flex-col gap-4 border-t border-ink/80 pt-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 pt-6 lg:flex-row lg:items-center lg:justify-between">
           <FilterChips
             label="زبان تدریس"
             items={[
@@ -41,15 +43,27 @@ export default async function TeachersPage({ searchParams }: Props) {
         </div>
         <DemoNotice className="mt-8">پروفایل‌های این صفحه نمونه‌اند و فقط شکل نهایی پروفایل را نشان می‌دهند. نام، تخصص و تصویر واقعی مدرس‌ها پس از معرفی رسمی جایگزین می‌شود.</DemoNotice>
         <div className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((t) => (
-            <div key={t.id} id={t.slug} className="scroll-mt-28">
+          {list.map((t, i) => (
+            <Reveal key={t.id} id={t.slug} delay={(i % 3) * 90} className="scroll-mt-28">
               <TeacherCard t={t} full />
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="border-t border-rule bg-tint py-20">
+      <section className="bg-navy py-24 text-white">
+        <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
+          <Reveal>
+            <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">مدرس در کلاس چه می‌کند؟</h2>
+            <p className="mt-4 max-w-md text-[17px] leading-8 text-white/80">درس را روی صفحه‌ی مشترک می‌گذارد، از هر زبان‌آموز می‌خواهد حرف بزند و خطاها را همان لحظه، در صدا یا در گفت‌وگوی کلاس، اصلاح می‌کند.</p>
+          </Reveal>
+          <Reveal delay={120}>
+            <ClassWindow className="text-white" />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-tint py-20">
         <div className="container-x grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <h2 className="h-display text-4xl">مدرس زبان هستی؟</h2>

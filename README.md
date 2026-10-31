@@ -28,9 +28,11 @@ npm run build && npm start
 
 ## نکات
 
+- اطلاعات تماس (تلفن و آدرس دفتر مشهد) در `contact` داخل `lib/data.ts` است.
 - این نسخه فقط رابط کاربری است: بک‌اند، پایگاه داده و احراز هویت ندارد. فرم‌ها چیزی ارسال یا ذخیره نمی‌کنند و این را به کاربر نشان می‌دهند (`components/site/DemoNotice.tsx`).
 - محتوای عمومی در `lib/data.ts` و محتوای مجله در `lib/magazine.ts` است. صفحه‌ها فقط از توابع کمکی پایین `lib/magazine.ts` استفاده می‌کنند تا بعداً بتوان منبع داده را بدون تغییر کامپوننت‌ها عوض کرد.
 - هر محتوای نمونه (`isSample: true`) برچسب «نمونه» می‌گیرد و مقاله‌ها و نویسنده‌های نمونه `noindex` هستند.
 - رنگ‌های برند در `tailwind.config.ts` (پالت `brand`) و کلاس‌های مشترک در `app/globals.css` تعریف شده‌اند.
-- تصاویر افراد در پنل‌های نمونه از پروژه‌ی [Tail-Kit](https://github.com/Charlie85270/tail-kit) (MIT) گرفته شده‌اند؛ در سایت عمومی از عکس آماده برای مدرس یا زبان‌آموز استفاده نمی‌شود.
+- عکس‌ها از کیت [Tail-Kit](https://github.com/Charlie85270/tail-kit) (MIT) گرفته شده‌اند: `public/images/people` (پنل‌های نمونه و نمای نمونه‌ی کلاس) و `public/images/scenes` (میز مطالعه، دفتر و قهوه، دست‌نوشته، ماشین تحریر). عکس آماده هرگز به‌عنوان مدرس یا زبان‌آموز واقعی معرفی نمی‌شود.
+- اسکیل‌های طراحی در `.claude/skills` نصب‌اند (design-taste-frontend، ui-ux-pro-max، emil-design-eng، web-design-guidelines، vercel-react-best-practices، frontend-design). بازرسی ظاهر: `node .claude/skills/design-taste-frontend/scripts/inspect.mjs <url>`.
 - علامت‌گذاری دست‌کشیده (`components/ui/Highlighter.tsx`) و انیمیشن تغییر تم از [Magic UI](https://magicui.design) (MIT) اقتباس شده‌اند.

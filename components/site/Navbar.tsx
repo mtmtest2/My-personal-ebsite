@@ -36,7 +36,7 @@ export default function Navbar() {
     cn('rounded-lg px-3 py-2 text-sm font-medium transition hover:text-brand-700', active ? 'text-ink underline decoration-brand-500 decoration-2 underline-offset-[10px]' : 'text-slate-600');
 
   return (
-    <header className={cn('sticky top-0 z-50 transition-all', scrolled || open ? 'border-b border-rule bg-paper/90 backdrop-blur-lg' : 'bg-transparent')}>
+    <header /* taste-skill-ignore: sticky bar */ className={cn('sticky top-0 z-50 bg-paper transition-shadow duration-200', (scrolled || open) && 'shadow-[0_6px_24px_-12px_rgb(21_35_122/0.25)]')}>
       <nav className="container-x flex h-16 items-center justify-between lg:h-20">
         <Logo />
         <ul className="hidden items-center gap-1 lg:flex">
@@ -48,8 +48,8 @@ export default function Navbar() {
               زبان‌ها <ChevronDown size={15} className="transition-transform group-focus-within:rotate-180 group-hover:rotate-180" />
             </button>
             {/* Opens on hover or keyboard focus; the padding bridges the gap so the pointer can reach it. */}
-            <div className="invisible absolute right-0 top-full pt-2 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              <ul className="w-60 rounded-xl border border-rule bg-paper p-2 shadow-lg shadow-ink/5">
+            <div className="absolute right-0 top-full hidden pt-2 group-focus-within:block group-hover:block">
+              <ul /* taste-skill-ignore: open menu */ className="w-60 rounded-xl bg-paper p-2 shadow-xl shadow-ink/15 dark:bg-tint">
                 {languages.map((l) => (
                   <li key={l.slug}>
                     <Link href={`/languages/${l.slug}`} className="flex items-baseline justify-between rounded-lg px-3 py-2.5 hover:bg-tint">
@@ -85,15 +85,15 @@ export default function Navbar() {
         </div>
       </nav>
       {open && (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-paper lg:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto bg-paper lg:hidden">
           <div className="container-x flex flex-col gap-1 py-4">
             <Link href={links[0].href} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-brand-50">{links[0].label}</Link>
-            <p className="px-3 pb-1 pt-3 text-xs text-slate-500">زبان‌ها</p>
+            <p className="px-3 pb-1 pt-3 text-[13px] text-slate-600">زبان‌ها</p>
             <div className="grid grid-cols-3 gap-2 px-1 pb-2">
               {languages.map((l) => (
-                <Link key={l.slug} href={`/languages/${l.slug}`} className="rounded-lg border border-rule px-2 py-2.5 text-center hover:border-brand-400">
+                <Link key={l.slug} href={`/languages/${l.slug}`} className="rounded-lg bg-tint px-2 py-2.5 text-center hover:bg-brand-50">
                   <span lang={l.code} dir="ltr" className="block font-display text-lg text-ink">{l.native}</span>
-                  <span className="text-xs text-slate-500">{l.name}</span>
+                  <span className="text-[13px] text-slate-600">{l.name}</span>
                 </Link>
               ))}
             </div>

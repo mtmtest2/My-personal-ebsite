@@ -1,13 +1,15 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { Check, ChevronDown, MessageSquareQuote } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Phrasebook from '@/components/site/Phrasebook';
 import SectionTitle from '@/components/site/SectionTitle';
 import SampleBadge from '@/components/site/SampleBadge';
 import TeacherCard from '@/components/site/TeacherCard';
-import SessionTimeline from '@/components/site/SessionTimeline';
+import ClassWindow from '@/components/site/ClassWindow';
+import Reveal from '@/components/ui/Reveal';
 import CtaBand from '@/components/site/CtaBand';
 import ArticleCard from '@/components/magazine/ArticleCard';
-import { faqs, languages, plans, teachers } from '@/lib/data';
+import { contact, faqs, languages, plans, teachers } from '@/lib/data';
 import { featuredArticle, getArticles } from '@/lib/magazine';
 import { cn, fa } from '@/lib/utils';
 
@@ -48,12 +50,12 @@ function Hero() {
             کلاس‌ها چطور برگزار می‌شوند؟
           </Link>
         </div>
-        <ul className="mt-12 grid grid-cols-3 border-t border-rule pt-6">
-          {languages.map((l, i) => (
-            <li key={l.slug} className={cn(i > 0 && 'border-r border-rule pr-4 sm:pr-6')}>
+        <ul className="mt-12 grid grid-cols-3 gap-2">
+          {languages.map((l) => (
+            <li key={l.slug} className="rounded-xl bg-tint px-4 py-3 transition-colors hover:bg-brand-50">
               <Link href={`/languages/${l.slug}`} className="group block">
                 <span lang={l.code} dir="ltr" className="block font-display text-2xl font-semibold text-ink group-hover:text-brand-700 sm:text-3xl">{l.native}</span>
-                <span className="text-sm text-slate-500">{l.name}</span>
+                <span className="text-sm text-slate-600">{l.name}</span>
               </Link>
             </li>
           ))}
@@ -72,17 +74,16 @@ function HowItWorks() {
     { title: 'سنجش پایان سطح', time: 'در پایان هر سطح', desc: 'استاد پیشرفت هر مهارت را می‌سنجد و برای سطح بعد برنامه می‌چیند.' },
   ];
   return (
-    <section id="how" className="scroll-mt-20 border-t border-rule bg-tint py-24">
+    <section id="how" className="scroll-mt-20 bg-tint py-24">
       <div className="container-x">
         <SectionTitle title="از مشاوره تا اولین کلاس" desc="مسیر شروع در فرتاش چهار قدم دارد و هر قدم را با یک آدم واقعی برمی‌داری، نه یک فرم خودکار." />
-        <ol className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+        <ol className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="relative lg:border-r lg:border-rule lg:px-7 lg:first:border-r-0 lg:first:pr-0">
-              <span className="font-display text-6xl font-bold leading-none text-brand-600">{fa(i + 1)}</span>
-              <h3 className="mt-5 text-lg font-bold text-ink">{s.title}</h3>
-              <p className="mt-1 text-sm font-medium text-brand-700">{s.time}</p>
-              <p className="mt-3 text-[15px] leading-7 text-slate-600">{s.desc}</p>
-            </li>
+            <Reveal as="li" key={s.title} delay={i * 90} className="flex flex-col rounded-2xl bg-paper p-6">
+              <h3 className="font-display text-[1.9rem] font-bold leading-tight text-ink">{s.title}</h3>
+              <p className="mt-1 text-sm font-semibold text-brand-700">{s.time}</p>
+              <p className="mt-4 text-[15px] leading-7 text-slate-700">{s.desc}</p>
+            </Reveal>
           ))}
         </ol>
       </div>
@@ -94,23 +95,23 @@ function Languages() {
   return (
     <section id="languages" className="container-x scroll-mt-20 py-24">
       <SectionTitle title="سه زبان، از سطح صفر" desc="برای هر زبان دوره‌ی عمومی از A1 داریم و آمادگی آزمون‌های رسمی همان زبان." />
-      <ul className="mt-12 border-t border-ink/80">
-        {languages.map((l) => (
-          <li key={l.code}>
+      <ul className="mt-12 space-y-2">
+        {languages.map((l, i) => (
+          <Reveal as="li" key={l.code} delay={i * 80}>
             <Link
               href={`/languages/${l.slug}`}
-              className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-rule py-6 transition-colors hover:bg-tint sm:grid-cols-[11rem_1fr_auto] sm:px-3"
+              className="group grid items-center gap-x-8 gap-y-3 rounded-2xl bg-tint px-6 py-6 transition-colors hover:bg-brand-50 sm:px-8 lg:grid-cols-[12rem_1fr_minmax(0,22rem)]"
             >
-              <span lang={l.code} dir="ltr" className="font-display text-4xl font-semibold text-ink sm:text-right">{l.native}</span>
-              <span className="col-span-2 row-start-2 sm:col-span-1 sm:row-start-auto">
-                <span className="text-lg font-bold text-ink">{l.name}</span>
-                <span className="mr-3 text-sm text-slate-500">{l.tracks}</span>
+              <span lang={l.code} dir="ltr" className="text-right font-display text-5xl font-semibold text-ink">{l.native}</span>
+              <span>
+                <span className="block text-lg font-bold text-ink">{l.name}</span>
+                <span className="mt-1 block text-[15px] leading-7 text-slate-700">{l.tracks}</span>
               </span>
-              <span className="row-start-1 text-left text-sm font-semibold text-brand-700 sm:row-start-auto">
-                <span className="underline decoration-rule decoration-2 underline-offset-[6px] group-hover:decoration-brand-500">صفحه‌ی {l.name}</span>
+              <span lang={l.code} dir="ltr" className="text-left font-display text-2xl leading-snug text-slate-700">
+                {l.phrase.before}<span className="mark">{l.phrase.marked}</span>{l.phrase.after}
               </span>
             </Link>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </section>
@@ -125,28 +126,28 @@ function OnlineClasses() {
     { title: 'استادی که دنبالت می‌کند', desc: 'تکلیف‌ها، بازخوردها و پیشرفتت در یک پنل جمع می‌شود و استاد آن را می‌بیند.' },
   ];
   return (
-    <section className="border-y border-rule bg-navy py-24 text-white">
-      <div className="container-x">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
-          <div className="max-w-2xl">
-            <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">کلاس آنلاین، ولی زنده و رو در رو.</h2>
-            <p className="mt-4 max-w-xl text-[17px] leading-8 text-white/75">
-              فرتاش فقط کلاس زنده برگزار می‌کند. دوره‌ی ضبط‌شده نداریم؛ هر جلسه با استاد و هم‌کلاسی‌هایت است.
+    <section className="overflow-hidden bg-navy py-24 text-white">
+      <div className="container-x grid items-center gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
+        <div>
+          <Reveal>
+            <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">کلاس آنلاین، ولی زنده.</h2>
+            <p className="mt-4 max-w-md text-[17px] leading-8 text-white/80">
+              فرتاش فقط کلاس زنده برگزار می‌کند. استاد و هم‌کلاسی‌هایت را می‌بینی، حرف می‌زنی و همان لحظه اصلاح می‌شوی.
             </p>
-          </div>
-          <Link href="/online-classes" className="justify-self-start text-base font-semibold text-white underline decoration-white/30 decoration-2 underline-offset-8 hover:decoration-white lg:justify-self-end">
-            درباره‌ی کلاس‌های آنلاین
-          </Link>
+          </Reveal>
+          <dl className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {points.map((p, i) => (
+              <Reveal key={p.title} delay={120 + i * 70}>
+                <dt className="font-bold">{p.title}</dt>
+                <dd className="mt-1.5 text-[15px] leading-7 text-white/75">{p.desc}</dd>
+              </Reveal>
+            ))}
+          </dl>
+          <Link href="/online-classes" className="btn mt-10 bg-white text-navy hover:bg-white/90">درباره‌ی کلاس‌های آنلاین</Link>
         </div>
-        <SessionTimeline dark className="mt-14" />
-        <dl className="mt-16 grid gap-x-10 gap-y-8 border-t border-white/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
-          {points.map((p) => (
-            <div key={p.title}>
-              <dt className="font-bold">{p.title}</dt>
-              <dd className="mt-2 text-[15px] leading-7 text-white/70">{p.desc}</dd>
-            </div>
-          ))}
-        </dl>
+        <Reveal delay={150}>
+          <ClassWindow className="text-white" />
+        </Reveal>
       </div>
     </section>
   );
@@ -165,31 +166,34 @@ function Week() {
   const tone: Record<string, string> = {
     class: 'bg-brand-600 text-white',
     club: 'bg-navy text-white',
-    self: 'bg-paper text-ink border border-rule',
-    off: 'text-slate-400 border border-dashed border-rule',
+    self: 'bg-paper text-ink',
+    off: 'bg-transparent text-slate-700',
   };
   return (
-    <section className="border-b border-rule bg-tint py-24">
+    <section className="bg-tint py-24">
       <div className="container-x">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-          <SectionTitle title="یک هفته‌ی معمولی در فرتاش" />
-          <p className="max-w-lg text-[17px] leading-8 text-slate-600">
-            نمونه‌ی برنامه‌ی سطح B1 با کلاس گروهی و کلاب مکالمه. کلاس‌ها زنده‌اند و بین دو جلسه، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند.
-          </p>
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+          <SectionTitle
+            title="یک هفته‌ی معمولی در فرتاش"
+            desc="نمونه‌ی برنامه‌ی سطح B1 با کلاس گروهی و کلاب مکالمه. کلاس‌ها زنده‌اند و بین دو جلسه، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند."
+          />
+          <Reveal image className="relative aspect-[3/2] overflow-hidden rounded-[20px]">
+            <Image src="/images/scenes/notebook-coffee.jpg" alt="دفتر یادداشت باز، صفحه‌کلید و یک فنجان قهوه روی میز" fill sizes="(min-width: 1024px) 540px, 100vw" className="object-cover" />
+          </Reveal>
         </div>
         <ol className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
           {days.map((x) => (
             <li key={x.d} className={cn('flex min-h-40 flex-col rounded-xl p-4', tone[x.kind])}>
-              <span className={cn('text-xs', x.kind === 'class' || x.kind === 'club' ? 'text-white/75' : 'text-slate-500')}>{x.d}</span>
+              <span className={cn('text-[13px]', x.kind === 'class' || x.kind === 'club' ? 'text-white/80' : 'text-slate-600')}>{x.d}</span>
               <span className="mt-auto font-bold">{x.what}</span>
-              {x.detail && <span className={cn('mt-1 text-xs leading-5', x.kind === 'class' || x.kind === 'club' ? 'text-white/80' : 'text-slate-500')}>{x.detail}</span>}
+              {x.detail && <span className={cn('mt-1 text-[13px] leading-5', x.kind === 'class' || x.kind === 'club' ? 'text-white/85' : 'text-slate-600')}>{x.detail}</span>}
             </li>
           ))}
         </ol>
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-600">
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-slate-700">
           <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-brand-600" /> کلاس زنده با استاد</span>
           <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-navy" /> کلاب مکالمه</span>
-          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border border-rule bg-paper" /> کار شخصی در پنل</span>
+          <span className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-paper" /> کار شخصی در پنل</span>
         </div>
       </div>
     </section>
@@ -204,8 +208,10 @@ function Teachers() {
         <Link href="/teachers" className="btn-ghost shrink-0">همه‌ی اساتید</Link>
       </div>
       <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {teachers.slice(0, 4).map((t) => (
-          <TeacherCard key={t.id} t={t} />
+        {teachers.slice(0, 4).map((t, i) => (
+          <Reveal key={t.id} delay={i * 80}>
+            <TeacherCard t={t} />
+          </Reveal>
         ))}
       </div>
       <p className="mt-8 text-sm text-slate-500">پروفایل‌های این بخش نمونه‌اند و پس از معرفی مدرس‌ها با اطلاعات و تصویر واقعی جایگزین می‌شوند.</p>
@@ -215,53 +221,57 @@ function Teachers() {
 
 function Pricing() {
   return (
-    <section id="pricing" className="scroll-mt-20 border-t border-rule bg-tint py-24">
+    <section id="pricing" className="scroll-mt-20 bg-tint py-24">
       <div className="container-x">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <SectionTitle title="شهریه‌ی ماهانه" desc="شهریه بر اساس نوع کلاس است، نه زبان. پیش از ثبت‌نام، در مشاوره مبلغ دقیق کلاس پیشنهادی را می‌گوییم." />
           <SampleBadge label="مبالغ نمونه" className="self-start sm:self-end" />
         </div>
-        <div className="mt-12 grid overflow-hidden rounded-[20px] border border-rule bg-paper lg:grid-cols-3">
+        <ul className="mt-12 space-y-3">
           {plans.map((p, i) => (
-            <div key={p.name} className={cn('relative flex flex-col p-8', i > 0 && 'border-t border-rule lg:border-r lg:border-t-0', p.featured && 'bg-brand-50/40')}>
-              <h3 className="font-display text-3xl font-bold text-ink">{p.name}</h3>
-              <p className="mt-1 text-sm text-slate-600">{p.desc}</p>
-              <p className="mt-6">
-                <span className="font-display text-5xl font-bold text-ink">{fa(p.price)}</span>
-                <span className="mr-2 text-sm text-slate-500">تومان در ماه</span>
-              </p>
-              <ul className="mt-7 flex-1 space-y-3 text-[15px] text-slate-700">
-                {p.features.map((f) => (
-                  <li key={f} className="flex gap-2.5">
-                    <Check size={18} className="mt-0.5 shrink-0 text-brand-600" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/consultation" className={cn('mt-8 w-full', p.featured ? 'btn-primary' : 'btn-ghost')}>مشاوره برای کلاس {p.name}</Link>
-            </div>
+            <Reveal
+              as="li"
+              key={p.name}
+              delay={i * 90}
+              className={cn('grid items-center gap-x-10 gap-y-4 rounded-[20px] px-6 py-7 sm:grid-cols-[1fr_auto] sm:px-8 lg:grid-cols-[14rem_1fr_auto]', p.featured ? 'bg-navy text-white' : 'bg-paper')}
+            >
+              <div>
+                <h3 className={cn('font-display text-[2rem] font-bold leading-tight', p.featured ? 'text-white' : 'text-ink')}>{p.name}</h3>
+                <p className={cn('mt-1 text-sm', p.featured ? 'text-white/80' : 'text-slate-700')}>{p.desc}</p>
+              </div>
+              <p className={cn('order-last text-[15px] leading-8 sm:col-span-2 lg:order-none lg:col-span-1', p.featured ? 'text-white/85' : 'text-slate-700')}>{p.features.join('، ')}</p>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:flex-col sm:items-end">
+                <p className="whitespace-nowrap">
+                  <span className={cn('font-display text-4xl font-bold', p.featured ? 'text-white' : 'text-ink')}>{fa(p.price)}</span>
+                  <span className={cn('mr-2 text-sm', p.featured ? 'text-white/75' : 'text-slate-600')}>تومان در ماه</span>
+                </p>
+                <Link href="/consultation" className={p.featured ? 'btn bg-white text-navy hover:bg-white/90' : 'btn-primary'}>مشاوره برای این کلاس</Link>
+              </div>
+            </Reveal>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
 }
 
 function Magazine() {
-  const lead = featuredArticle();
+  const lead = getArticles().find((a) => a.cover.image) ?? featuredArticle();
   const rest = getArticles().filter((a) => a.slug !== lead.slug).slice(0, 3);
   return (
     <section className="container-x py-24">
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <SectionTitle title="از مجله‌ی فرتاش" desc="نکته‌های گرامر، واژگان، تلفظ و آمادگی آزمون برای هر سه زبان. مقاله‌های فعلی نمونه‌اند." />
-        <Link href="/magazine" className="btn-ghost shrink-0">ورود به مجله</Link>
       </div>
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
-        <ArticleCard article={lead} />
-        <div className="lg:border-r lg:border-rule lg:pr-10 [&>article:first-child]:pt-0 [&>article:last-child]:border-0">
+        <Reveal>
+          <ArticleCard article={lead} />
+        </Reveal>
+        <div className="space-y-2 [&>article:first-child]:pt-0">
           {rest.map((a) => (
             <ArticleCard key={a.slug} article={a} variant="row" />
           ))}
+          <Link href="/magazine" className="btn-ghost mt-4">همه‌ی مقاله‌های مجله</Link>
         </div>
       </div>
     </section>
@@ -270,31 +280,20 @@ function Magazine() {
 
 function Testimonials() {
   return (
-    <section className="border-t border-rule bg-tint py-24">
-      <div className="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center">
-        <SectionTitle
-          title="تجربه‌ی زبان‌آموزان"
-          desc="این‌جا فقط تجربه‌ی زبان‌آموزان واقعی فرتاش منتشر می‌شود؛ با نام و اجازه‌ی خودشان، بعد از پایان دست‌کم یک سطح."
-        />
-        <div className="rounded-[20px] border border-dashed border-rule bg-paper p-8 sm:p-10">
-          <MessageSquareQuote size={28} className="text-brand-600" aria-hidden />
-          <p className="mt-5 font-display text-3xl font-semibold leading-snug text-ink">هنوز تجربه‌ای منتشر نشده است.</p>
-          <p className="mt-3 max-w-md leading-8 text-slate-600">
-            اولین تجربه‌ها پس از پایان دوره‌ی اول کلاس‌ها، با نام، زبان و سطح زبان‌آموز در همین بخش می‌آیند.
-          </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-3" aria-hidden>
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="space-y-2 rounded-xl border border-rule p-4">
-                <div className="h-2 w-full rounded bg-slate-100" />
-                <div className="h-2 w-4/5 rounded bg-slate-100" />
-                <div className="h-2 w-3/5 rounded bg-slate-100" />
-                <div className="flex items-center gap-2 pt-3">
-                  <div className="h-7 w-7 rounded-full bg-slate-100" />
-                  <div className="h-2 w-16 rounded bg-slate-100" />
-                </div>
-              </div>
-            ))}
-          </div>
+    <section className="bg-tint py-24">
+      <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <Reveal image className="relative order-last aspect-[3/2] overflow-hidden rounded-[20px] lg:order-none">
+          <Image src="/images/scenes/handwriting.jpg" alt="دستی که با خودکار در دفتر یادداشت می‌نویسد" fill sizes="(min-width: 1024px) 540px, 100vw" className="object-cover" />
+        </Reveal>
+        <div>
+          <SectionTitle
+            title="تجربه‌ی زبان‌آموزان"
+            desc="این‌جا فقط تجربه‌ی زبان‌آموزان واقعی فرتاش منتشر می‌شود؛ با نام و اجازه‌ی خودشان، بعد از پایان دست‌کم یک سطح."
+          />
+          <Reveal delay={120} className="mt-8 rounded-2xl bg-paper p-6">
+            <p className="font-display text-2xl font-semibold leading-snug text-ink">هنوز تجربه‌ای منتشر نشده است.</p>
+            <p className="mt-2 leading-8 text-slate-700">اولین تجربه‌ها پس از پایان دوره‌ی اول کلاس‌ها، با نام، زبان و سطح زبان‌آموز در همین بخش می‌آیند.</p>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -308,17 +307,20 @@ function Faq() {
         <div>
           <SectionTitle title="سوال‌های رایج" />
           <p className="mt-4 text-[15px] leading-7 text-slate-600">
-            جوابت این‌جا نبود؟ در <Link href="/consultation" className="font-semibold text-brand-700 hover:underline">گفت‌وگوی مشاوره</Link> بپرس.
+            جوابت این‌جا نبود؟ با <a href={contact.phoneHref} dir="ltr" className="font-semibold text-brand-700 hover:underline">{contact.phone}</a> تماس بگیر یا در <Link href="/consultation" className="font-semibold text-brand-700 hover:underline">گفت‌وگوی مشاوره</Link> بپرس.
           </p>
+          <Reveal image className="relative mt-8 hidden aspect-[3/2] overflow-hidden rounded-[20px] lg:block">
+            <Image src="/images/scenes/desk-laptop.jpg" alt="میز کار با لپ‌تاپ، نمایشگر و چراغ مطالعه" fill sizes="360px" className="object-cover" />
+          </Reveal>
         </div>
-        <div className="border-t border-ink/80">
+        <div className="space-y-2">
           {faqs.map((f, i) => (
-            <details key={f.q} className="group border-b border-rule" open={i === 0}>
+            <details key={f.q} className="group rounded-xl bg-tint px-5" open={i === 0}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
                 {f.q}
-                <ChevronDown size={20} className="shrink-0 text-slate-400 transition-transform group-open:rotate-180" />
+                <ChevronDown size={20} className="shrink-0 text-slate-500 transition-transform group-open:rotate-180" />
               </summary>
-              <p className="-mt-1 max-w-2xl pb-6 leading-8 text-slate-600">{f.a}</p>
+              <p className="-mt-1 max-w-2xl pb-6 leading-8 text-slate-700">{f.a}</p>
             </details>
           ))}
         </div>

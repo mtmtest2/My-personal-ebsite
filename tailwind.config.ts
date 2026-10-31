@@ -31,6 +31,8 @@ const config: Config = {
           500: '#06b6d4',
         },
       },
+      // Nothing meant to be read goes below 13px: Persian letterforms read small.
+      fontSize: { xs: ['0.8125rem', { lineHeight: '1.25rem' }] },
       keyframes: {
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
       },
