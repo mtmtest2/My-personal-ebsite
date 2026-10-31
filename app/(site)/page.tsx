@@ -40,7 +40,7 @@ function Hero() {
   return (
     <section className="container-x grid grid-cols-1 items-center gap-14 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32 lg:pt-16">
       <div>
-        <h1 className="h-display text-[3.4rem] sm:text-7xl lg:text-[5.2rem]">به زبان تازه حرف بزن، از همین هفته.</h1>
+        <h1 className="h-display text-[2.6rem] sm:text-7xl lg:text-[5.2rem]">به زبان تازه حرف بزن، از همین هفته.</h1>
         <p className="mt-7 max-w-lg text-lg leading-9 text-slate-600">
           کلاس‌های آنلاین زنده‌ی انگلیسی، آلمانی و فرانسوی، با گروه کوچک یا خصوصی. اول سطحت را رایگان می‌سنجیم، بعد کلاس و استاد مناسبت را با هم انتخاب می‌کنیم.
         </p>
@@ -77,12 +77,18 @@ function HowItWorks() {
     <section id="how" className="scroll-mt-20 bg-tint py-24">
       <div className="container-x">
         <SectionTitle title="از مشاوره تا اولین کلاس" desc="مسیر شروع در فرتاش چهار قدم دارد و هر قدم را با یک آدم واقعی برمی‌داری، نه یک فرم خودکار." />
-        <ol className="mt-14 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {/* The strip deepens from paper to brand blue: each step is a little further into the course. */}
+        <ol className="mt-14 grid overflow-hidden rounded-[20px] md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={i * 90} className="flex flex-col rounded-2xl bg-paper p-6">
-              <h3 className="font-display text-[1.9rem] font-bold leading-tight text-ink">{s.title}</h3>
-              <p className="mt-1 text-sm font-semibold text-brand-700">{s.time}</p>
-              <p className="mt-4 text-[15px] leading-7 text-slate-700">{s.desc}</p>
+            <Reveal
+              as="li"
+              key={s.title}
+              delay={i * 90}
+              className={cn('flex flex-col p-7', ['bg-paper', 'bg-brand-50', 'bg-brand-100', 'bg-brand-600 text-white'][i])}
+            >
+              <h3 className={cn('font-display text-[1.9rem] font-bold leading-tight', i === 3 ? 'text-white' : 'text-ink')}>{s.title}</h3>
+              <p className={cn('mt-1 text-sm font-semibold', i === 3 ? 'text-white/85' : 'text-brand-700')}>{s.time}</p>
+              <p className={cn('mt-4 text-[15px] leading-7', i === 3 ? 'text-white/90' : 'text-slate-700')}>{s.desc}</p>
             </Reveal>
           ))}
         </ol>
@@ -242,7 +248,7 @@ function Pricing() {
               <p className={cn('order-last text-[15px] leading-8 sm:col-span-2 lg:order-none lg:col-span-1', p.featured ? 'text-white/85' : 'text-slate-700')}>{p.features.join('، ')}</p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:flex-col sm:items-end">
                 <p className="whitespace-nowrap">
-                  <span className={cn('font-display text-4xl font-bold', p.featured ? 'text-white' : 'text-ink')}>{fa(p.price)}</span>
+                  <span className={cn('tabular font-display text-4xl font-bold', p.featured ? 'text-white' : 'text-ink')}>{fa(p.price)}</span>
                   <span className={cn('mr-2 text-sm', p.featured ? 'text-white/75' : 'text-slate-600')}>تومان در ماه</span>
                 </p>
                 <Link href="/consultation" className={p.featured ? 'btn bg-white text-navy hover:bg-white/90' : 'btn-primary'}>مشاوره برای این کلاس</Link>

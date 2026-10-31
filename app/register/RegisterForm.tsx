@@ -26,32 +26,32 @@ export default function RegisterForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="first">نام</label>
-          <input id="first" className="input" required />
+          <input id="first" name="given-name" autoComplete="given-name" className="input" required />
         </div>
         <div>
           <label className="label" htmlFor="last">نام خانوادگی</label>
-          <input id="last" className="input" required />
+          <input id="last" name="family-name" autoComplete="family-name" className="input" required />
         </div>
       </div>
       <div>
         <label className="label" htmlFor="phone">شماره موبایل</label>
-        <input id="phone" className="input" dir="ltr" placeholder="09xx xxx xxxx" required />
+        <input id="phone" name="tel" type="tel" inputMode="tel" autoComplete="tel" className="input" dir="ltr" placeholder="0912 345 6789…" required />
       </div>
       <div>
         <label className="label" htmlFor="lang">{role === 'teacher' ? 'زبان تدریس' : 'زبان مورد علاقه'}</label>
-        <select id="lang" className="input">
+        <select id="lang" name="language" className="input">
           {languages.map((l) => <option key={l.code}>{l.name}</option>)}
         </select>
       </div>
       {role === 'teacher' && (
         <div>
           <label className="label" htmlFor="exp">سابقه‌ی تدریس (سال)</label>
-          <input id="exp" type="number" min={0} className="input" dir="ltr" />
+          <input id="exp" name="experience" type="number" inputMode="numeric" min={0} className="input" dir="ltr" />
         </div>
       )}
       <div>
         <label className="label" htmlFor="pass">رمز عبور</label>
-        <input id="pass" type="password" className="input" dir="ltr" placeholder="حداقل ۸ کاراکتر" minLength={8} required />
+        <input id="pass" name="new-password" type="password" autoComplete="new-password" className="input" dir="ltr" placeholder="حداقل ۸ کاراکتر…" minLength={8} required />
       </div>
       <label className="flex items-start gap-2 text-sm leading-6 text-slate-600">
         <input type="checkbox" required className="mt-1 h-4 w-4 rounded border-slate-300 accent-brand-600" />

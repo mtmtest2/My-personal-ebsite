@@ -26,7 +26,7 @@ export default function LoginPage() {
         <RolePicker value={role} onChange={setRole} />
         <div>
           <label className="label" htmlFor="email">ایمیل یا شماره موبایل</label>
-          <input id="email" className="input" dir="ltr" placeholder="you@example.com" required />
+          <input id="email" name="username" autoComplete="username" spellCheck={false} className="input" dir="ltr" placeholder="you@example.com…" required />
         </div>
         <div>
           <div className="flex items-center justify-between">
@@ -34,8 +34,8 @@ export default function LoginPage() {
             <a href="#" className="mb-1.5 text-xs font-medium text-brand-600 hover:underline">فراموشی رمز؟</a>
           </div>
           <div className="relative">
-            <input id="password" type={show ? 'text' : 'password'} className="input pl-11" dir="ltr" placeholder="••••••••" required />
-            <button type="button" onClick={() => setShow((v) => !v)} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="نمایش رمز">
+            <input id="password" name="password" autoComplete="current-password" type={show ? 'text' : 'password'} className="input pl-11" dir="ltr" placeholder="••••••••" required />
+            <button type="button" onClick={() => setShow((v) => !v)} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label={show ? 'پنهان کردن رمز' : 'نمایش رمز'}>
               {show ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>

@@ -48,7 +48,7 @@ export default function Navbar() {
               زبان‌ها <ChevronDown size={15} className="transition-transform group-focus-within:rotate-180 group-hover:rotate-180" />
             </button>
             {/* Opens on hover or keyboard focus; the padding bridges the gap so the pointer can reach it. */}
-            <div className="absolute right-0 top-full hidden pt-2 group-focus-within:block group-hover:block">
+            <div className="menu-pop absolute right-0 top-full hidden pt-2 group-focus-within:block group-hover:block">
               <ul /* taste-skill-ignore: open menu */ className="w-60 rounded-xl bg-paper p-2 shadow-xl shadow-ink/15 dark:bg-tint">
                 {languages.map((l) => (
                   <li key={l.slug}>
@@ -85,7 +85,7 @@ export default function Navbar() {
         </div>
       </nav>
       {open && (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto bg-paper lg:hidden">
+        <div className="sheet-in max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-paper lg:hidden">
           <div className="container-x flex flex-col gap-1 py-4">
             <Link href={links[0].href} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-brand-50">{links[0].label}</Link>
             <p className="px-3 pb-1 pt-3 text-[13px] text-slate-600">زبان‌ها</p>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/vazirmatn';
 import '@fontsource/markazi-text/500.css';
 import '@fontsource/markazi-text/600.css';
@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     template: '%s | فرتاش',
   },
   description: 'فرتاش؛ آموزشگاه آنلاین زبان با کلاس‌های زنده، اساتید مجرب و برنامه‌ی شخصی‌سازی‌شده برای هر زبان‌آموز.',
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0d1224' },
+  ],
 };
 
 const themeScript = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`;

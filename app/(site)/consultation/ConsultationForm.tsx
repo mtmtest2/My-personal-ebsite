@@ -109,7 +109,7 @@ export default function ConsultationForm({ initialLang: langParam, initialTeache
         </div>
         <div>
           <label className="label" htmlFor="c-phone">شماره موبایل</label>
-          <input id="c-phone" name="phone" className="input" dir="ltr" inputMode="tel" autoComplete="tel" placeholder="09xx xxx xxxx" required />
+          <input id="c-phone" name="phone" className="input" dir="ltr" inputMode="tel" autoComplete="tel" placeholder="0912 345 6789…" required />
         </div>
         <div className="sm:col-span-2">
           <label className="label" htmlFor="c-note">توضیح بیشتر <span className="font-normal text-slate-500">(اختیاری)</span></label>

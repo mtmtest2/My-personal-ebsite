@@ -7,6 +7,8 @@ const scale = (name: string, steps: number[]) => Object.fromEntries(steps.map((s
 
 const config: Config = {
   darkMode: 'class',
+  // Hover styles only on devices that can hover, so taps on phones don't leave cards stuck in hover.
+  future: { hoverOnlyWhenSupported: true },
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.ts'],
   theme: {
     extend: {

@@ -115,7 +115,7 @@ export default function DashboardShell({
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
-          <aside className="absolute inset-y-0 right-0 w-72 bg-paper shadow-2xl">{sidebar}</aside>
+          <aside className="drawer-in absolute inset-y-0 right-0 w-72 overflow-y-auto overscroll-contain bg-paper shadow-2xl">{sidebar}</aside>
         </div>
       )}
 
@@ -145,7 +145,7 @@ export default function DashboardShell({
             </div>
           </div>
         </header>
-        <main className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
+        <main id="main" tabIndex={-1} className="px-4 py-6 outline-none sm:px-6 lg:px-8 lg:py-8">{children}</main>
       </div>
     </div>
   );

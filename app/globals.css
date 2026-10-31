@@ -32,6 +32,10 @@
     --slate-800: 30 41 59;
     --slate-900: 15 23 42;
     --mark: 126 230 245;
+    /* Motion tokens (Emil Kowalski): strong ease-out for UI, drawer curve for sheets. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   }
   /* Dark: deep blue-black paper, light ink; the brand scale's light and dark
      ends swap so tints stay subtle and text stays readable. */
@@ -68,6 +72,27 @@
 
   html {
     scroll-behavior: smooth;
+    /* Anchors and focused fields land below the sticky bar. */
+    scroll-padding-top: 6rem;
+    interpolate-size: allow-keywords;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a,
+  button,
+  summary,
+  label,
+  [role='tab'] {
+    touch-action: manipulation;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
   }
   body {
     @apply bg-paper text-body antialiased transition-colors duration-200;
@@ -160,11 +185,11 @@
 
 /* New phrase settles in when a language tab is chosen. */
 @keyframes phrase-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(6px); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: none; }
 }
 .phrase-in {
-  animation: phrase-in 0.35s ease-out both;
+  animation: phrase-in 0.35s var(--ease-out) both;
 }
 
 /* Magazine article body: a ~68-character measure, generous leading for Persian text. */
@@ -218,5 +243,44 @@
   }
   html.js .reveal-img.is-in img {
     transform: none;
+  }
+}
+
+/* Prices, times and counters keep their digits aligned. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Menus and sheets (Emil Kowalski): enter from the trigger, fast ease-out, interruptible transitions. */
+@media (prefers-reduced-motion: no-preference) {
+  .menu-pop > * {
+    transform-origin: top right;
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.96) translateY(-4px);
+    }
+  }
+  .sheet-in {
+    transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+    @starting-style {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+  .drawer-in {
+    transition: transform 320ms var(--ease-drawer);
+    @starting-style {
+      transform: translateX(100%);
+    }
+  }
+  /* FAQ answers open with their height instead of jumping (progressive enhancement). */
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition: block-size 260ms var(--ease-out), content-visibility 260ms allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
   }
 }

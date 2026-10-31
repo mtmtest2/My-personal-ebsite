@@ -5,7 +5,7 @@ const codes: Record<string, string> = { english: 'en', german: 'de', french: 'fr
 /** A run of English, German or French inside Persian text: correct `lang`, isolated LTR direction. */
 export function Foreign({ lang, children, className }: { lang: string; children: React.ReactNode; className?: string }) {
   return (
-    <span lang={codes[lang] ?? lang} dir="ltr" className={className}>
+    <span lang={codes[lang] ?? lang} dir="ltr" translate="no" className={className}>
       {children}
     </span>
   );
