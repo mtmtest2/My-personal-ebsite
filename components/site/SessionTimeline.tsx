@@ -27,10 +27,10 @@ export default function SessionTimeline({ className, dark = false }: { className
       <ol className="grid gap-9 sm:mt-5 sm:flex sm:gap-0">
         {segments.map((s, i) => (
           <li key={s.title} style={{ flexGrow: s.min, flexBasis: 0 }} className={cn('border-r-2 pr-4 sm:border-r-0 sm:pr-0 sm:pl-3', i === 2 || i === 3 ? 'border-brand-600' : dark ? 'border-white/30' : 'border-brand-200')}>
-            <p className={cn('font-display text-3xl font-bold leading-none', dark ? 'text-white' : 'text-ink')}>
+            <p className={cn('font-display text-3xl font-semibold leading-none', dark ? 'text-white' : 'text-ink')}>
               {fa(s.min)}<span className={cn('mr-1 font-sans text-xs font-medium', dark ? 'text-white/60' : 'text-slate-500')}>دقیقه</span>
             </p>
-            <p className={cn('mt-2 text-sm font-bold', dark ? 'text-white' : 'text-ink')}>{s.title}</p>
+            <p className={cn('mt-2 text-sm font-semibold', dark ? 'text-white' : 'text-ink')}>{s.title}</p>
             <p className={cn('mt-1 text-xs leading-5', dark ? 'text-white/70' : 'text-slate-500')}>{s.desc}</p>
           </li>
         ))}

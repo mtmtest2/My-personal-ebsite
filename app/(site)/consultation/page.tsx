@@ -41,17 +41,17 @@ export default async function ConsultationPage({ searchParams }: Props) {
                 <Image src="/images/scenes/laptop-calendar.jpg" alt="مردی پشت لپ‌تاپ کنار یک تقویم دیواری بزرگ" fill priority sizes="(min-width: 1024px) 420px, 100vw" className="object-cover" style={{ objectPosition: '50% 38%' }} />
               </div>
               <div className="p-7 sm:p-8">
-              <h2 className="font-display text-3xl font-bold text-ink">بعد از ارسال درخواست</h2>
+              <h2 className="font-display text-3xl font-semibold text-ink">بعد از ارسال درخواست</h2>
               <ol className="mt-6 space-y-5">
                 {next.map((s) => (
                   <li key={s.title}>
-                    <p className="text-lg font-bold text-ink">{s.title}</p>
+                    <p className="text-lg font-semibold text-ink">{s.title}</p>
                     <p className="mt-1 text-[15px] leading-7 text-slate-700">{s.desc}</p>
                   </li>
                 ))}
               </ol>
               <p className="mt-8 rounded-xl bg-paper px-4 py-3 text-sm leading-7 text-slate-700">
-                ترجیح می‌دهی خودت تماس بگیری؟ <a href={contact.phoneHref} dir="ltr" className="font-bold text-brand-700 hover:underline">{contact.phone}</a>
+                ترجیح می‌دهی خودت تماس بگیری؟ <a href={contact.phoneHref} dir="ltr" className="font-semibold text-brand-700 hover:underline">{contact.phone}</a>
               </p>
               </div>
             </div>

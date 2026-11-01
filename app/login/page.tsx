@@ -40,13 +40,13 @@ export default function LoginPage() {
             </button>
           </div>
         </div>
-        <label className="flex items-center gap-2 text-sm text-slate-600">
+        <label className="flex items-center gap-2 text-[15px] text-slate-600">
           <input type="checkbox" className="h-4 w-4 rounded border-slate-300 accent-brand-600" /> مرا به خاطر بسپار
         </label>
         <button type="submit" disabled={loading} className="btn-gradient w-full py-3">
           {loading ? 'در حال ورود…' : <>ورود به پنل <LogIn size={18} /></>}
         </button>
-        <p className="text-center text-sm text-slate-500">
+        <p className="text-center text-[15px] text-slate-600">
           حساب کاربری نداری؟ <Link href="/register" className="font-semibold text-brand-600 hover:underline">ثبت‌نام کن</Link>
         </p>
       </form>

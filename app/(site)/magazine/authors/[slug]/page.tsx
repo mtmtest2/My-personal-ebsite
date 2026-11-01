@@ -29,7 +29,7 @@ export default async function AuthorPage({ params }: Props) {
         <section className="container-x pb-14 pt-8 lg:pt-12">
           <Breadcrumbs items={[{ href: '/magazine', label: 'مجله' }, { label: 'نویسندگان' }, { label: author.name }]} />
           <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center">
-            <span className="grid h-24 w-24 shrink-0 place-items-center rounded-full bg-brand-50 font-display text-5xl font-bold text-brand-600" aria-hidden>{author.name.charAt(0)}</span>
+            <span className="grid h-24 w-24 shrink-0 place-items-center rounded-full bg-brand-50 font-display text-5xl font-semibold text-brand-600" aria-hidden>{author.name.charAt(0)}</span>
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 <h1 className="h-display text-5xl lg:text-[4.4rem]">{author.name}</h1>
@@ -46,7 +46,7 @@ export default async function AuthorPage({ params }: Props) {
           )}
         </section>
         <section className="container-x pb-24">
-          <h2 className="pt-6 text-lg font-bold text-ink">{fa(list.length)} مقاله</h2>
+          <h2 className="pt-6 text-lg font-semibold text-ink">{fa(list.length)} مقاله</h2>
           <div className="mt-10"><ArticleGrid articles={list} /></div>
         </section>
       </>

@@ -21,8 +21,8 @@ export default function RolePicker({ value, onChange, allowAdmin = true }: { val
           type="button"
           onClick={() => onChange(r.id)}
           className={cn(
-            'flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition',
-            value === r.id ? 'bg-paper text-brand-700 shadow-sm' : 'text-slate-500 hover:text-slate-800',
+            'flex items-center justify-center gap-2 rounded-xl py-2.5 text-[15px] font-semibold transition-colors',
+            value === r.id ? 'bg-paper text-brand-700' : 'text-slate-500 hover:text-slate-800',
           )}
         >
           <r.icon size={16} /> {r.label}

@@ -6,7 +6,7 @@ export default function MagazineCta({ lang }: { lang?: Language }) {
   return (
     <aside className="grid items-center gap-6 rounded-[20px] bg-tint p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:gap-12">
       <div>
-      <p className="font-display text-3xl font-bold leading-snug text-ink">
+      <p className="font-display text-3xl font-semibold leading-snug text-ink">
         {lang ? `می‌خواهی ${lang.name} را با استاد تمرین کنی؟` : 'می‌خواهی با استاد تمرین کنی؟'}
       </p>
       <p className="mt-2 max-w-xl leading-8 text-slate-600">

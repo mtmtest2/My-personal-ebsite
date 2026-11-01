@@ -57,8 +57,8 @@ export default async function LanguagePage({ params }: Props) {
           <div>
             <Breadcrumbs items={[{ href: '/', label: 'فرتاش' }, { href: '/#languages', label: 'زبان‌ها' }, { label: lang.name }]} />
             <h1 className="mt-10">
-              <span lang={lang.code} dir="ltr" className="block text-right font-display text-[5rem] font-bold leading-none text-ink sm:text-[7rem]">{lang.native}</span>
-              <span className="mt-4 block text-2xl font-bold text-ink sm:text-3xl">کلاس آنلاین زنده‌ی {lang.name}</span>
+              <span lang={lang.code} dir="ltr" className="block text-right font-display text-[5rem] font-semibold leading-none text-ink sm:text-[7rem]">{lang.native}</span>
+              <span className="mt-4 block text-2xl font-semibold text-ink sm:text-3xl">کلاس آنلاین زنده‌ی {lang.name}</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-9 text-slate-600">{lang.intro}</p>
             <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -79,7 +79,7 @@ export default async function LanguagePage({ params }: Props) {
             <ul className="mt-12 space-y-2">
               {tracks.map((t) => (
                 <Reveal as="li" key={t.title} className="grid gap-2 rounded-2xl bg-paper px-6 py-6 sm:grid-cols-[14rem_1fr] sm:gap-8 sm:px-8">
-                  <h3 className="text-lg font-bold text-ink">{t.title}</h3>
+                  <h3 className="text-lg font-semibold text-ink">{t.title}</h3>
                   <p className="leading-8 text-slate-700">{t.desc}</p>
                 </Reveal>
               ))}
@@ -95,7 +95,7 @@ export default async function LanguagePage({ params }: Props) {
         <section className="bg-navy py-24 text-white">
           <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
             <Reveal>
-              <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">یک لحظه از کلاس {lang.name}</h2>
+              <h2 className="font-display text-[2.6rem] font-semibold leading-[1.15] sm:text-5xl">یک لحظه از کلاس {lang.name}</h2>
               <p className="mt-4 max-w-md text-[17px] leading-8 text-white/80">درس روی صفحه‌ی مشترک است، استاد صدایت را می‌شنود و همان لحظه اصلاح می‌کند؛ سؤال‌هایت را هم می‌توانی در گفت‌وگوی کلاس بنویسی.</p>
             </Reveal>
             <Reveal delay={120}>
@@ -109,8 +109,8 @@ export default async function LanguagePage({ params }: Props) {
           <ol className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
             {levels.map((lv, i) => (
               <Reveal as="li" key={lv.code} delay={i * 60} className="flex flex-col rounded-2xl bg-tint p-5">
-                <span dir="ltr" className="text-right font-display text-4xl font-bold text-brand-600">{lv.code}</span>
-                <span className="mt-1 text-sm font-bold text-ink">{lv.name}</span>
+                <span dir="ltr" className="text-right font-display text-4xl font-semibold text-brand-600">{lv.code}</span>
+                <span className="mt-1 text-sm font-semibold text-ink">{lv.name}</span>
                 <span className="mt-3 text-[15px] leading-7 text-slate-700">{lv.can}</span>
               </Reveal>
             ))}

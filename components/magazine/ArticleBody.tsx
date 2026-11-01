@@ -66,7 +66,7 @@ function BlockView({ b, code }: { b: Block; code: string }) {
       return (
         <aside className="my-8 flex gap-3 border-r-[3px] border-brand-600 pr-5">
           <div>
-            <p className="text-sm font-bold text-brand-700">نکته</p>
+            <p className="text-sm font-semibold text-brand-700">نکته</p>
             <p className="mt-1 !my-0"><Inline text={b.text} /></p>
           </div>
         </aside>

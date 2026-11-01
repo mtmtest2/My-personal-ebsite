@@ -46,14 +46,14 @@ export default function Toc({ items }: { items: Heading[] }) {
   return (
     <>
       <details className="group rounded-xl bg-tint lg:hidden">
-        <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-bold text-ink [&::-webkit-details-marker]:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
           فهرست مطالب
           <ChevronDown size={18} className="text-slate-400 transition-transform group-open:rotate-180" />
         </summary>
         <nav aria-label="فهرست مطالب" className="px-4 pb-4">{list}</nav>
       </details>
       <nav aria-label="فهرست مطالب" className="hidden lg:block">
-        <p className="mb-3 text-sm font-bold text-ink">فهرست مطالب</p>
+        <p className="mb-3 text-sm font-semibold text-ink">فهرست مطالب</p>
         {list}
       </nav>
     </>

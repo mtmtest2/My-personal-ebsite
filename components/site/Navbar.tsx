@@ -69,7 +69,7 @@ export default function Navbar() {
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
           <ThemeToggle />
-          <Link href="/login" className="btn-ghost">ورود</Link>
+          <Link href="/login" className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-ink">ورود</Link>
           <Link href="/consultation" className="btn-primary">تعیین سطح رایگان</Link>
         </div>
         <div className="flex items-center gap-1 lg:hidden">

@@ -36,7 +36,7 @@ export default function ShareButtons({ title, path }: { title: string; path: str
   const chip = 'inline-flex items-center gap-1.5 rounded-lg bg-tint px-3 py-1.5 text-sm text-slate-700 transition-colors hover:bg-brand-50 hover:text-ink active:scale-[0.97]';
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="ml-1 text-sm font-bold text-ink">اشتراک‌گذاری</span>
+      <span className="ml-1 text-sm font-semibold text-ink">اشتراک‌گذاری</span>
       {canShare && (
         <button type="button" onClick={() => navigator.share({ title, url }).catch(() => {})} className={chip}>
           <Share2 size={15} /> ارسال

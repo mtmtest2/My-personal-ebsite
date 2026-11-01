@@ -22,7 +22,7 @@ export default function TeacherCard({ t, full = false }: { t: Teacher; full?: bo
       <div className={cn('relative flex aspect-[5/4] flex-col justify-between overflow-hidden rounded-[20px] p-5 [container-type:inline-size]', tones[lang.code])}>
         <div className="flex items-start justify-between">
           <Foreign lang={lang.code} className={cn('font-display text-lg font-semibold', lang.code === 'fr' ? 'text-white/75' : 'text-slate-600')}>{lang.native}</Foreign>
-          <span className={cn('grid h-11 w-11 place-items-center rounded-full text-lg font-bold', lang.code === 'fr' ? 'bg-white text-navy' : 'bg-paper text-brand-700')} aria-hidden>
+          <span className={cn('grid h-11 w-11 place-items-center rounded-full text-lg font-semibold', lang.code === 'fr' ? 'bg-white text-navy' : 'bg-paper text-brand-700')} aria-hidden>
             {t.name.charAt(0)}
           </span>
         </div>
@@ -36,7 +36,7 @@ export default function TeacherCard({ t, full = false }: { t: Teacher; full?: bo
           ))}
         </ul>
       </div>
-      <h3 className="mt-4 flex flex-wrap items-center gap-2 text-lg font-bold text-ink">
+      <h3 className="mt-4 flex flex-wrap items-center gap-2 text-lg font-semibold text-ink">
         {t.name}
         {t.isSample && <SampleBadge label="پروفایل نمونه" />}
       </h3>

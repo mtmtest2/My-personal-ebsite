@@ -47,7 +47,7 @@ export default async function SearchPage({ searchParams }: Props) {
               <ArticleGrid articles={results} />
             ) : (
               <div className="rounded-[20px] px-6 py-14 text-center">
-                <p className="text-lg font-bold text-ink">مقاله‌ای پیدا نشد.</p>
+                <p className="text-lg font-semibold text-ink">مقاله‌ای پیدا نشد.</p>
                 <p className="mt-2 text-slate-600">کلمه‌ی کوتاه‌تری امتحان کن یا یکی از موضوع‌ها را ببین.</p>
                 <ul className="mt-6 flex flex-wrap justify-center gap-2">
                   {topics.map((t) => (

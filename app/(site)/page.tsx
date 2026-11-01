@@ -29,7 +29,7 @@ export default function HomePage() {
         <Testimonials />
         <Faq />
         <CtaBand
-          title="اول با یک مشاور حرف بزن."
+          title="اول با یک مشاور حرف بزن"
           desc="مشاوره و تعیین سطح رایگان است و تعهدی برای ثبت‌نام ایجاد نمی‌کند."
           primary={{ href: '/consultation', label: 'درخواست تعیین سطح' }}
           secondary={{ href: '/online-classes', label: 'کلاس‌ها چطور برگزار می‌شوند' }}
@@ -43,7 +43,7 @@ function Hero() {
   return (
     <section className="container-x grid grid-cols-1 items-center gap-14 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-32 lg:pt-16">
       <div>
-        <h1 className="h-display text-[2.6rem] sm:text-7xl lg:text-[5.2rem]">به زبان تازه حرف بزن، از همین هفته.</h1>
+        <h1 className="h-display text-[2.6rem] sm:text-7xl lg:text-[5.2rem]">به زبان تازه حرف بزن، از همین هفته</h1>
         <p className="mt-7 max-w-lg text-lg leading-9 text-slate-600">
           کلاس‌های آنلاین زنده‌ی انگلیسی، آلمانی و فرانسوی، با گروه کوچک یا خصوصی. اول سطحت را رایگان می‌سنجیم، بعد کلاس و استاد مناسبت را با هم انتخاب می‌کنیم.
         </p>
@@ -87,9 +87,9 @@ function HowItWorks() {
               as="li"
               key={s.title}
               delay={i * 90}
-              className={cn('flex flex-col p-7', ['bg-paper', 'bg-brand-50', 'bg-brand-100', 'bg-brand-600 text-white'][i])}
+              className={cn('flex flex-col p-7 lg:p-6', ['bg-paper', 'bg-brand-50', 'bg-brand-100', 'bg-brand-600 text-white'][i])}
             >
-              <h3 className={cn('font-display text-[1.9rem] font-bold leading-tight', i === 3 ? 'text-white' : 'text-ink')}>{s.title}</h3>
+              <h3 className={cn('font-display text-[1.9rem] font-semibold leading-tight lg:text-[1.6rem] xl:text-[1.75rem]', i === 3 ? 'text-white' : 'text-ink')}>{s.title}</h3>
               <p className={cn('mt-1 text-sm font-semibold', i === 3 ? 'text-white/85' : 'text-brand-700')}>{s.time}</p>
               <p className={cn('mt-4 text-[15px] leading-7', i === 3 ? 'text-white/90' : 'text-slate-700')}>{s.desc}</p>
             </Reveal>
@@ -113,7 +113,7 @@ function Languages() {
             >
               <span lang={l.code} dir="ltr" className="text-right font-display text-5xl font-semibold text-ink">{l.native}</span>
               <span>
-                <span className="block text-lg font-bold text-ink">{l.name}</span>
+                <span className="block text-lg font-semibold text-ink">{l.name}</span>
                 <span className="mt-1 block text-[15px] leading-7 text-slate-700">{l.tracks}</span>
               </span>
               <span lang={l.code} dir="ltr" className="text-left font-display text-2xl leading-snug text-slate-700">
@@ -139,7 +139,7 @@ function OnlineClasses() {
       <div className="container-x grid items-center gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
         <div>
           <Reveal>
-            <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">کلاس آنلاین، ولی زنده.</h2>
+            <h2 className="font-display text-[2.6rem] font-semibold leading-[1.15] sm:text-5xl">کلاس آنلاین، ولی زنده</h2>
             <p className="mt-4 max-w-md text-[17px] leading-8 text-white/80">
               فرتاش فقط کلاس زنده برگزار می‌کند. استاد و هم‌کلاسی‌هایت را می‌بینی، حرف می‌زنی و همان لحظه اصلاح می‌شوی.
             </p>
@@ -147,7 +147,7 @@ function OnlineClasses() {
           <dl className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
             {points.map((p, i) => (
               <Reveal key={p.title} delay={120 + i * 70}>
-                <dt className="font-bold">{p.title}</dt>
+                <dt className="font-semibold">{p.title}</dt>
                 <dd className="mt-1.5 text-[15px] leading-7 text-white/75">{p.desc}</dd>
               </Reveal>
             ))}
@@ -187,14 +187,14 @@ function Week() {
             desc="نمونه‌ی برنامه‌ی سطح B1 با کلاس گروهی و کلاب مکالمه. کلاس‌ها زنده‌اند و بین دو جلسه، کارهای کوتاهی در پنل داری که استاد پیگیری‌شان می‌کند."
           />
           <Reveal image className="relative aspect-[3/2] overflow-hidden rounded-[20px]">
-            <Image src="/images/scenes/notebook-coffee.jpg" alt="دفتر یادداشت باز، صفحه‌کلید و یک فنجان قهوه روی میز" fill sizes="(min-width: 1024px) 540px, 100vw" className="object-cover" />
+            <Image src="/images/scenes/laptop-calendar.jpg" alt="مردی پشت لپ‌تاپ کنار یک تقویم دیواری بزرگ" fill sizes="(min-width: 1024px) 540px, 100vw" className="object-cover" />
           </Reveal>
         </div>
         <ol className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
           {days.map((x) => (
             <li key={x.d} className={cn('flex min-h-40 flex-col rounded-xl p-4', tone[x.kind])}>
               <span className={cn('text-[13px]', x.kind === 'class' || x.kind === 'club' ? 'text-white/80' : 'text-slate-600')}>{x.d}</span>
-              <span className="mt-auto font-bold">{x.what}</span>
+              <span className="mt-auto font-semibold">{x.what}</span>
               {x.detail && <span className={cn('mt-1 text-[13px] leading-5', x.kind === 'class' || x.kind === 'club' ? 'text-white/85' : 'text-slate-600')}>{x.detail}</span>}
             </li>
           ))}
@@ -245,13 +245,13 @@ function Pricing() {
               className={cn('grid items-center gap-x-10 gap-y-4 rounded-[20px] px-6 py-7 sm:grid-cols-[1fr_auto] sm:px-8 lg:grid-cols-[14rem_1fr_auto]', p.featured ? 'bg-navy text-white' : 'bg-paper')}
             >
               <div>
-                <h3 className={cn('font-display text-[2rem] font-bold leading-tight', p.featured ? 'text-white' : 'text-ink')}>{p.name}</h3>
+                <h3 className={cn('font-display text-[2rem] font-semibold leading-tight', p.featured ? 'text-white' : 'text-ink')}>{p.name}</h3>
                 <p className={cn('mt-1 text-sm', p.featured ? 'text-white/80' : 'text-slate-700')}>{p.desc}</p>
               </div>
               <p className={cn('order-last text-[15px] leading-8 sm:col-span-2 lg:order-none lg:col-span-1', p.featured ? 'text-white/85' : 'text-slate-700')}>{p.features.join('، ')}</p>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:flex-col sm:items-end">
                 <p className="whitespace-nowrap">
-                  <span className={cn('tabular font-display text-4xl font-bold', p.featured ? 'text-white' : 'text-ink')}>{fa(p.price)}</span>
+                  <span className={cn('tabular font-display text-4xl font-semibold', p.featured ? 'text-white' : 'text-ink')}>{fa(p.price)}</span>
                   <span className={cn('mr-2 text-sm', p.featured ? 'text-white/75' : 'text-slate-600')}>تومان در ماه</span>
                 </p>
                 <Link href="/consultation" className={p.featured ? 'btn bg-white text-navy hover:bg-white/90' : 'btn-primary'}>مشاوره برای این کلاس</Link>
@@ -300,7 +300,7 @@ function Testimonials() {
             desc="این‌جا فقط تجربه‌ی زبان‌آموزان واقعی فرتاش منتشر می‌شود؛ با نام و اجازه‌ی خودشان، بعد از پایان دست‌کم یک سطح."
           />
           <Reveal delay={120} className="mt-8 rounded-2xl bg-paper p-6">
-            <p className="font-display text-2xl font-semibold leading-snug text-ink">هنوز تجربه‌ای منتشر نشده است.</p>
+            <p className="font-display text-2xl font-semibold leading-snug text-ink">هنوز تجربه‌ای منتشر نشده است</p>
             <p className="mt-2 leading-8 text-slate-700">اولین تجربه‌ها پس از پایان دوره‌ی اول کلاس‌ها، با نام، زبان و سطح زبان‌آموز در همین بخش می‌آیند.</p>
           </Reveal>
         </div>
@@ -325,7 +325,7 @@ function Faq() {
         <div className="space-y-2">
           {faqs.map((f, i) => (
             <details key={f.q} className="group rounded-xl bg-tint px-5" open={i === 0}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <ChevronDown size={20} className="shrink-0 text-slate-500 transition-transform group-open:rotate-180" />
               </summary>

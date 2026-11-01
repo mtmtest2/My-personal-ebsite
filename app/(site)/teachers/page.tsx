@@ -29,7 +29,7 @@ export default async function TeachersPage({ searchParams }: Props) {
       <>
         <PageIntro
           crumbs={[{ href: '/', label: 'فرتاش' }, { label: 'اساتید' }]}
-          title="مدرسی که با هدفت جور باشد."
+          title="مدرسی که با هدفت جور باشد"
           media={{ src: '/images/scenes/whiteboard.jpg', alt: 'مدرسی که روی تخته‌ی سفید می‌نویسد و یک نفر کنارش گوش می‌دهد', position: '40% 50%' }}
           lead="هر مدرس روی چند سطح و یک هدف مشخص کار می‌کند: مکالمه، آزمون یا زبان کاری. در پروفایلش می‌بینی کلاسش برای چه کسی مناسب است و می‌توانی در مشاوره همان مدرس را درخواست کنی."
         />
@@ -57,7 +57,7 @@ export default async function TeachersPage({ searchParams }: Props) {
         <section className="bg-navy py-24 text-white">
           <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.4fr]">
             <Reveal>
-              <h2 className="font-display text-[2.6rem] font-bold leading-[1.15] sm:text-5xl">مدرس در کلاس چه می‌کند؟</h2>
+              <h2 className="font-display text-[2.6rem] font-semibold leading-[1.15] sm:text-5xl">مدرس در کلاس چه می‌کند؟</h2>
               <p className="mt-4 max-w-md text-[17px] leading-8 text-white/80">درس را روی صفحه‌ی مشترک می‌گذارد، از هر زبان‌آموز می‌خواهد حرف بزند و خطاها را همان لحظه، در صدا یا در گفت‌وگوی کلاس، اصلاح می‌کند.</p>
             </Reveal>
             <Reveal delay={120}>

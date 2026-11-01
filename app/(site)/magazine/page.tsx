@@ -86,7 +86,7 @@ export default function MagazineHome() {
                     <h3>
                       <Link href={`/magazine/${l.slug}`} className="group block">
                         <span lang={l.code} dir="ltr" className="block font-display text-5xl font-semibold text-ink group-hover:text-brand-700">{l.native}</span>
-                        <span className="mt-1 block text-base font-bold text-slate-600">مقاله‌های {l.name}</span>
+                        <span className="mt-1 block text-base font-semibold text-slate-600">مقاله‌های {l.name}</span>
                       </Link>
                     </h3>
                     <Link href={`/magazine/${l.slug}`} className="mt-4 inline-block text-sm font-semibold text-brand-700 underline decoration-rule decoration-2 underline-offset-[6px] hover:decoration-brand-500">
@@ -116,7 +116,7 @@ export default function MagazineHome() {
                   <Reveal as="li" key={t.slug}>
                     <Link href={`/magazine/topics/${t.slug}`} className="group flex h-full items-baseline justify-between gap-4 rounded-2xl bg-paper p-5 transition-colors hover:bg-brand-50">
                       <span>
-                        <span className="block font-display text-2xl font-bold text-ink group-hover:text-brand-700">{t.name}</span>
+                        <span className="block font-display text-2xl font-semibold text-ink group-hover:text-brand-700">{t.name}</span>
                         <span className="mt-1 block text-[15px] leading-7 text-slate-700">{t.desc}</span>
                       </span>
                       <span className="shrink-0 text-sm text-slate-500">{fa(getArticles({ topic: t.slug }).length)}</span>
@@ -127,7 +127,7 @@ export default function MagazineHome() {
             </div>
             <aside aria-labelledby="popular" className="self-start rounded-[20px] bg-paper p-7">
               <BarChart3 size={22} className="text-brand-600" aria-hidden />
-              <h2 id="popular" className="mt-4 text-lg font-bold text-ink">پربازدیدها</h2>
+              <h2 id="popular" className="mt-4 text-lg font-semibold text-ink">پربازدیدها</h2>
               <p className="mt-2 text-sm leading-7 text-slate-600">
                 این فهرست پس از راه‌اندازی آمار بازدید، بر اساس بازدید واقعی خواننده‌ها پر می‌شود. تا آن موقع چیزی را پربازدید نشان نمی‌دهیم.
               </p>

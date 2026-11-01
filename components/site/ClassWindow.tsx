@@ -81,7 +81,7 @@ export default function ClassWindow({ className, lang = languages[0] }: { classN
                   {t.photo ? (
                     <Image src={t.photo} alt="" fill sizes="(min-width: 768px) 140px, 22vw" className="object-cover" />
                   ) : (
-                    <span className="grid h-full place-items-center font-display text-2xl font-bold text-white/80">ش</span>
+                    <span className="grid h-full place-items-center font-display text-2xl font-semibold text-white/80">ش</span>
                   )}
                   <span className="absolute bottom-1 right-1 rounded bg-black/55 px-1.5 py-0.5 text-[11px] text-white">{t.name}</span>
                 </li>

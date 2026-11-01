@@ -96,11 +96,11 @@ export default async function ArticlePage({ params }: Props) {
                 <ShareButtons title={a.title} path={articleHref(a)} />
                 {author && (
                   <Reveal className="flex gap-4 rounded-[20px] bg-tint p-5 sm:p-6">
-                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-brand-100 text-xl font-bold text-brand-700" aria-hidden>{author.name.charAt(0)}</span>
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-brand-100 text-xl font-semibold text-brand-700" aria-hidden>{author.name.charAt(0)}</span>
                     <div>
                       <p className="text-xs text-slate-500">نویسنده</p>
                       <p className="mt-0.5 flex flex-wrap items-center gap-2">
-                        <Link href={`/magazine/authors/${author.slug}`} className="font-bold text-ink hover:text-brand-700">{author.name}</Link>
+                        <Link href={`/magazine/authors/${author.slug}`} className="font-semibold text-ink hover:text-brand-700">{author.name}</Link>
                         <span className="text-sm text-slate-500">{author.role}</span>
                         {author.isSample && <SampleBadge />}
                       </p>

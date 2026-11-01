@@ -27,7 +27,7 @@ function Field({ legend, hint, children }: { legend: string; hint?: string; chil
   return (
     <Reveal as="section" className="pt-6">
     <fieldset>
-      <legend className="float-right mb-3 w-full text-[15px] font-bold text-ink">
+      <legend className="float-right mb-3 w-full text-[15px] font-semibold text-ink">
         {legend} {hint && <span className="font-normal text-slate-600">({hint})</span>}
       </legend>
       <div className="clear-both">{children}</div>
